@@ -36,7 +36,8 @@
 </head>
 <body>
   <div class="container">
-    <h1>Оновлення модуля "Документація" до версії 5.0</h1>
+<h1>Оновлення модуля &quot;Документація&quot; до версії 5.0</h1>
+
 <p>Увага! Дане оновлення включає зміну назви на вмісту практично кожного шаблону, зміну значень багатьох існуючих змінних, зміну самої структури папок з шаблонами. Тому <strong>потребує повної заміни старих шаблонів на нові</strong>. А якщо у вас власні нестандартні шаблони &mdash; в них доведетсья вносити зміни, бо, наприклад, змінна <em>$NM</em> тепер без приставки &quot;гр.&quot;. І таких змін є декілька. Про це далі.</p>
 
 <p>Якщо використовували шаблони word через злиття з ексель - доведеться заново налаштовувати злиття, бо повністю змінився порядок колонок таблиці.&nbsp;Частина застарілих змінних вилучена. Інші модернізовані.</p>
@@ -56,15 +57,15 @@
 <h3 data-end="1185" data-start="1164">Як це налаштувати&nbsp;❓</h3>
 
 <ol data-end="1435" data-start="1187">
- <li data-end="1267" data-start="1187">
- <p data-end="1267" data-start="1190">У папці <code data-end="1206" data-start="1198"><span style="font-family:Georgia,serif;">Doc006 </span></code>створіть підпапку з будь-якою назвою (наприклад, <code data-end="1263" data-start="1256">&quot;паї&quot;</code>).</p>
- </li>
- <li data-end="1352" data-start="1268">
- <p data-end="1352" data-start="1271">Скопіюйте туди лише ті шаблони, які потрібно змінити (інші дублювати не треба).</p>
- </li>
- <li data-end="1435" data-start="1353">
- <p data-end="1435" data-start="1356">У папці <code data-end="1376" data-start="1364">TD/Scripts</code> відкрийте файл <strong data-end="1416" data-start="1392"><code data-end="1414" data-start="1394">FoldExclScript.txt</code></strong> і додайте умову.</p>
- </li>
+	<li data-end="1267" data-start="1187">
+	<p data-end="1267" data-start="1190">У папці <code data-end="1206" data-start="1198"><span style="font-family:Georgia,serif;">Doc006 </span></code>створіть підпапку з будь-якою назвою (наприклад, <code data-end="1263" data-start="1256">&quot;паї&quot;</code>).</p>
+	</li>
+	<li data-end="1352" data-start="1268">
+	<p data-end="1352" data-start="1271">Скопіюйте туди лише ті шаблони, які потрібно змінити (інші дублювати не треба).</p>
+	</li>
+	<li data-end="1435" data-start="1353">
+	<p data-end="1435" data-start="1356">У папці <code data-end="1376" data-start="1364">TD/Scripts</code> відкрийте файл <strong data-end="1416" data-start="1392"><code data-end="1414" data-start="1394">FoldExclScript.txt</code></strong> і додайте умову.</p>
+	</li>
 </ol>
 
 <p data-end="1487" data-start="1437">Для прикладу з паї (<code data-end="1464" data-start="1457">01.01</code>) додаються такі рядки:</p>
@@ -73,12 +74,12 @@
 @if <em><strong>$CPKod=01.01</strong></em> then $Folder=<strong><em>паї </em></strong></code></p>
 
 <ul data-end="1769" data-start="1563">
- <li data-end="1690" data-start="1563">
- <p data-end="1690" data-start="1565">Перший рядок бере значення коду цільового призначення з колонки 40 (див. довідник <em>Змінні скрипту.xlsx</em> - закладка <em>Для злиття</em>.).</p>
- </li>
- <li data-end="1769" data-start="1691">
- <p data-end="1769" data-start="1693">Другий рядок каже: якщо код = <code data-end="1730" data-start="1723">01.01</code>, тоді використовувати папку <code data-end="1766" data-start="1759">&quot;паї&quot;</code></p>
- </li>
+	<li data-end="1690" data-start="1563">
+	<p data-end="1690" data-start="1565">Перший рядок бере значення коду цільового призначення з колонки 40 (див. довідник <em>Змінні скрипту.xlsx</em> - закладка <em>Для злиття</em>.).</p>
+	</li>
+	<li data-end="1769" data-start="1691">
+	<p data-end="1769" data-start="1693">Другий рядок каже: якщо код = <code data-end="1730" data-start="1723">01.01</code>, тоді використовувати папку <code data-end="1766" data-start="1759">&quot;паї&quot;</code></p>
+	</li>
 </ul>
 
 <p>Так можна прописати будь-яку власну умову на основі інформації з усіх змінних. Наприклад, коли є акт &mdash; брати окремі сторінки з папки &quot;акт&quot;, коли є оренда &mdash; з папки &quot;оренда&quot;, коли власник &quot;юр.особа&quot; &mdash; окремі сторінки (договора) брати з якоїсь окремої папки. Завдяки цьому, зокрема, тепер можна реалізувати наступні нововведення:</p>
@@ -98,6 +99,8 @@
 <p>3. Тепер всі шаблони пояснювальних за замовчування на основі ZAKPos, але є папка з шаблонами SystemSolution. І якщо в налаштуваннях модуля вказано&nbsp;SystemSolution (в налаштуваннях додано окрему опцію надавача послуг RTK на сторінці сертифікатів і приладів) &mdash; то тоді окремі сторінки пояснювальних записок&nbsp;будуть братися з папки&nbsp;SystemSolution.</p>
 
 <p>Ще один важливий нюанс &mdash; з даними папками є пріоритети вибору. Наприклад, якщо в налаштуваннях задано&nbsp;SystemSolution, але водночас той самий шаблон є і в папці &quot;Тахеометр&quot;, то пріоритетом буде умова з тахеометром тому, що в скрипті&nbsp;<strong>FoldExclScript.txt</strong> умова щодо тахеометра йде останньою. Враховуйте це при створенні таких умов в даному скрипті.</p>
+
+<p>➡️ Шаблони, які мають у назві частину слова &quot;<strong>обмеж</strong>&quot; тепер не формуються, якщо на ділянці нема обмежень. Таким чином план <strong>обмеж</strong>ень тепер формується тільки тоді, коли на ділянці є обмеження. Аналогічно вже раніше було реалізовано для шаблонів щодо поділу та об&#39;єдання. Якщо в назві шаблону була слово &quot;поділ&quot;, а документація була щодо об&#39;єднання &mdash; то дані шаблони не формувалися. Чи навпаки &mdash; якщо в назві шаблону наявне слово &quot;об&#39;єднання&quot; &mdash; то цей шаблон не формувався тоді, коли документація щодо поділу. Це також вдосконалено. Тепер ті чи інші шаблони відсутні і у вікні для вибору сторінок документації.</p>
 
 <p>➡️ В груповому режимі скрипт тепер сам ідентифікує, де відкриті обмінники, які треба опрацьовувати, а де уже сформовані за шаблонами сторінки. Тому тепер можна формувати сторінки без потреби відкривати обмінники заново, щоб зправа не було нічого відкрито.</p>
 
@@ -141,14 +144,14 @@
 <p>з результатом, залежно від статі:</p>
 
 <ul>
- <li><em>громадянина Дуба Степана Миколайовича</em></li>
- <li><em>громадянки Дуб Ірини Миколаївни</em></li>
+	<li><em>громадянина Дуба Степана Миколайовича</em></li>
+	<li><em>громадянки Дуб Ірини Миколаївни</em></li>
 </ul>
 
 <p>і якщо два співвласники:</p>
 
 <ul>
- <li><em>громадян Дуба Степана Миколайовича, Дуб Ірини Миколаївни</em></li>
+	<li><em>громадян Дуба Степана Миколайовича, Дуб Ірини Миколаївни</em></li>
 </ul>
 
 <p>а якщо власник юридична особа &mdash; то тоді просто назва юридичної особи, без приставки &laquo;гр.&raquo;.<br />
@@ -157,20 +160,20 @@
 <p><em><strong>Для чого взагалі потрібна ця приставка &quot;громадянин&quot;</strong></em>❓</p>
 
 <ol start="1">
- <li>
- <p><b>Правова основа:</b> Передача земельних ділянок у власність фізичним особам регулюється, в першу чергу, <b>Земельним кодексом України</b>. Зокрема, стаття 121 Кодексу встановлює норми безоплатної передачі земельних ділянок саме <b>громадянам України</b>. Таким чином, вказуючи на титульній сторінці &quot;громадянину&quot;, ми одразу визначаємо, що особа діє у статусі, який дає їй право на отримання цієї землі на визначених законом підставах.</p>
- </li>
- <li>
- <p><b>Ідентифікація суб&#39;єкта:</b> Це чітко відмежовує суб&#39;єкта (фізична особа-громадянин) від інших можливих набувачів права власності, як-от юридичні особи, іноземці, органи місцевого самоврядування чи держава, для яких процедура та правові підстави є іншими.</p>
- </li>
- <li>
- <p><b>Усталена практика:</b> Це є стандартною та загальноприйнятою практикою в галузі землеустрою.</p>
- </li>
+	<li>
+	<p><b>Правова основа:</b> Передача земельних ділянок у власність фізичним особам регулюється, в першу чергу, <b>Земельним кодексом України</b>. Зокрема, стаття 121 Кодексу встановлює норми безоплатної передачі земельних ділянок саме <b>громадянам України</b>. Таким чином, вказуючи на титульній сторінці &quot;громадянину&quot;, ми одразу визначаємо, що особа діє у статусі, який дає їй право на отримання цієї землі на визначених законом підставах.</p>
+	</li>
+	<li>
+	<p><b>Ідентифікація суб&#39;єкта:</b> Це чітко відмежовує суб&#39;єкта (фізична особа-громадянин) від інших можливих набувачів права власності, як-от юридичні особи, іноземці, органи місцевого самоврядування чи держава, для яких процедура та правові підстави є іншими.</p>
+	</li>
+	<li>
+	<p><b>Усталена практика:</b> Це є стандартною та загальноприйнятою практикою в галузі землеустрою.</p>
+	</li>
 </ol>
 
 <p><strong>ЗАВДАННЯ НА ВИКОНАННЯ РОБІТ</strong></p>
 
-<p><img alt="" src="https://fendak.github.io/digitals/scrDoc/image/05.png" style="width: 900px;" /></strong></p>
+<p><img alt="" src="https://fendak.github.io/digitals/scrDoc/image/05.png" style="width: 900px;" /></p>
 
 <p>Даний шаблон повністю замінено на новий. Це стало можливим завдяки тому, що нещодавно втратила чинність <a href="https://zakon.rada.gov.ua/laws/show/266-2004-%D0%BF#Text">Постанова про затвердження типового договору</a>, яка регламентувала зміст технічого завдання, опираючись на застарілі норми і процедури. А також скасована <a href="https://zakon.rada.gov.ua/laws/show/z0391-10#Text">Інструкція щодо встановлення меж</a>, яка мала окремий власний зразок технічного завдання для &laquo;технічки&raquo;. Детальніше про це <a href="http://digitals.at.ua/news/tekhnichne_zavdannja_ta_dogovir_u_zemleustroji_teper_bez_obov_jazkovikh_zrazkiv/2025-08-10-46">ТУТ</a>. Завдання стало більш логічно структурованим, краще читабельним, естетичним, змістовним, і водночас збережено об&#39;єм в межах одної сторінки.</p>
 
@@ -208,7 +211,7 @@
 <p>Окрім цього, внесено такі зміни в текст:</p>
 
 <p><strong>СТОРІНКА 1</strong><br />
-<img alt="" src="https://fendak.github.io/digitals/scrDoc/image/06.png" style="width: 900px;" /></strong></p>
+<img alt="" src="https://fendak.github.io/digitals/scrDoc/image/06.png" style="width: 900px;" /></p>
 
 <p><strong>Що змінено</strong>❓</p>
 
@@ -217,9 +220,9 @@
 <p>✅ Замість змінної&nbsp;<strong>$NMDat</strong>&nbsp;використані змінні&nbsp;<strong>$G11Full $NMRod</strong>, оскільки ключова фраза тут &mdash; &laquo;Технічна документація&raquo;, від якої&nbsp;ми ставимо питання до імені власниці:</p>
 
 <ul>
- <li>
- <p><i>Технічна документація (чия? кого?) &rarr; громадянки Дуб Ірини Миколаївни.</i></p>
- </li>
+	<li>
+	<p><i>Технічна документація (чия? кого?) &rarr; громадянки Дуб Ірини Миколаївни.</i></p>
+	</li>
 </ul>
 
 <p>✅&nbsp;<strong data-end="1225" data-start="1202">&quot;в селі&quot; &rarr; &quot;у селі&quot;</strong> &mdash; плавніший варіант, та й загаглом&nbsp;<strong data-end="913" data-start="903">у селі</strong>, <strong data-end="926" data-start="915">у місті</strong>, <strong data-end="940" data-start="928">у селищі</strong> &mdash; найпоширеніші й безпечні варіанти, особливо після слів, що закінчуються на голосну. Для цього внесено зміни в змінну&nbsp;<strong>$ADSkor7;</strong></p>
@@ -316,7 +319,7 @@
 <p data-end="1686" data-start="1589">✅ <strong>&quot;код - 001.01; 002.03; 007.01&quot;</strong> &rarr; <strong>&quot;коди: 001.01; 002.03; 007.01&quot;</strong> &mdash; узгоджено у множині (використано змінну <strong>$Z17</strong>).</p>
 
 <p data-end="1686" data-start="1589"><strong>СТОРІНКА 4</strong><br />
-<img alt="" src="https://fendak.github.io/digitals/scrDoc/image/10.png" style="width: 900px;" /></strong></p>
+<img alt="" src="https://fendak.github.io/digitals/scrDoc/image/10.png" style="width: 900px;" /></p>
 
 <p data-end="1686" data-start="1589"><strong>Що змінено</strong>❓<br />
 <strong>10. Опис та обґрунтування проєктного рішення (продовження)</strong></p>
@@ -355,7 +358,7 @@
 
 <p><strong>Заява виконавця робіт із землеустрою щодо дотримання обмежень,&nbsp;встановлених статтею 28 Закону України &laquo;Про землеустрій&raquo;</strong></p>
 
-<p><img alt="" src="https://fendak.github.io/digitals/scrDoc/image/11.png" style="width: 900px;" /></strong></p>
+<p><img alt="" src="https://fendak.github.io/digitals/scrDoc/image/11.png" style="width: 900px;" /></p>
 
 <p data-end="1657" data-start="1626"><strong data-end="1655" data-start="1626">Що було виправлено і чому</strong>❓</p>
 
@@ -374,22 +377,22 @@
 <p data-end="1686" data-start="1589"><strong>Зверніть увагу</strong>, що дана заява в папці з шаблонами була <strong>перейменована</strong> на &quot;<strong>Заява ст28</strong>&quot;, оскільки виходила плутанина із шаблоном заяви на виконання робіт, яка в окремих папках для різних видів документації. Заява на виконання робіт, яка називалася в різних папках по-різному (Заява ТД, просто Заява) тепер всюди називається просто Заява.</p>
 
 <p data-end="1686" data-start="1589"><strong>ЗАЯВА НА РОЗРОБЛЕННЯ ДОКУМЕНТАЦІЇ</strong><br />
-<img alt="" src="https://fendak.github.io/digitals/scrDoc/image/12.png" style="width: 900px;" /></strong></p>
+<img alt="" src="https://fendak.github.io/digitals/scrDoc/image/12.png" style="width: 900px;" /></p>
 
 <p data-end="1686" data-start="1589">✅ Повністю перероблено. Зроблено більш простою і читабельно.</p>
 
 <p data-end="1686" data-start="1589">✅ Додано змінну&nbsp;<strong>$AreaiCPN</strong>, яка:</p>
 
 <ul>
- <li data-end="1686" data-start="1589">у випадку, коли декілька ділянок, має таке наповнення:<br />
- &quot;<em>, а саме:<br />
- &ndash; площею 0.2355 га &ndash; для будівництва і обслуговування житлового будинку, господарських будівель і споруд (присадибна ділянка);<br />
- &ndash; площею 0.7526 га &ndash; для ведення особистого селянського господарства;<br />
- &ndash; площею 0.2534 га &ndash; для ведення особистого селянського господарства;<br />
- &ndash; площею 0.1469 га &ndash; для ведення особистого селянського господарства,</em><br />
- &nbsp; &quot;</li>
- <li data-end="1686" data-start="1589">у випадку, коли тільки одна ділянка, таке:<br />
- &quot;<em>&nbsp;площею 0.2355 га для будівництва і обслуговування житлового будинку, господарських будівель і споруд (присадибна ділянка)</em>&quot;</li>
+	<li data-end="1686" data-start="1589">у випадку, коли декілька ділянок, має таке наповнення:<br />
+	&quot;<em>, а саме:<br />
+	&ndash; площею 0.2355 га &ndash; для будівництва і обслуговування житлового будинку, господарських будівель і споруд (присадибна ділянка);<br />
+	&ndash; площею 0.7526 га &ndash; для ведення особистого селянського господарства;<br />
+	&ndash; площею 0.2534 га &ndash; для ведення особистого селянського господарства;<br />
+	&ndash; площею 0.1469 га &ndash; для ведення особистого селянського господарства,</em><br />
+	&nbsp; &quot;</li>
+	<li data-end="1686" data-start="1589">у випадку, коли тільки одна ділянка, таке:<br />
+	&quot;<em>&nbsp;площею 0.2355 га для будівництва і обслуговування житлового будинку, господарських будівель і споруд (присадибна ділянка)</em>&quot;</li>
 </ul>
 
 <p>Таким чином, дана змінна забезпечує, щоб у випадку з одною ділянкою опис її площі та цільового був в одному рядку простим текстом, а якщо декілька - то у вигляді списку із декількох рядків.</p>
@@ -454,40 +457,161 @@
 
 <p data-end="1686" data-start="1589">Як відбувається сортування❓</p>
 
-<p data-end="1686" data-start="1589">При першому запуску скрипту по тому чи іншому виду документації, для даного виду документації у папці&nbsp;<em>TD\сортування</em> створюється файлик&nbsp;<em>Doc006.txt</em> такого змісту:<br />
+<p data-end="1686" data-start="1589">При першому запуску скрипту по тому чи іншому виду документації, для даного виду документації у папці&nbsp;<em>TD\сортування</em> створюється файлик&nbsp;<em>Doc006.txt</em> такого змісту:</p>
+
+<p>&nbsp;</p>
+
 <table style="border-collapse: collapse;">
-  <tbody>
-    <tr><td style="padding: 2px;">101</td><td style="padding: 2px;">Титулка1</td><td style="padding: 2px;">Титулка1</td></tr>
-    <tr><td style="padding: 2px;">102</td><td style="padding: 2px;">Титулка2</td><td style="padding: 2px;">Титулка2</td></tr>
-    <tr><td style="padding: 2px;">103</td><td style="padding: 2px;">Зміст</td><td style="padding: 2px;">Зміст</td></tr>
-    <tr><td style="padding: 2px;">104</td><td style="padding: 2px;">Завдання</td><td style="padding: 2px;">Завдання</td></tr>
-    <tr><td style="padding: 2px;">105</td><td style="padding: 2px;">Поясн1</td><td style="padding: 2px;">Поясн1</td></tr>
-    <tr><td style="padding: 2px;">106</td><td style="padding: 2px;">Поясн2</td><td style="padding: 2px;">Поясн2</td></tr>
-    <tr><td style="padding: 2px;">107</td><td style="padding: 2px;">Поясн3</td><td style="padding: 2px;">Поясн3</td></tr>
-    <tr><td style="padding: 2px;">108</td><td style="padding: 2px;">Поясн4</td><td style="padding: 2px;">Поясн4</td></tr>
-    <tr><td style="padding: 2px;">109</td><td style="padding: 2px;">Поясн5</td><td style="padding: 2px;">Поясн5</td></tr>
-    <tr><td style="padding: 2px;">110</td><td style="padding: 2px;">Заява ст28</td><td style="padding: 2px;">Заява ст28</td></tr>
-    <tr><td style="padding: 2px;">111</td><td style="padding: 2px;">МБвикоп</td><td style="padding: 2px;">Викоп з генплану</td></tr>
-    <tr><td style="padding: 2px;">112</td><td style="padding: 2px;">Викопіювання</td><td style="padding: 2px;">Викопіювання</td></tr>
-    <tr><td style="padding: 2px;">113</td><td style="padding: 2px;">Схема GNSS</td><td style="padding: 2px;">РТК схема</td></tr>
-    <tr><td style="padding: 2px;">114</td><td style="padding: 2px;">Диф.поле</td><td style="padding: 2px;">Схема GNSS-</td></tr>
-    <tr><td style="padding: 2px;">115</td><td style="padding: 2px;">В.векторів</td><td style="padding: 2px;">В.векторів</td></tr>
-    <tr><td style="padding: 2px;">116</td><td style="padding: 2px;">В.координат</td><td style="padding: 2px;">В.координат</td></tr>
-    <tr><td style="padding: 2px;">117</td><td style="padding: 2px;">Схема ДГМ</td><td style="padding: 2px;">ш ДГМ</td></tr>
-    <tr><td style="padding: 2px;">118</td><td style="padding: 2px;">В.площі</td><td style="padding: 2px;">В.площі</td></tr>
-    <tr><td style="padding: 2px;">119</td><td style="padding: 2px;">План обм</td><td style="padding: 2px;">План обмежень</td></tr>
-    <tr><td style="padding: 2px;">120</td><td style="padding: 2px;">Пер обм1</td><td style="padding: 2px;">Перелік обмежень1</td></tr>
-    <tr><td style="padding: 2px;">121</td><td style="padding: 2px;">Пер обм2</td><td style="padding: 2px;">Перелік обмежень2</td></tr>
-    <tr><td style="padding: 2px;">122</td><td style="padding: 2px;">Пер обм3</td><td style="padding: 2px;">Перелік обмежень3</td></tr>
-    <tr><td style="padding: 2px;">123</td><td style="padding: 2px;">Кад план</td><td style="padding: 2px;">Кад план</td></tr>
-    <tr><td style="padding: 2px;">124</td><td style="padding: 2px;">Заява</td><td style="padding: 2px;">Заява</td></tr>
-    <tr><td style="padding: 2px;">125</td><td style="padding: 2px;">Договір</td><td style="padding: 2px;">Договір</td></tr>
-    <tr><td style="padding: 2px;">126</td><td style="padding: 2px;">Договір2</td><td style="padding: 2px;">Договір+</td></tr>
-    <tr><td style="padding: 2px;">127</td><td style="padding: 2px;">Протокол</td><td style="padding: 2px;">Протокол</td></tr>
-    <tr><td style="padding: 2px;">128</td><td style="padding: 2px;">Акт робіт</td><td style="padding: 2px;">Акт ПП</td></tr>
-    <tr><td style="padding: 2px;">129</td><td style="padding: 2px;">Відомість МЗ</td><td style="padding: 2px;">Відомість МЗ</td></tr>
-  </tbody>
+	<tbody>
+		<tr>
+			<td style="padding: 2px;">101</td>
+			<td style="padding: 2px;">Титулка1</td>
+			<td style="padding: 2px;">Титулка1</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">102</td>
+			<td style="padding: 2px;">Титулка2</td>
+			<td style="padding: 2px;">Титулка2</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">103</td>
+			<td style="padding: 2px;">Зміст</td>
+			<td style="padding: 2px;">Зміст</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">104</td>
+			<td style="padding: 2px;">Завдання</td>
+			<td style="padding: 2px;">Завдання</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">105</td>
+			<td style="padding: 2px;">Поясн1</td>
+			<td style="padding: 2px;">Поясн1</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">106</td>
+			<td style="padding: 2px;">Поясн2</td>
+			<td style="padding: 2px;">Поясн2</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">107</td>
+			<td style="padding: 2px;">Поясн3</td>
+			<td style="padding: 2px;">Поясн3</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">108</td>
+			<td style="padding: 2px;">Поясн4</td>
+			<td style="padding: 2px;">Поясн4</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">109</td>
+			<td style="padding: 2px;">Поясн5</td>
+			<td style="padding: 2px;">Поясн5</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">110</td>
+			<td style="padding: 2px;">Заява ст28</td>
+			<td style="padding: 2px;">Заява ст28</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">111</td>
+			<td style="padding: 2px;">МБвикоп</td>
+			<td style="padding: 2px;">Викоп з генплану</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">112</td>
+			<td style="padding: 2px;">Викопіювання</td>
+			<td style="padding: 2px;">Викопіювання</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">113</td>
+			<td style="padding: 2px;">Схема GNSS</td>
+			<td style="padding: 2px;">РТК схема</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">114</td>
+			<td style="padding: 2px;">Диф.поле</td>
+			<td style="padding: 2px;">Схема GNSS-</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">115</td>
+			<td style="padding: 2px;">В.векторів</td>
+			<td style="padding: 2px;">В.векторів</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">116</td>
+			<td style="padding: 2px;">В.координат</td>
+			<td style="padding: 2px;">В.координат</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">117</td>
+			<td style="padding: 2px;">Схема ДГМ</td>
+			<td style="padding: 2px;">ш ДГМ</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">118</td>
+			<td style="padding: 2px;">В.площі</td>
+			<td style="padding: 2px;">В.площі</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">119</td>
+			<td style="padding: 2px;">План обм</td>
+			<td style="padding: 2px;">План обмежень</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">120</td>
+			<td style="padding: 2px;">Пер обм1</td>
+			<td style="padding: 2px;">Перелік обмежень1</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">121</td>
+			<td style="padding: 2px;">Пер обм2</td>
+			<td style="padding: 2px;">Перелік обмежень2</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">122</td>
+			<td style="padding: 2px;">Пер обм3</td>
+			<td style="padding: 2px;">Перелік обмежень3</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">123</td>
+			<td style="padding: 2px;">Кад план</td>
+			<td style="padding: 2px;">Кад план</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">124</td>
+			<td style="padding: 2px;">Заява</td>
+			<td style="padding: 2px;">Заява</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">125</td>
+			<td style="padding: 2px;">Договір</td>
+			<td style="padding: 2px;">Договір</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">126</td>
+			<td style="padding: 2px;">Договір2</td>
+			<td style="padding: 2px;">Договір+</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">127</td>
+			<td style="padding: 2px;">Протокол</td>
+			<td style="padding: 2px;">Протокол</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">128</td>
+			<td style="padding: 2px;">Акт робіт</td>
+			<td style="padding: 2px;">Акт ПП</td>
+		</tr>
+		<tr>
+			<td style="padding: 2px;">129</td>
+			<td style="padding: 2px;">Відомість МЗ</td>
+			<td style="padding: 2px;">Відомість МЗ</td>
+		</tr>
+	</tbody>
 </table>
+
+<p>&nbsp;</p>
 
 <p data-end="1686" data-start="1589">де в третій колонці &mdash; стандартна назва документу після формування;<br />
 в другій колоінці &mdash; назва, яку ви можете задати на свій лад, як вам зручніше (рекомендовано недовгі назви для того, щоб не літати потім по кілометрових вкладках в програмі);<br />
@@ -497,7 +621,10 @@
 
 <p data-end="1686" data-start="1589">Тоді відповідні вкладки із сторінками в програмі після сортування будуть називатися так само:<br />
 <img alt="" src="https://fendak.github.io/digitals/scrDoc/image/19.png" style="width: 900px;" /></p>
-При чому, тут важливо чи включено у налаштуваннях скрипту опцію &quot;Зберігати звіт там де обмінник&quot;. Якщо включено &mdash; то разом із назвами тоді будуть зберігатися і цифри. Це потрібно для того, щоб потім у папці вони також відповідно сортувалися при збереженні і повторному відкритті.</p>
+
+<p>При чому, тут важливо чи включено у налаштуваннях скрипту опцію &quot;Зберігати звіт там де обмінник&quot;. Якщо включено &mdash; то разом із назвами тоді будуть зберігатися і цифри. Це потрібно для того, щоб потім у папці вони також відповідно сортувалися при збереженні і повторному відкритті.</p>
+
+<p>&nbsp;</p>
 
 <p data-end="1686" data-start="1589">Сортувати сторінки можна, по суті, як завгодно, не залежно від того, якими із скриптів вони були створені.</p>
 
@@ -536,11 +663,20 @@
 
 <p data-end="1686" data-start="1589">Якщо в документації багато дуже сторінок, то буває незручно клацати стрілкою вбік, щоб перейти на потрібу сторінку щось подивитися, а потім назад. В такому випадку можна скористатися даною опцією. При першому запуску вона просканує всі відкриті вкладки і складе такий список:<br />
 <img alt="" src="https://fendak.github.io/digitals/scrDoc/image/20.png" style="width: 239px; height: 517px;" /></p>
-де можна вибрати потрібну сторінку і зразу перейти на відповідну вкладку. При цьому, даний список тимчасово зберігається, щоб кожного разу не сканувати всі вкладки. Тоді наступний перехід стає миттєвим. Але це працює до тих пір, поки кількість відкритих у програмі&nbsp;вкладок не більша за кількість, яка була при скануванні. Тобто, якщо закривати окремі сторінки - то сканування повторно відбуватися не буде. Але якщо відкрити дадаткову сторінку&nbsp;&mdash; сканування почнеться заново. Ну і даний список автоматично видаляється при кожному новому запуску скрипту для формування документації.</p>
+
+<p>де можна вибрати потрібну сторінку і зразу перейти на відповідну вкладку. При цьому, даний список тимчасово зберігається, щоб кожного разу не сканувати всі вкладки. Тоді наступний перехід стає миттєвим. Але це працює до тих пір, поки кількість відкритих у програмі&nbsp;вкладок не більша за кількість, яка була при скануванні. Тобто, якщо закривати окремі сторінки - то сканування повторно відбуватися не буде. Але якщо відкрити дадаткову сторінку&nbsp;&mdash; сканування почнеться заново. Ну і даний список автоматично видаляється при кожному новому запуску скрипту для формування документації.</p>
 
 <p data-end="1686" data-start="1589"><strong>7. Зберегти у...</strong></p>
 
 <p data-end="1686" data-start="1589">Дозволяє зберегти всі сторінки, що відкриті праворуч, починаю з активної у нову вибрану папку (буде запитано в яку). Дану опцію можна використовувати замість опцій, які є в кожному скрипті &quot;Зберегти звіт у папку з обмінником&quot;.</p>
+
+<p data-end="1686" data-start="1589">➡️ Змінено сервер для оновлень скрипту, оскільки Ucoz блокується в Україні провайдером Київстар.</p>
+
+<p data-end="1686" data-start="1589">Перехід з версії 4 до версії 5 не є автоматичним.<br />
+Щодо оновлення звертайтеся на імейл fendak@ukr.net.<br />
+Вартість онновлення до версії 5 для користувачів, які придбали скрипт у 2024-ому та 2025-ому роках скаладає 300 грн.<br />
+Вартість оновлення з версії 4, яка була придбана до 2023 року включно - 600 грн<br />
+Вартість оновлення з версії 3 та старіших версій&nbsp;- 900 грн.</p>
   </div>
 </body>
 </html>
