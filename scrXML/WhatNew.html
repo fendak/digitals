@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Digitals - геодезія, картографія та землевпорядкування</title>
+  <style>
+    body {
+      background-image: url("https://fendak.github.io/digitals/scrDoc/Fon.jpg");
+      background-size: cover;      /* картинка масштабується під екран */
+      background-position: center; /* центрування */
+      background-attachment: fixed; /* картинка не рухається при прокрутці */
+      font-family: Arial, sans-serif;
+      font-size: 16px; /* розмір шрифту */
+      line-height: 1.5; /* відстань між рядками для легшого читання */
+      background: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 40px 0; /* відступ зверху/знизу */
+      display: flex;
+      justify-content: center; /* центрування контейнера */
+    }
+
+    .container {
+      max-width: 900px;  /* ширина для великих екранів */
+      background: rgba(255, 255, 255, 0.9); /* легка біла підкладка */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* тінь для гарного вигляду */
+      text-align: justify; /* додаємо вирівнювання по обидві сторони */
+    }
+
+    h1 {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+<div style="border-bottom:solid #39a5b7 1.5pt; padding:0cm 0cm 4.0pt 0cm">
+<h2 class="MsoTitle"><span style="color:#add8e6;"><strong><span style="font-size:16px;">Оновлення модуля XML (версія 6)</span></strong></span></h2>
+</div>
+
+<p>(якщо це вікно у вас відкрилося автоматично під час оновлення скрипту, то скрипт уже оновився, а дане вікно відкрите для довідки)<br />
+<br />
+<strong>Перед оновленням відключіть захищене з&#39;єднання з НКС для програми Digitals.</strong><br />
+Щоб оновити скрипт, перейдіть в налаштування скрипту (натисніть кнопку налаштувань) і поставте &quot;<em>так</em>&quot; в опції &quot;<em>Перевірити наявність нової версії</em>&quot; (дана опція доступна тільки&nbsp;якщо ви раніше вже оновили були скрипт до версії 6.01 і вище).<br />
+<img alt="" class="" src="http://digitals.at.ua/image2/2023-01-17_225059.jpg" style="width: 577px; height: 110px;" /></p>
+
+<p><span style="color:#880000;"><span style="font-size:14px;"><strong>Що нового у версії 6.06</strong></span></span>?</p>
+
+<p>1.&nbsp;Відповідно до&nbsp;<a href="https://www.kmu.gov.ua/npas/pro-vnesennia-zmin-do-postanovy-kabinetu-ministriv-ukrainy-vid-17-zhovtnia-2012-r-s1131100925">пост. КМУ №1131 від 10.09.2025 р.</a>&nbsp;внесено зміни в постанову 1051, а саме:</p>
+
+<p><span style="font-family: &quot;Times New Roman&quot;, serif; font-size: 14px;">1) Додано нове угіддя</span><br />
+<span style="font-family:Times New Roman,Times,serif;"><span style="font-size:14px;"><i><span style="color:#00b050">003.07 Луки</span></i></span></span><br />
+а також внесено зміни в назву угіддя<br />
+<span style="font-family:Times New Roman,Times,serif;"><span style="font-size:14px;"><em>003.00 Землі без рослинного покриву або з незначним рослинним покривом<span style="color:#00b050;">, або з трав&rsquo;янистим рослинним покривом природного походження</span></em></span></span><br />
+<span style="font-size:12px;"><span style="font-family:Antiqua,sans-serif">(оновлено довідник <em>Lists/scrXML/LandCode</em>)</span></span></p>
+
+<p><span style="font-family: &quot;Times New Roman&quot;, serif; font-size: 14px;">2) Додано нові обмеження:</span><br />
+<span style="font-family:Times New Roman,Times,serif;"><span style="font-size:14px;"><span style="color:#00b050;"><em>06.07 Технічна зона метрополітену<br />
+06.07.1&nbsp;Технічна зона 2-ї категорії<br />
+06.07.2&nbsp;Технічна зона 3-ї категорії<br />
+06.07.3 Технічна зона 4-ї категорії</em></span></span></span><br />
+<span style="font-size:14px;">та</span><br />
+<span style="font-family:Times New Roman,Times,serif;"><span style="font-size:14px;"><span style="color:#00b050;"><em>07.17 Право на будівництво, облаштування та утримання інженерно технічних і фортифікаційних споруд, огорож, прикордонних знаків, прикордонних просік, комунікацій<br />
+07.18 Право розміщення (без здійснення капітального будівництва) об&rsquo;єктів рекреаційної інфраструктури, а також інженерної інфраструктури, необхідної для їх функціонування та обслуговування</em></span></span></span><br />
+<span style="font-size:14px;"><span style="font-family:Antiqua,sans-serif"><span style="font-family:&quot;Times New Roman&quot;,serif">а також змінено назви двох інших обмежень:</span></span><br />
+<span style="font-family:Times New Roman,Times,serif;"><em>07.09 Право встановлення будівельних</em> <i><span lang="EN-US"><span style="color:black">[</span></span><s><span style="color:#c00000">розташувань</span></s></i><i><span lang="EN-US">]</span><span style="color:#00b050">риштувань</span></i> <em>та складування будівельних матеріалів з метою ремонту будівель та споруд<br />
+07.14 Право на користування земельною ділянкою&nbsp;для потреб</em><span style="color:#00b050;"><em>&nbsp;геологічного вивчення, у тому числі</em></span> <em> дослідно промислової розробки </em><i><span lang="EN-US"><span style="color:black">[</span></span><s><span style="color:#c00000">родовищ бурштину</span></s><span lang="EN-US">],</span></i>&nbsp;<span style="color:#00b050;"><em>корисних копалин з подальшим видобуванням</em></span><em>&nbsp;</em><i><span lang="EN-US"><span style="color:black">[</span></span><s><span style="color:#c00000">інших</span></s><span lang="EN-US">]</span></i><em> корисних копалин <span style="color:#00b050;">(промислової розробки родовищ)&nbsp;</span>загальнодержавного <span style="color:#00b050;">та місцевого</span> значення та (або) <span style="color:#00b050;">для</span> видобування </em><i><span lang="EN-US"><span style="color:black">[</span></span><s><span style="color:#c00000">бурштину, інших</span></s><span lang="EN-US">]</span></i><em> корисних копалин загальнодержавного <span style="color:#00b050;">та місцевого&nbsp;</span>значення <span style="color:#00b050;">з правом будівництва та розміщення споруд/об&rsquo;єктів, пов&rsquo;язаних із зазначеним видом діяльності</span>, за умови що при цьому не порушуються права землевласника, передбачені статтею 98 Земельного кодексу України</em></span></span></p>
+
+<p>Відповідно оновлено і довідники законодавчих актів для встановлення обмежень (<em>Zakony2.txt</em> та <em>Zakony3.txt</em> у папці <em>Lists\scrXML). </em>А також довідник <em>scrOZRestrCodes.txt</em>.</p>
+
+<p><span style="font-size:14px;"><span style="font-family:Antiqua,sans-serif"><span style="font-family:&quot;Times New Roman&quot;,serif">3) Змінено назву одного пункту цільового призначення:</span></span><br />
+<em><span style="font-family:Times New Roman,Times,serif;">14.02 Для розміщення, будівництва, експлуатації та обслуговування будівель і споруд об&rsquo;єктів передачі електричної <span style="color:#00b050;">та теплової</span> енергії</span></em></span><br />
+<span style="font-size:12px;"><span style="font-family:Antiqua,sans-serif">(оновлено довідник Lists/scrDocPurpose)</span></span></p>
+
+<p>Відповідно,&nbsp;оновлено довідники&nbsp;<em>Purpose.txt</em>&nbsp;та <em>PurposeReverse.txt</em> у папці Lists.</p>
+
+<p>2. Виправлено помилку, яка почала з&#39;являтися в скрипті на нових (від 24.09.2025 р.) версіях Digitals:<br />
+&nbsp;</p>
+
+<p><span style="color:#880000;"><span style="font-size:14px;"><strong>Що нового у версії 6.05</strong></span></span>?</p>
+
+<p>1. Додано нові і вилучено старі обмеження відповідно до змін згідно&nbsp;<a href="https://www.kmu.gov.ua/npas/pro-vnesennia-zmin-do-deiakykh-postanov-kabinetu-ministriv-ukrainy-shchodo-rozroblennia-mistobudivnoi-dokumentatsii-na-mistsevomu-rivni-1557-311224">Постанови №1557 від 31.12.2024</a>&nbsp;для скрипту, який створює охоронні зони:<br />
+<img alt="" src="http://digitals.at.ua/image2/2025-01-26_131042.png" style="width: 600px; height: 256px;" /><br />
+Відповідно оновлено і довідники законодавчих актів для встановлення обмежень (<em>Zakony2.txt</em> та <em>Zakony3.txt</em> у папці <em>Lists\scrXML). </em>А також довідник <em>scrOZRestrCodes.txt</em>.</p>
+
+<p>2. Додано опцію (<strong><em>Круглі краї охоронних зон</em></strong>), яка дозволяє відключити зкруглення країв при створенні охоронних зон.</p>
+
+<p>3. Внесено зміни в список цільових призначень, що стосуються земель оборони (згідно&nbsp;<a href="https://zakon.rada.gov.ua/laws/show/6-2025-%D0%BF#Text">Постанови №6 від 07.01.2024</a>), а&nbsp;також в пункті:<br />
+<em>01.15 Земельні ділянки <span style="color:#ff0000;"><s>запасу</s></span> під сільськогосподарськими будівлями і дворами</em>&nbsp;- згідно&nbsp;<a href="https://www.kmu.gov.ua/npas/pro-vnesennia-zmin-do-deiakykh-postanov-kabinetu-ministriv-ukrainy-shchodo-rozroblennia-mistobudivnoi-dokumentatsii-na-mistsevomu-rivni-1557-311224">Постанови №1557 від 31.12.2024</a>&nbsp;виключено слово &quot;запасу&quot;.<br />
+Відповідно,&nbsp;оновлено довідники&nbsp;<em>Purpose.txt</em>&nbsp;та <em>PurposeReverse.txt</em> у папці Lists.</p>
+
+<p>4.&nbsp;У швидкий вибір додано цільове призначення &quot;для городництва&quot;:<br />
+<img alt="" src="http://digitals.at.ua/image2/2025-01-26_134246.png" style="width: 426px; height: 278px;" /></p>
+
+<p>5. Оновлено список видів документації -&nbsp;<em>DocType.txt</em>&nbsp;у папці Lists - відповідно до змін у <a href="https://zakon.rada.gov.ua/laws/show/1051%D0%B0-2012-%D0%BF#n24">Додатку 8</a> <a href="https://zakon.rada.gov.ua/laws/show/1051-2012-%D0%BF#n950">Вимог до змісту, структури і технічних характеристик електронного документа</a>.</p>
+
+<p>6. При заповненні державних актів прізвища голови і землевпорядника, що підписали акт, підтягуються тепер напряму з довідників <em>RadaNM.txt</em> та <em>UZRNM.txt</em> у папці Lists (раніше підтягувалися з шару <em>Кадастровий квартал</em>, але звідти інформація про голову і землевпорядника була вилучена&nbsp;Постановою КМ&nbsp;<a href="https://zakon.rada.gov.ua/laws/show/1417-2021-%D0%BF#n346" target="_blank">№ 1417 від 23.12.2021</a>, якою&nbsp;було внесено зміни в&nbsp;<a href="https://zakon.rada.gov.ua/laws/show/1051%D0%B0-2012-%D0%BF#n39">Додаток 13</a>&nbsp;Вимог до змісту ОФ).<br />
+Також для цього можна створити окремі довідники:<br />
+<em>SpGol2.txt</em> - КОАТУУ з 10 цифр та ПІБ голови<br />
+<em>SpZem2.txt</em> - КОАТУУ з 10 цифр та ПІБ землевпорядника</p>
+
+<p>Для чого окремі довідники? Справа в тому, що довідник&nbsp;<em>SpGol2.txt </em>у скрипті був прописаний з самого початку, відколи створений скрипт. Пізніше його було замінено на стандартний&nbsp;<em>RadaNM.txt</em>. Але якщо старий довідник був наявний в папці Lists, то інформація продовжувала братися з нього, а не з стандартного. Тому старий довдіник є в усіх, хто давно користується даним скриптом, і зараз його&nbsp;залишено також, щоб декому не довелося переписувати інформацію із старого в новий довідник. А тепер за даною аналогією додано і окремий другий довідник для землевпорядників.</p>
+
+<p>Тобто, для заповнення прізвищ голови і землевпорядника в інформації про акт&nbsp;можна або створити довідники&nbsp;<em>SpGol2.txt </em>та <em>SpZem2.txt</em>, або використовувати стандартні від Digitals довідники&nbsp;<em>RadaNM.txt</em> та <em>UZRNM.txt</em>. Але є один нюанс. В стандартному довіднику прізвище землевпорядника ідентифікувалося за 5-ма цифрами КОАТУУ (за кодом району). Тобто, можна було прописати не більше одного землевпорядника на один район. А в довіднику&nbsp;<em>SpZem2.txt</em> землевпорядники тепер ідентифікуються за 10-ма цифрами КОАТУУ. Тому тут для кожної старої місцевої ради (а саме старі землевпорядники і старі ради&nbsp;фігурують в державних актах) можна прописати окремого землевпорядника.</p>
+
+<p>Відповідні дані потім підтягуються сюди:<br />
+<img alt="" src="http://digitals.at.ua/image2/2025-01-26_162401.png" style="width: 600px; height: 374px;" /></p>
+
+<p>В різні часи в одній тій самій місцевій раді могли бути різні голови і землевпорядники. Старі акти підписували місцеві землевпорядники, нові - начальник земельного відділу в районі. Якщо ділянка за межами населених пунктів, то акт підписував не голова місцевої ради, а голова районної РДА. Тобто, ці дані можуть бути різноманітними. Тому наведені довідники призначені для введення найбільш типових чи часто використовуваних прізвищ. А вже під час заповнення інформації про конкретний державний акт, можна натиснути на кнопку що праворуч від відповідного рядка, де буде випадаючий список раніше введених значень.</p>
+
+<p>7. Візуально оновлено вікно для заповнення інформації про акт.</p>
+
+<p><a href="http://digitals.at.ua/index/onovlennja_modulja_quot_xml_quot_prodovzhennja/0-27">Дивитися історію попередніх версій</a></p>  </div>
+</body>
+</html>
