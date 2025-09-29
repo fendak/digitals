@@ -1,0 +1,465 @@
+$Vers2=$PARAMETERS
+$Papka=@ProgramFolder
+@Text[1].Load $Papka\TD\Scripts\ControlUpdate.txt
+$Line=@Text[1].Line[1]
+@if $Line>402 then @Goto %TrueControlUpdate403
+@Text[1].Load $Papka\Lists\scrDocTypZvitu.txt
+$Text=@Text[1].Text
+$Text=@Calc replace("$Text","Одна сторінка","На вибір")
+$Text=@DequoteText $Text
+@Text[1].Text $Text
+@Text[1].Save $Papka\Lists\scrDocTypZvitu.txt
+@Text[1].Clear
+@Text[1].Add На вибір
+@Text[1].Save $Papka\TD\Scripts\Options.txt
+%TrueControlUpdate403
+@if $Line>403 then @Goto %TrueControlUpdate404
+$Download=@Download http://digitals.at.ua/scrDoc/OpysSumiz.txt $Papka\TD\Scripts\
+@if $Download=0 then @Download https://digitals.at.ua/scrDoc/OpysSumiz.txt $Papka\TD\Scripts\
+%TrueControlUpdate404
+@if $Line>404 then @Goto %TrueControlUpdate405
+$Download=@Download http://digitals.at.ua/scrDoc/17_vikopijuvannja.dmt $Papka\TD\Doc\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/17_vikopijuvannja.dmt $Papka\TD\Doc\
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\17 Викопіювання.dmt - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update40501
+$FE=@FileExists $Papka\TD\Doc\17 Викопіювання.dmt.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\17 Викопіювання.dmt.bak
+$FE=@FileExists $Papka\TD\Doc\17 Викопіювання старе.dmt.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\17 Викопіювання старе.dmt.bak
+$FE=@FileExists $Papka\TD\Doc\17 Викопіювання.dmt
+@if $FE=1 then @RenameFile $Papka\TD\Doc\17 Викопіювання.dmt|$Papka\TD\Doc\17 Викопіювання.dmt.bak
+$FE=@FileExists $Papka\TD\Doc\17_vikopijuvannja.dmt
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\17_vikopijuvannja.dmt|$Papka\TD\Doc\17 Викопіювання.dmt
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\17 Викопіювання.dmt - не вдалося перейменувати з \TD\Doc\17_vikopijuvannja.dmt (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\17 Викопіювання.dmt - успішно
+%Update40501
+%TrueControlUpdate405
+@if $Line>405 then @Goto %TrueControlUpdate406
+@Text[1].Clear
+$FE=@FileExists $Papka\TD\Scripts\KadLive\Setup.txt
+@if $FE=1 then @Text[1].Load $Papka\TD\Scripts\KadLive\Setup.txt
+$FT=@Text[1].Count
+@if $FT>1 then $Te2=@Text[1].Line[2]
+$Te2=@StringPart 1=$Te2
+@if $Te2=Брати кадастрові номери суіжників з сусідніх ділянок на карті then @Goto %TrueControlUpdate406
+@if $FT>1 then @Text[1].Line[2] Брати кадастрові номери суіжників з сусідніх ділянок на карті=так
+@if $FE=1 then @Text[1].Save $Papka\TD\Scripts\KadLive\Setup.txt
+%TrueControlUpdate406
+@if $Line>407 then @Goto %TrueControlUpdate408
+@Download http://digitals.at.ua/scrDoc/RestrTyp2.txt $Papka\TD\Scripts\
+%TrueControlUpdate408
+;
+@if $Line>409 then @Goto %TrueControlUpdate410
+$Download=@Download http://digitals.at.ua/scrDoc/scrDocCategory.txt $Papka\Lists\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/scrDocCategory.txt $Papka\Lists\
+@if $Download=0 then @Text[2].Add Довідник \Lists\scrDocCategory.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \Lists\scrDocCategory.txt - успішно
+;
+$Download=@Download http://digitals.at.ua/scrDoc/26_plan_obmezhen.dmt $Papka\TD\Doc
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/26_plan_obmezhen.dmt $Papka\TD\Doc
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\26 План обмежень.dmt - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41001
+$FE=@FileExists $Papka\TD\Doc\26 План обмежень той що був до версії $Vers2.dmt.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\26 План обмежень той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc\26 План обмежень.dmt
+@if $FE=1 then @RenameFile $Papka\TD\Doc\26 План обмежень.dmt|$Papka\TD\Doc\26 План обмежень той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc\26_plan_obmezhen.dmt
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\26_plan_obmezhen.dmt|$Papka\TD\Doc\26 План обмежень.dmt
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\26 План обмежень.dmt - не вдалося перейменувати з \TD\Doc\26_plan_obmezhen.dmt (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\26 План обмежень.dmt - успішно
+%Update41001
+;
+$Download=@Download http://digitals.at.ua/scrDoc/27_plan_vidvedennja.dmt $Papka\TD\Doc004
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/27_plan_vidvedennja.dmt $Papka\TD\Doc004
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc004\27 План відведення.dmt - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41002
+$FE=@FileExists $Papka\TD\Doc004\27 План відведення той що був до версії $Vers2.dmt.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc004\27 План відведення той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc015\27 План відведення той що був до версії $Vers2.dmt.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc015\27 План відведення той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc004\27 План відведення.dmt
+@if $FE=1 then @RenameFile $Papka\TD\Doc004\27 План відведення.dmt|$Papka\TD\Doc004\27 План відведення той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc015\27 План відведення.dmt
+@if $FE=1 then @RenameFile $Papka\TD\Doc015\27 План відведення.dmt|$Papka\TD\Doc015\27 План відведення той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc004\27_plan_vidvedennja.dmt
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc004\27_plan_vidvedennja.dmt|$Papka\TD\Doc004\27 План відведення.dmt
+@if $FE=1 then @CopyFile $Papka\TD\Doc004\27 План відведення.dmt|$Papka\TD\Doc015\27 План відведення.dmt
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc004\27 План відведення.dmt - не вдалося перейменувати з \TD\Doc004\27_plan_vidvedennja.dmt (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc004\27 План відведення.dmt - успішно
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc015\27 План відведення.dmt - успішно
+%Update41002
+;
+$Download=@Download https://digitals.at.ua/scrDoc/50_kad_plan_a4.dmt $Papka\TD\Doc
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/50_kad_plan_a4.dmt $Papka\TD\Doc
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\50 Кад план А4.dmt - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41003
+$FE=@FileExists $Papka\TD\Doc\50 Кад план А4 той що був до версії $Vers2.dmt.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\50 Кад план А4 той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc\50 Кад план А4.dmt
+@if $FE=1 then @RenameFile $Papka\TD\Doc\50 Кад план А4.dmt|$Papka\TD\Doc\50 Кад план А4 той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc\50_kad_plan_a4.dmt
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\50_kad_plan_a4.dmt|$Papka\TD\Doc\50 Кад план А4.dmt
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\50 Кад план А4.dmt - не вдалося перейменувати з \TD\Doc\50_kad_plan_a4.dmt (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\50 Кад план А4.dmt - успішно
+$FE=@FileExists $Papka\TD\Doc004\40 Кад план А4.dmt
+@if $FE=1 then @RenameFile $Papka\TD\Doc004\40 Кад план А4.dmt|$Papka\TD\Doc004\40 Кад план А4 той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc006\50 Кад план А4.dmt
+@if $FE=1 then @RenameFile $Papka\TD\Doc006\50 Кад план А4.dmt|$Papka\TD\Doc006\50 Кад план А4 той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc008\50 Кад план А4.dmt
+@if $FE=1 then @RenameFile $Papka\TD\Doc008\50 Кад план А4.dmt|$Papka\TD\Doc008\50 Кад план А4 той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc015\40 Кад план А4.dmt
+@if $FE=1 then @RenameFile $Papka\TD\Doc015\40 Кад план А4.dmt|$Papka\TD\Doc015\40 Кад план А4 той що був до версії $Vers2.dmt.bak
+$FE=@FileExists $Papka\TD\Doc020\80 Кад план А4.dmt
+@if $FE=1 then @RenameFile $Papka\TD\Doc020\80 Кад план А4.dmt|$Papka\TD\Doc020\80 Кад план А4 той що був до версії $Vers2.dmt.bak
+%Update41003
+%TrueControlUpdate410
+;
+;
+@if $Line>410 then @Goto %TrueControlUpdate411
+$Download=@Download http://digitals.at.ua/scrDoc/ExplTyp2.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/ExplTyp2.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Скрипт \TD\Scripts\ExplTyp2.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Скрипт \TD\Scripts\ExplTyp2.txt - успішно
+%TrueControlUpdate411
+;
+@if $Line>411 then @Goto %TrueControlUpdate413
+$FE=@FolderExists $Papka\TD\Doc Довідник
+@if $FE=0 then @CreateFolder $Papka\TD\Doc Довідник
+$Download=@Download http://digitals.at.ua/scrDoc/tablichki_eksplikacij.dmf $Papka\TD\Doc Довідник
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/tablichki_eksplikacij.dmf $Papka\TD\Doc Довідник
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc Довідник\Таблички експлікацій.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41202
+$FE=@FileExists $Papka\TD\Doc Довідник\Таблички експлікацій.dmf
+@if $FE=1 then @DeleteFile $Papka\TD\Doc Довідник\Таблички експлікацій.dmf
+$FE=@FileExists $Papka\TD\Doc Довідник\tablichki_eksplikacij.dmf
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc Довідник\tablichki_eksplikacij.dmf|$Papka\TD\Doc Довідник\Таблички експлікацій.dmf
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc Довідник\Таблички експлікацій.dmf - не вдалося перейменувати з \TD\Doc Довідник\tablichki_eksplikacij.dmf (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc Довідник\Таблички експлікацій.dmf - успішно
+%Update41202
+%TrueControlUpdate413
+;
+@if $Line>412 then @Goto %TrueControlUpdate414
+$FE=@FileExists $Papka\TD\Doc006\Технічка Word.docx
+@if $FE=0 then @Download http://digitals.at.ua/scrDoc/tekhnichka_word.docx $Papka\TD\Doc006\
+$FE=@FileExists $Papka\TD\Doc006\tekhnichka_word.docx
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc006\tekhnichka_word.docx|$Papka\TD\Doc006\Технічка Word.docx
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc006\Технічка Word.docx - не вдалося завантажити
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc006\Технічка Word.docx - завантажено успішно
+%TrueControlUpdate414
+;
+@if $Line>414 then @Goto %TrueControlUpdate415
+;
+$Download=@Download http://digitals.at.ua/scrDoc/30_perelik_obmezhen1.dmf $Papka\TD\Doc\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/30_perelik_obmezhen1.dmf $Papka\TD\Doc\
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень1.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41201
+$FE=@FileExists $Papka\TD\Doc\30 Перелік обмежень1.dmf.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\30 Перелік обмежень1.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\30 Перелік обмежень1.dmf
+@if $FE=1 then @RenameFile $Papka\TD\Doc\30 Перелік обмежень1.dmf|$Papka\TD\Doc\30 Перелік обмежень1.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\30_perelik_obmezhen1.dmf
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\30_perelik_obmezhen1.dmf|$Papka\TD\Doc\30 Перелік обмежень1.dmf
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень1.dmf - не вдалося перейменувати з \TD\Doc\30_perelik_obmezhen1.dmf (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень1.dmf - успішно
+%Update41201
+;
+$FE=@FileExists $Papka\TD\Doc\30 Перелік обмежень4.dmf.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\30 Перелік обмежень4.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\30 Перелік обмежень4.dmf
+@if $FE=1 then @RenameFile $Papka\TD\Doc\30 Перелік обмежень4.dmf|$Papka\TD\Doc\30 Перелік обмежень4.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\30_perelik_obmezhen4.dmf
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень4.dmf - не вдалося видалити з \TD\Doc\30_perelik_obmezhen4.dmf (видаліть самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень4.dmf - успішно видалено
+%Update40801
+%TrueControlUpdate415
+;
+@if $Line>415 then @Goto %TrueControlUpdate416
+$FE=@FolderExists $Papka\TD\Doc025
+@if $FE=1 then @Dialog.Message Для встановлення шаблонів щодо зміни угідь з сервера буде завантажено папку Doc025, але у Вас уже наявна така папка. Тому виріжте її тимчасово кудись, бо інакше файли можуть бути замінені. Потім натисніть ОК для продовження.
+@if $FE=0 then @CreateFolder $Papka\TD\Doc025
+@Progress.Start 20 Завантаження шаблонів
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/01_titulka1.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\01 Титулка.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41501
+$FE=@FileExists $Papka\TD\Doc025\01_titulka1.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\01_titulka1.dmf|$Papka\TD\Doc025\01 Титулка1.dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\01 Титулка1.dmf - не вдалося перейменувати з \TD\Doc\30_perelik_obmezhen3.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\01 Титулка1.dmf - успішно
+%Update41501
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/02_titulka2.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\02 Титулка2.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41502
+$FE=@FileExists $Papka\TD\Doc025\02_titulka2.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\02_titulka2.dmf|$Papka\TD\Doc025\02 Титулка2.dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\02 Титулка2.dmf - не вдалося перейменувати з \TD\Doc\02_titulka2.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\02 Титулка2.dmf - успішно
+%Update41502
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/03_zmist.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\03 Зміст.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41503
+$FE=@FileExists $Papka\TD\Doc025\03_zmist.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\03_zmist.dmf|$Papka\TD\Doc025\03 Зміст.dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\03 Зміст.dmf - не вдалося перейменувати з \TD\Doc\03_zmist.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\03 Зміст.dmf - успішно
+%Update41503
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/10_zavdannja.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\10 Завдання.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41504
+$FE=@FileExists $Papka\TD\Doc025\10_zavdannja.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\10_zavdannja.dmf|$Papka\TD\Doc025\10 Завдання.dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\10 Завдання.dmf - не вдалося перейменувати з \TD\Doc\10_zavdannja.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\10 Завдання.dmf - успішно
+%Update41504
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/11_zajava_zamovnika_na_rozroblennja.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\11 Заява замовника на розроблення.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41505
+$FE=@FileExists $Papka\TD\Doc025\11_zajava_zamovnika_na_rozroblennja.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\11_zajava_zamovnika_na_rozroblennja.dmf|$Papka\TD\Doc025\11 Заява замовника на розроблення.dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\11 Заява замовника на розроблення.dmf - не вдалося перейменувати з \TD\Doc\11_zajava_zamovnika_na_rozroblennja.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\11 Заява замовника на розроблення.dmf - успішно
+%Update41505
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/11_zajava_shhodo_dotrimannja_st.28.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\11 Заява щодо дотримання ст.28.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41506
+$FE=@FileExists $Papka\TD\Doc025\11_zajava_shhodo_dotrimannja_st.28.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\11_zajava_shhodo_dotrimannja_st.28.dmf|$Papka\TD\Doc025\11 Заява щодо дотримання ст.28.dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\11 Заява щодо дотримання ст.28.dmf - не вдалося перейменувати з \TD\Doc\11_zajava_shhodo_dotrimannja_st.28.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\11 Заява щодо дотримання ст.28.dmf - успішно
+%Update41506
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/20_vikopijuvannja_gruntiv.dmt $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\20 Викопіювання грунтів.dmt - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41507
+$FE=@FileExists $Papka\TD\Doc025\20_vikopijuvannja_gruntiv.dmt
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\20_vikopijuvannja_gruntiv.dmt|$Papka\TD\Doc025\20 Викопіювання грунтів.dmt
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\20 Викопіювання грунтів.dmt - не вдалося перейменувати з \TD\Doc\20_vikopijuvannja_gruntiv.dmt (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\20 Викопіювання грунтів.dmt - успішно
+%Update41507
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/30_vikopijuvannja.dmt $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\30 Викопіювання.dmt - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41508
+$FE=@FileExists $Papka\TD\Doc025\30_vikopijuvannja.dmt
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\30_vikopijuvannja.dmt|$Papka\TD\Doc025\30 Викопіювання.dmt
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\30 Викопіювання.dmt - не вдалося перейменувати з \TD\Doc\30_vikopijuvannja.dmt (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\30 Викопіювання.dmt - успішно
+%Update41508
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/31_plan_isnujuchogo_vikoristannja.dmt $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\31 План існуючого використання.dmt - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41509
+$FE=@FileExists $Papka\TD\Doc025\31_plan_isnujuchogo_vikoristannja.dmt
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\31_plan_isnujuchogo_vikoristannja.dmt|$Papka\TD\Doc025\31 План існуючого використання.dmt
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\31 План існуючого використання.dmt - не вдалося перейменувати з \TD\Doc\31_plan_isnujuchogo_vikoristannja.dmt (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\31 План існуючого використання.dmt - успішно
+%Update41509
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/32_plan_gruntiv_ta_krutizni_skhiliv.dmt $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\32 План грунтів та крутизни схилів.dmt - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41510
+$FE=@FileExists $Papka\TD\Doc025\32_plan_gruntiv_ta_krutizni_skhiliv.dmt
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\32_plan_gruntiv_ta_krutizni_skhiliv.dmt|$Papka\TD\Doc025\32 План грунтів та крутизни схилів.dmt
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\32 План грунтів та крутизни схилів - не вдалося перейменувати з \TD\Doc\32_plan_gruntiv_ta_krutizni_skhiliv.dmt (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\32 План грунтів та крутизни схилів - успішно
+%Update41510
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/33_plan_organizaciji_zemlevolodin.dmt $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\33 План організації землеволодінь.dmt - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41511
+$FE=@FileExists $Papka\TD\Doc025\33_plan_organizaciji_zemlevolodin.dmt
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\33_plan_organizaciji_zemlevolodin.dmt|$Papka\TD\Doc025\33 План організації землеволодінь.dmt
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\33 План організації землеволодінь.dmt - не вдалося перейменувати з \TD\Doc\33_plan_organizaciji_zemlevolodin.dmt (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\33 План організації землеволодінь - успішно
+%Update41511
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/41_zatverdzhennja-zamovnik_vlasnik_fo.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\41 Затвердження (замовник власник ФО).dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41512
+$FE=@FileExists $Papka\TD\Doc025\41_zatverdzhennja-zamovnik_vlasnik_fo.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\41_zatverdzhennja-zamovnik_vlasnik_fo.dmf|$Papka\TD\Doc025\41 Затвердження (замовник власник ФО).dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\41 Затвердження (замовник власник ФО).dmf - не вдалося перейменувати з \TD\Doc\41_zatverdzhennja-zamovnik_vlasnik_fo.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\41 Затвердження (замовник власник ФО).dmf - успішно
+%Update41512
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/41_zatverdzhennja-zamovnik_orendar_juo.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\41 Затвердження (замовник орендар ЮО).dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41513
+$FE=@FileExists $Papka\TD\Doc025\41_zatverdzhennja-zamovnik_orendar_juo.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\41_zatverdzhennja-zamovnik_orendar_juo.dmf|$Papka\TD\Doc025\41 Затвердження (замовник орендар ЮО).dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\41 Затвердження (замовник орендар ЮО).dmf - не вдалося перейменувати з \TD\Doc\41_zatverdzhennja-zamovnik_orendar_juo.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\41 Затвердження (замовник орендар ЮО).dmf - успішно
+%Update41513
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/42_zgoda_vlasnika-zamovnik_orendar_juo.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\42 Згода власника (замовник орендар ЮО).dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41514
+$FE=@FileExists $Papka\TD\Doc025\42_zgoda_vlasnika-zamovnik_orendar_juo.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\42_zgoda_vlasnika-zamovnik_orendar_juo.dmf|$Papka\TD\Doc025\42 Згода власника (замовник орендар ЮО).dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\42 Згода власника (замовник орендар ЮО).dmf - не вдалося перейменувати з \TD\Doc\42_zgoda_vlasnika-zamovnik_orendar_juo.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\42 Згода власника (замовник орендар ЮО).dmf - успішно
+%Update41514
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/42_zgoda_orendarja-zamovnik_vlasnik_fo.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\42 Згода орендаря (замовник власник ФО).dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41515
+$FE=@FileExists $Papka\TD\Doc025\42_zgoda_orendarja-zamovnik_vlasnik_fo.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\42_zgoda_orendarja-zamovnik_vlasnik_fo.dmf|$Papka\TD\Doc025\42 Згода орендаря (замовник власник ФО).dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\42 Згода орендаря (замовник власник ФО).dmf - не вдалося перейменувати з \TD\Doc\42_zgoda_orendarja-zamovnik_vlasnik_fo.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\42 Згода орендаря (замовник власник ФО).dmf - успішно
+%Update41515
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/62_dogovir.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\62 Договір.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41516
+$FE=@FileExists $Papka\TD\Doc025\62_dogovir.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\62_dogovir.dmf|$Papka\TD\Doc025\62 Договір.dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\62 Договір.dmf - не вдалося перейменувати з \TD\Doc\62_dogovir.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\62 Договір.dmf - успішно
+%Update41516
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/63_dogovir.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\63 Договір+.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41517
+$FE=@FileExists $Papka\TD\Doc025\63_dogovir.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\63_dogovir.dmf|$Papka\TD\Doc025\63 Договір+.dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\63 Договір+.dmf - не вдалося перейменувати з \TD\Doc\63_dogovir.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\63 Договір+.dmf - успішно
+%Update41517
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/64_protokol.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\64 Протокол.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41518
+$FE=@FileExists $Papka\TD\Doc025\64_protokol.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\64_protokol.dmf|$Papka\TD\Doc025\64 Протокол.dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\64 Протокол.dmf - не вдалося перейменувати з \TD\Doc\64_protokol.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\64 Протокол.dmf - успішно
+%Update41518
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/65_akt_pp.dmf $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\65 Акт ПП.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41519
+$FE=@FileExists $Papka\TD\Doc025\65_akt_pp.dmf
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\65_akt_pp.dmf|$Papka\TD\Doc025\65 Акт ПП.dmf
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\65 Акт ПП.dmf - не вдалося перейменувати з \TD\Doc\65_akt_pp.dmf (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\65 Акт ПП.dmf - успішно
+%Update41519
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/scrDoc/Doc025/pojasnjuvalna.docx $Papka\TD\Doc025
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc025\Пояснювальна.docx - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41520
+$FE=@FileExists $Papka\TD\Doc025\pojasnjuvalna.docx
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\Doc025\pojasnjuvalna.docx|$Papka\TD\Doc025\Пояснювальна.docx
+@if $FE2=1 then @Text[2].Add Шаблон \TD\Doc025\Пояснювальна.docx - не вдалося перейменувати з \TD\Doc\pojasnjuvalna.docx (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Шаблон \TD\Doc025\Пояснювальна.docx - успішно
+%Update41520
+@Progress.StepBy 1
+$Download=@Download http://digitals.at.ua/zminni_skriptu.xlsx $Papka\TD\
+@if $Download=0 then @Text[2].Add Довідник змінних \TD\Змінні скрипту.xlsx - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update41521
+$FE=@FileExists $Papka\TD\Змінні скрипту той що був версії $Vers2.xlsx
+@if $FE=1 then @DeleteFile $Papka\TD\Змінні скрипту той що був версії $Vers2.xlsx
+$FE=@FileExists $Papka\TD\Змінні скрипту.xlsx
+@if $FE=1 then @RenameFile $Papka\TD\Змінні скрипту.xlsx|$Papka\TD\Змінні скрипту той що був версії $Vers2.xlsx
+$FE=@FileExists $Papka\TD\zminni_skriptu.xlsx
+@if $FE=1 then $FE2=@RenameFile $Papka\TD\zminni_skriptu.xlsx|$Papka\TD\Змінні скрипту.xlsx
+@if $FE2=1 then @Text[2].Add Довідник \TD\Змінні скрипту.xlsx - не вдалося перейменувати з \TD\zminni_skriptu.xlsx (перейменуйте самостійно)
+@if $FE2=0 then @Text[2].Add Довідник \TD\Змінні скрипту.xlsx - успішно
+%Update41521
+@Progress.Stop
+%TrueControlUpdate416
+;
+@if $Line>417 then @Goto %TrueControlUpdate418
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/scrDocLandCode.txt $Papka\Lists\
+@if $Download=0 then @Text[2].Add Довідник \Lists\scrDocLandCode.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \Lists\scrDocLandCode.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/Expl1.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/Expl1.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Скрипт \TD\Scripts\Expl1.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Скрипт \TD\Scripts\Expl1.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/ExplNext.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/ExplNext.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Скрипт \TD\Scripts\ExplNext.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Скрипт \TD\Scripts\ExplNext.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/ExplRAll.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/ExplRAll.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Скрипт \TD\Scripts\ExplRAll.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Скрипт \TD\Scripts\ExplRAll.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/ExplRList.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/ExplRList.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Скрипт \TD\Scripts\ExplRList.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Скрипт \TD\Scripts\ExplRList.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/scrDocLandCode.txt $Papka\Lists\
+$Download=@Download http://digitals.at.ua/scrDoc/RestrCodes.txt $Papka\Lists\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/RestrCodes.txt $Papka\Lists\
+@if $Download=0 then @Text[2].Add Довідник \Lists\RestrCodes.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \Lists\RestrCodes.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/RestrRList.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/RestrRList.txt $Papka\TD\Scripts\ 
+@if $Download=0 then @Text[2].Add Скрипт \TD\Scripts\RestrRList.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Скрипт \TD\Scripts\RestrRList.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/RestrR1List.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/RestrR1List.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Скрипт \TD\Scripts\RestrR1List.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Скрипт \TD\Scripts\RestrR1List.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/RestrNext.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/RestrNext.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Скрипт \TD\Scripts\RestrNext.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Скрипт \TD\Scripts\RestrNext.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/Restr1.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/Restr1.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Скрипт \TD\Scripts\Restr1.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Скрипт \TD\Scripts\Restr1.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/Restr2.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/Restr2.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Скрипт \TD\Scripts\Restr2.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Скрипт \TD\Scripts\Restr2.txt - успішно
+$Download=@Download http://digitals.at.ua/scrDoc/scrDocPurpose.txt $Papka\Lists\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/scrDocPurpose.txt $Papka\Lists\
+@if $Download=0 then @Text[2].Add Довідник \Lists\scrDocPurpose.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \Lists\scrDocPurpose.txt - успішно
+@CopyFile $Papka\Lists\Zakony.txt|$Papka\Lists\Zakony (той що був до версії 4.18).txt
+$Download=@Download http://digitals.at.ua/scrDoc/Zakony.txt $Papka\Lists\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/Zakony.txt $Papka\Lists\
+@if $Download=0 then @Text[2].Add Довідник \Lists\Zakony.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \Lists\\Zakony.txt - успішно
+;
+$Download=@Download http://digitals.at.ua/scrDoc/30_perelik_obmezhen2.dmf $Papka\TD\Doc\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/30_perelik_obmezhen2.dmf $Papka\TD\Doc\
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень2.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update40801
+$FE=@FileExists $Papka\TD\Doc\30 Перелік обмежень2.dmf.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\30 Перелік обмежень2.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\30 Перелік обмежень2.dmf
+@if $FE=1 then @RenameFile $Papka\TD\Doc\30 Перелік обмежень2.dmf|$Papka\TD\Doc\30 Перелік обмежень2.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\30_perelik_obmezhen2.dmf
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\30_perelik_obmezhen2.dmf|$Papka\TD\Doc\30 Перелік обмежень2.dmf
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень2.dmf - не вдалося перейменувати з \TD\Doc\30_perelik_obmezhen2.dmf (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень2.dmf - успішно
+%Update40801
+;
+$Download=@Download http://digitals.at.ua/scrDoc/30_perelik_obmezhen3.dmf $Papka\TD\Doc
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/30_perelik_obmezhen3.dmf $Papka\TD\Doc
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень3.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Goto %Update40101
+$FE=@FileExists $Papka\TD\Doc\30 Перелік обмежень3.dmf.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\30 Перелік обмежень3.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\30 Перелік обмежень3.dmf
+@if $FE=1 then @RenameFile $Papka\TD\Doc\30 Перелік обмежень3.dmf|$Papka\TD\Doc\30 Перелік обмежень3.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\30_perelik_obmezhen3.dmf
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\30_perelik_obmezhen3.dmf|$Papka\TD\Doc\30 Перелік обмежень3.dmf
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень3.dmf - не вдалося перейменувати з \TD\Doc\30_perelik_obmezhen3.dmf (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\30 Перелік обмежень3.dmf - успішно
+%Update40101
+;
+$TC=@Text[2].Count
+@if $TC<>0 then $Text=@Text[2].Text
+@Text[1].Clear
+@Text[1].Add $Vers2
+@Text[1].Save $Papka\TD\Scripts\ControlUpdate.txt
+@if $TC<>0 then @Dialog.Message Оновлено файли:|$Text
+%TrueControlUpdate418
