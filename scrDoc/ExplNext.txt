@@ -1,0 +1,223 @@
+$Papka=@ProgramFolder
+@Text.Load $Papka\TD\Temp\TempExplNext.ini
+$CountRR=@Text.Count
+@if $CountRR<67 then @Break Оновіть файли скрипту TD\scripts\ExplRAll.txt та TD\scripts\ExplRList.txt до версії 4.18 чи вище (відсутнє угіддя "003.07 Луки")
+$C001=@Text.Line[1]
+$C00100=@Text.Line[2]
+$C00101=@Text.Line[3]
+$C00102=@Text.Line[4]
+$C00103=@Text.Line[5]
+$C002=@Text.Line[6]
+$C00200=@Text.Line[7]
+$C00201=@Text.Line[8]
+$C00202=@Text.Line[9]
+$C00203=@Text.Line[10]
+$C003=@Text.Line[11]
+$C00300=@Text.Line[12]
+$C00301=@Text.Line[13]
+$C00302=@Text.Line[14]
+$C00303=@Text.Line[15]
+$C00304=@Text.Line[16]
+$C00305=@Text.Line[17]
+$C00306=@Text.Line[18]
+$C00307=@Text.Line[19]
+$C004=@Text.Line[20]
+$C00400=@Text.Line[21]
+$C005=@Text.Line[22]
+$C00500=@Text.Line[23]
+$C00501=@Text.Line[24]
+$C00502=@Text.Line[25]
+$C00503=@Text.Line[26]
+$C00504=@Text.Line[27]
+$C00505=@Text.Line[28]
+$C006=@Text.Line[29]
+$C00600=@Text.Line[30]
+$C00601=@Text.Line[31]
+$C00602=@Text.Line[32]
+$C00603=@Text.Line[33]
+$C00604=@Text.Line[34]
+$C00605=@Text.Line[35]
+$C007=@Text.Line[36]
+$C00700=@Text.Line[37]
+$C00701=@Text.Line[38]
+$C00702=@Text.Line[39]
+$C008=@Text.Line[40]
+$C00800=@Text.Line[41]
+$C00801=@Text.Line[42]
+$C00802=@Text.Line[43]
+$C00803=@Text.Line[44]
+$C009=@Text.Line[45]
+$C00900=@Text.Line[46]
+$C00901=@Text.Line[47]
+$C00902=@Text.Line[48]
+$C00903=@Text.Line[49]
+$C010=@Text.Line[50]
+$C01000=@Text.Line[51]
+$C011=@Text.Line[52]
+$C01100=@Text.Line[53]
+$C01101=@Text.Line[54]
+$C01102=@Text.Line[55]
+$C01103=@Text.Line[56]
+$C012=@Text.Line[57]
+$C01200=@Text.Line[58]
+$C013=@Text.Line[59]
+$C01300=@Text.Line[60]
+$C014=@Text.Line[61]
+$C01400=@Text.Line[62]
+$C015=@Text.Line[63]
+$C01500=@Text.Line[64]
+$C01501=@Text.Line[65]
+$C01502=@Text.Line[66]
+$C01503=@Text.Line[67]
+;додаємо нові угіддя до старих
+$C=@Map.Count
+$I=0
+%LoopUhNext
+$I=$I+1
+$LID=@Map.Object[$I].LayerID 
+@if $LID<>70009 then @Goto %ContinueUhNext
+$CN=@Map.Object[$I].Parameter[ID7000901]
+$LandCode=@StringPart 1 $CN
+$LandCodeGroup=@StringPart 1.$LandCode
+$LandArea=@Map.Object[$I].Parameter[ID7000903]
+$LandArea=@Calc replace("$LandArea",",",".")
+$LandArea=@DequoteText $LandArea
+@if $LandCodeGroup=001 then $C001=$LandArea+$C001
+@if $LandCode=001.00 then $C00100=$LandArea+$C00100
+@if $LandCode=001.01 then $C00101=$LandArea+$C00101
+@if $LandCode=001.02 then $C00102=$LandArea+$C00102
+@if $LandCode=001.03 then $C00103=$LandArea+$C00103
+@if $LandCodeGroup=002 then $C002=$LandArea+$C002
+@if $LandCode=002.00 then $C00200=$LandArea+$C00200
+@if $LandCode=002.01 then $C00201=$LandArea+$C00201
+@if $LandCode=002.02 then $C00202=$LandArea+$C00202
+@if $LandCode=002.03 then $C00203=$LandArea+$C00203
+@if $LandCodeGroup=003 then $C003=$LandArea+$C003
+@if $LandCode=003.00 then $C00300=$LandArea+$C00300
+@if $LandCode=003.01 then $C00301=$LandArea+$C00301
+@if $LandCode=003.02 then $C00302=$LandArea+$C00302
+@if $LandCode=003.03 then $C00303=$LandArea+$C00303
+@if $LandCode=003.04 then $C00304=$LandArea+$C00304
+@if $LandCode=003.05 then $C00305=$LandArea+$C00305
+@if $LandCode=003.06 then $C00306=$LandArea+$C00306
+@if $LandCode=003.07 then $C00307=$LandArea+$C00307
+@if $LandCodeGroup=004 then $C004=$LandArea+$C004
+@if $LandCode=004.00 then $C00400=$LandArea+$C00400
+@if $LandCodeGroup=005 then $C005=$LandArea+$C005
+@if $LandCode=005.00 then $C00500=$LandArea+$C00500
+@if $LandCode=005.01 then $C00501=$LandArea+$C00501
+@if $LandCode=005.02 then $C00502=$LandArea+$C00502
+@if $LandCode=005.03 then $C00503=$LandArea+$C00503
+@if $LandCode=005.04 then $C00504=$LandArea+$C00504
+@if $LandCode=005.05 then $C00505=$LandArea+$C00505
+@if $LandCodeGroup=006 then $C006=$LandArea+$C006
+@if $LandCode=006.00 then $C00600=$LandArea+$C00600
+@if $LandCode=006.01 then $C00601=$LandArea+$C00601
+@if $LandCode=006.02 then $C00602=$LandArea+$C00602
+@if $LandCode=006.03 then $C00603=$LandArea+$C00603
+@if $LandCode=006.04 then $C00604=$LandArea+$C00604
+@if $LandCode=006.05 then $C00605=$LandArea+$C00605
+@if $LandCodeGroup=007 then $C007=$LandArea+$C007
+@if $LandCode=007.00 then $C00700=$LandArea+$C00700
+@if $LandCode=007.01 then $C00701=$LandArea+$C00701
+@if $LandCode=007.02 then $C00702=$LandArea+$C00702
+@if $LandCodeGroup=008 then $C008=$LandArea+$C008
+@if $LandCode=008.00 then $C00800=$LandArea+$C00800
+@if $LandCode=008.01 then $C00801=$LandArea+$C00801
+@if $LandCode=008.02 then $C00802=$LandArea+$C00802
+@if $LandCode=008.03 then $C00803=$LandArea+$C00803
+@if $LandCodeGroup=009 then $C009=$LandArea+$C009
+@if $LandCode=009.00 then $C00900=$LandArea+$C00900
+@if $LandCode=009.01 then $C00901=$LandArea+$C00901
+@if $LandCode=009.02 then $C00902=$LandArea+$C00902
+@if $LandCode=009.03 then $C00903=$LandArea+$C00903
+@if $LandCodeGroup=010 then $C010=$LandArea+$C010
+@if $LandCode=010.00 then $C01000=$LandArea+$C01000
+@if $LandCodeGroup=011 then $C01100=$LandArea+$C01100
+@if $LandCode=011.00 then $C01100=$LandArea+$C01100
+@if $LandCode=011.01 then $C01101=$LandArea+$C01101
+@if $LandCode=011.02 then $C01102=$LandArea+$C01102
+@if $LandCode=011.03 then $C01103=$LandArea+$C01103
+@if $LandCodeGroup=012 then $C012=$LandArea+$C012
+@if $LandCode=012.00 then $C01200=$LandArea+$C01200
+@if $LandCodeGroup=013 then $C013=$LandArea+$C013
+@if $LandCode=013.00 then $C01300=$LandArea+$C01300
+@if $LandCodeGroup=014 then $C014=$LandArea+$C014
+@if $LandCode=014.00 then $C01400=$LandArea+$C01400
+@if $LandCodeGroup=015 then $C01500=$LandArea+$C01500
+@if $LandCode=015.00 then $C01500=$LandArea+$C01500
+@if $LandCode=015.01 then $C01501=$LandArea+$C01501
+@if $LandCode=015.02 then $C01502=$LandArea+$C01502
+@if $LandCode=015.03 then $C01503=$LandArea+$C01503
+%ContinueUhNext
+@if $I<$C then @Goto %LoopUhNext
+@Text.Clear
+@Text.Add $C001
+@Text.Add $C00100
+@Text.Add $C00101
+@Text.Add $C00102
+@Text.Add $C00103
+@Text.Add $C002
+@Text.Add $C00200
+@Text.Add $C00201
+@Text.Add $C00202
+@Text.Add $C00203
+@Text.Add $C003
+@Text.Add $C00300
+@Text.Add $C00301
+@Text.Add $C00302
+@Text.Add $C00303
+@Text.Add $C00304
+@Text.Add $C00305
+@Text.Add $C00306
+@Text.Add $C00307
+@Text.Add $C004
+@Text.Add $C00400
+@Text.Add $C005
+@Text.Add $C00500
+@Text.Add $C00501
+@Text.Add $C00502
+@Text.Add $C00503
+@Text.Add $C00504
+@Text.Add $C00505
+@Text.Add $C006
+@Text.Add $C00600
+@Text.Add $C00601
+@Text.Add $C00602
+@Text.Add $C00603
+@Text.Add $C00604
+@Text.Add $C00605
+@Text.Add $C007
+@Text.Add $C00700
+@Text.Add $C00701
+@Text.Add $C00702
+@Text.Add $C008
+@Text.Add $C00800
+@Text.Add $C00801
+@Text.Add $C00802
+@Text.Add $C00803
+@Text.Add $C009
+@Text.Add $C00900
+@Text.Add $C00901
+@Text.Add $C00902
+@Text.Add $C00903
+@Text.Add $C010
+@Text.Add $C01000
+@Text.Add $C011
+@Text.Add $C01100
+@Text.Add $C01101
+@Text.Add $C01102
+@Text.Add $C01103
+@Text.Add $C012
+@Text.Add $C01200
+@Text.Add $C013
+@Text.Add $C01300
+@Text.Add $C014
+@Text.Add $C01400
+@Text.Add $C015
+@Text.Add $C01500
+@Text.Add $C01501
+@Text.Add $C01502
+@Text.Add $C01503
+$Papka=@ProgramFolder
+@Text.Save $Papka\TD\Temp\TempExplNext.ini

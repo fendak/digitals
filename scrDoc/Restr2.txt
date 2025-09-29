@@ -1,0 +1,500 @@
+;+++++++++++++++ ¬ит€гуЇмо обмеженн€ +++++++++++++++
+$I=0
+$Restr01=0
+$Restr0101=0
+$Restr0102=0
+$Restr01021=0
+$Restr01022=0
+$Restr01023=0
+$Restr01024=0
+$Restr0103=0
+$Restr01031=0
+$Restr0104=0
+$Restr01041=0
+$Restr01042=0
+$Restr0105=0
+$Restr01051=0
+$Restr0106=0
+$Restr0107=0
+$Restr0108=0
+$Restr01081=0
+$Restr0109=0
+$Restr01091=0
+$Restr02=0
+$Restr0201=0
+$Restr02011=0
+$Restr02012=0
+$Restr02013=0
+$Restr02014=0
+$Restr0202=0
+$Restr02021=0
+$Restr02022=0
+$Restr02023=0
+$Restr03=0
+$Restr0301=0
+$Restr0302=0
+$Restr04=0
+$Restr0401=0
+$Restr0402=0
+$Restr0403=0
+$Restr05=0
+$Restr0501=0
+$Restr0502=0
+$Restr0503=0
+$Restr0504=0
+$Restr0505=0
+$Restr0506=0
+$Restr06=0
+$Restr0601=0
+$Restr06011=0
+$Restr06012=0
+$Restr06013=0
+$Restr06014=0
+$Restr06015=0
+$Restr06016=0
+$Restr0602=0
+$Restr06021=0
+$Restr06022=0
+$Restr06023=0
+$Restr0603=0
+$Restr0604=0
+$Restr0605=0
+$Restr06051=0
+$Restr06052=0
+$Restr06053=0
+$Restr06054=0
+$Restr06055=0
+$Restr06056=0
+$Restr0606=0
+$Restr06061=0
+$Restr06062=0
+$Restr06063=0
+$Restr06064=0
+$Restr06065=0
+$Restr06066=0
+$Restr06067=0
+$Restr06068=0
+$Restr0607=0
+$Restr06071=0
+$Restr06072=0
+$Restr06073=0
+$Restr07=0
+$Restr0701=0
+$Restr0702=0
+$Restr0703=0
+$Restr0704=0
+$Restr0705=0
+$Restr0706=0
+$Restr0707=0
+$Restr0708=0
+$Restr0709=0
+$Restr0710=0
+$Restr0711=0
+$Restr0712=0
+$Restr0713=0
+$Restr0714=0
+$Restr0715=0
+$Restr0716=0
+$Restr0717=0
+$Restr0718=0
+$Restr08=0
+$Restr09=0
+$Restr10=0
+$Restr101=0
+$Restr102=0
+$Restr103=0
+$Restr104=0
+$Restr105=0
+$Restr106=0
+$Restr107=0
+$Restr108=0
+$Restr109=0
+$Restr1010=0
+$Restr1011=0
+$Restr1012=0
+$Restr1013=0
+$Restr1014=0
+$Restr1015=0
+$Restr1016=0
+$Restr1017=0
+$Restr1018=0
+$Restr1019=0
+$Restr1020=0
+$Restr1021=0
+$Restr1022=0
+$Restr1023=0
+$Restr1024=0
+$Restr1025=0
+$Restr1026=0
+$Restr1027=0
+$Restr1028=0
+$Restr1029=0
+$Restr1030=0
+$Restr1031=0
+$Restr1032=0
+$Restr1033=0
+$Restr1034=0
+$Restr1035=0
+$Restr1036=0
+$Restr1037=0
+$Restr1038=0
+$Restr1039=0
+$Restr1040=0
+$Restr1041=0
+$Restr11=0
+$Restr12=0
+$Restr13=0
+$Restr14=0
+$Restr15=0
+$Restr1501=0
+$Restr16=0
+$Restr1601=0
+$Restr1602=0
+$Restr1603=0
+$Restr1604=0
+$Restr1605=0
+$Restr1606=0
+$Restr1607=0
+$Restr1608=0
+$Restr1609=0
+;
+$RestrAreaAll=0
+$RestrCountAll=0
+$C=@Map.Count
+%Loop0Restr
+$I=$I+1
+$LID=@Map.Object[$I].LayerID 
+@if $LID<>70008 then @Goto %Continue0Restr
+$RestrCountAll=$RestrCountAll+1
+$Restr0=@Map.Object[$I].Parameter[ID7000800]
+$Restr0Code=@StringPart 1 $Restr0
+$Restr0Name=@Calc Replace("$Restr0","$Restr0Code","",0,0)
+$Restr0Name=@DequoteText $Restr0Name
+$Restr0Name=@LowerCase $Restr0Name
+$Restr0Area=@Map.Object[$I].CalculateFormula P[0]
+$Restr0Area=@Calc replace("$Restr0Area",",",".")
+$Restr0Area=@DequoteText $Restr0Area
+$RestrAreaAll=$RestrAreaAll+$Restr0Area
+@if "$Restr0Code"="01" then $Restr01=$Restr0Area+$Restr01
+@if "$Restr0Code"="01.01" then $Restr0101=$Restr0Area+$Restr0101
+@if "$Restr0Code"="01.02" then $Restr0102=$Restr0Area+$Restr0102
+@if "$Restr0Code"="01.02.1" then $Restr01021=$Restr0Area+$Restr01021
+@if "$Restr0Code"="01.02.2" then $Restr01022=$Restr0Area+$Restr01022
+@if "$Restr0Code"="01.02.3" then $Restr01023=$Restr0Area+$Restr01023
+@if "$Restr0Code"="01.02.4" then $Restr01024=$Restr0Area+$Restr01024
+@if "$Restr0Code"="01.03" then $Restr0103=$Restr0Area+$Restr0103
+@if "$Restr0Code"="01.03.1" then $Restr01031=$Restr0Area+$Restr01031
+@if "$Restr0Code"="01.04" then $Restr0104=$Restr0Area+$Restr0104
+@if "$Restr0Code"="01.04.1" then $Restr01041=$Restr0Area+$Restr01041
+@if "$Restr0Code"="01.04.2" then $Restr01042=$Restr0Area+$Restr01042
+@if "$Restr0Code"="01.05" then $Restr0105=$Restr0Area+$Restr0105
+@if "$Restr0Code"="01.05.1" then $Restr01051=$Restr0Area+$Restr01051
+@if "$Restr0Code"="01.06" then $Restr0106=$Restr0Area+$Restr0106
+@if "$Restr0Code"="01.07" then $Restr0107=$Restr0Area+$Restr0107
+@if "$Restr0Code"="01.08" then $Restr0108=$Restr0Area+$Restr0108
+@if "$Restr0Code"="01.08.1" then $Restr01081=$Restr0Area+$Restr01081
+@if "$Restr0Code"="01.09" then $Restr0109=$Restr0Area+$Restr0109
+@if "$Restr0Code"="01.09.1" then $Restr01091=$Restr0Area+$Restr01091
+@if "$Restr0Code"="02" then $Restr02=$Restr0Area+$Restr02
+@if "$Restr0Code"="02.01" then $Restr0201=$Restr0Area+$Restr0201
+@if "$Restr0Code"="02.01.1" then $Restr02011=$Restr0Area+$Restr02011
+@if "$Restr0Code"="02.01.2" then $Restr02012=$Restr0Area+$Restr02012
+@if "$Restr0Code"="02.01.3" then $Restr02013=$Restr0Area+$Restr02013
+@if "$Restr0Code"="02.01.4" then $Restr02014=$Restr0Area+$Restr02014
+@if "$Restr0Code"="02.02" then $Restr0202=$Restr0Area+$Restr0202
+@if "$Restr0Code"="02.02.1" then $Restr02021=$Restr0Area+$Restr02021
+@if "$Restr0Code"="02.02.2" then $Restr02022=$Restr0Area+$Restr02022
+@if "$Restr0Code"="02.02.3" then $Restr02023=$Restr0Area+$Restr02023
+@if "$Restr0Code"="03" then $Restr03=$Restr0Area+$Restr03
+@if "$Restr0Code"="03.01" then $Restr0301=$Restr0Area+$Restr0301
+@if "$Restr0Code"="03.02" then $Restr0302=$Restr0Area+$Restr0302
+@if "$Restr0Code"="04" then $Restr04=$Restr0Area+$Restr04
+@if "$Restr0Code"="04.01" then $Restr0401=$Restr0Area+$Restr0401
+@if "$Restr0Code"="04.02" then $Restr0402=$Restr0Area+$Restr0402
+@if "$Restr0Code"="04.03" then $Restr0403=$Restr0Area+$Restr0403
+@if "$Restr0Code"="05" then $Restr05=$Restr0Area+$Restr05
+@if "$Restr0Code"="05.01" then $Restr0501=$Restr0Area+$Restr0501
+@if "$Restr0Code"="05.02" then $Restr0502=$Restr0Area+$Restr0502
+@if "$Restr0Code"="05.03" then $Restr0503=$Restr0Area+$Restr0503
+@if "$Restr0Code"="05.04" then $Restr0504=$Restr0Area+$Restr0504
+@if "$Restr0Code"="05.05" then $Restr0505=$Restr0Area+$Restr0505
+@if "$Restr0Code"="05.06" then $Restr0506=$Restr0Area+$Restr0506
+@if "$Restr0Code"="06" then $Restr06=$Restr0Area+$Restr06
+@if "$Restr0Code"="06.01" then $Restr0601=$Restr0Area+$Restr0601
+@if "$Restr0Code"="06.01.1" then $Restr06011=$Restr0Area+$Restr06011
+@if "$Restr0Code"="06.01.2" then $Restr06012=$Restr0Area+$Restr06012
+@if "$Restr0Code"="06.01.3" then $Restr06013=$Restr0Area+$Restr06013
+@if "$Restr0Code"="06.01.4" then $Restr06014=$Restr0Area+$Restr06014
+@if "$Restr0Code"="06.01.5" then $Restr06015=$Restr0Area+$Restr06015
+@if "$Restr0Code"="06.01.6" then $Restr06016=$Restr0Area+$Restr06016
+@if "$Restr0Code"="06.02" then $Restr0602=$Restr0Area+$Restr0602
+@if "$Restr0Code"="06.02.1" then $Restr06021=$Restr0Area+$Restr06021
+@if "$Restr0Code"="06.02.2" then $Restr06022=$Restr0Area+$Restr06022
+@if "$Restr0Code"="06.02.3" then $Restr06023=$Restr0Area+$Restr06023
+@if "$Restr0Code"="06.03" then $Restr0603=$Restr0Area+$Restr0603
+@if "$Restr0Code"="06.04" then $Restr0604=$Restr0Area+$Restr0604
+@if "$Restr0Code"="06.05" then $Restr0605=$Restr0Area+$Restr0605
+@if "$Restr0Code"="06.05.1" then $Restr06051=$Restr0Area+$Restr06051
+@if "$Restr0Code"="06.05.2" then $Restr06052=$Restr0Area+$Restr06052
+@if "$Restr0Code"="06.05.3" then $Restr06053=$Restr0Area+$Restr06053
+@if "$Restr0Code"="06.05.4" then $Restr06054=$Restr0Area+$Restr06054
+@if "$Restr0Code"="06.05.5" then $Restr06055=$Restr0Area+$Restr06055
+@if "$Restr0Code"="06.05.6" then $Restr06056=$Restr0Area+$Restr06056
+@if "$Restr0Code"="06.06" then $Restr0606=$Restr0Area+$Restr0606
+@if "$Restr0Code"="06.06.1" then $Restr06061=$Restr0Area+$Restr06061
+@if "$Restr0Code"="06.06.2" then $Restr06062=$Restr0Area+$Restr06062
+@if "$Restr0Code"="06.06.3" then $Restr06063=$Restr0Area+$Restr06063
+@if "$Restr0Code"="06.06.4" then $Restr06064=$Restr0Area+$Restr06064
+@if "$Restr0Code"="06.06.5" then $Restr06065=$Restr0Area+$Restr06065
+@if "$Restr0Code"="06.06.6" then $Restr06066=$Restr0Area+$Restr06066
+@if "$Restr0Code"="06.06.7" then $Restr06067=$Restr0Area+$Restr06067
+@if "$Restr0Code"="06.06.8" then $Restr06068=$Restr0Area+$Restr06068
+@if "$Restr0Code"="06.07" then $Restr0607=$Restr0Area+$Restr0607
+@if "$Restr0Code"="06.07.1" then $Restr06071=$Restr0Area+$Restr06071
+@if "$Restr0Code"="06.07.2" then $Restr06072=$Restr0Area+$Restr06072
+@if "$Restr0Code"="06.07.3" then $Restr06073=$Restr0Area+$Restr06073
+@if "$Restr0Code"="07" then $Restr07=$Restr0Area+$Restr07
+@if "$Restr0Code"="07.01" then $Restr0701=$Restr0Area+$Restr0701
+@if "$Restr0Code"="07.02" then $Restr0702=$Restr0Area+$Restr0702
+@if "$Restr0Code"="07.03" then $Restr0703=$Restr0Area+$Restr0703
+@if "$Restr0Code"="07.04" then $Restr0704=$Restr0Area+$Restr0704
+@if "$Restr0Code"="07.05" then $Restr0705=$Restr0Area+$Restr0705
+@if "$Restr0Code"="07.06" then $Restr0706=$Restr0Area+$Restr0706
+@if "$Restr0Code"="07.07" then $Restr0707=$Restr0Area+$Restr0707
+@if "$Restr0Code"="07.08" then $Restr0708=$Restr0Area+$Restr0708
+@if "$Restr0Code"="07.09" then $Restr0709=$Restr0Area+$Restr0709
+@if "$Restr0Code"="07.10" then $Restr0710=$Restr0Area+$Restr0710
+@if "$Restr0Code"="07.11" then $Restr0711=$Restr0Area+$Restr0711
+@if "$Restr0Code"="07.12" then $Restr0712=$Restr0Area+$Restr0712
+@if "$Restr0Code"="07.13" then $Restr0713=$Restr0Area+$Restr0713
+@if "$Restr0Code"="07.14" then $Restr0714=$Restr0Area+$Restr0714
+@if "$Restr0Code"="07.15" then $Restr0715=$Restr0Area+$Restr0715
+@if "$Restr0Code"="07.16" then $Restr0716=$Restr0Area+$Restr0716
+@if "$Restr0Code"="07.17" then $Restr0717=$Restr0Area+$Restr0717
+@if "$Restr0Code"="07.18" then $Restr0718=$Restr0Area+$Restr0718
+@if "$Restr0Code"="08" then $Restr08=$Restr0Area+$Restr08
+@if "$Restr0Code"="09" then $Restr09=$Restr0Area+$Restr09
+@if "$Restr0Code"="10" then $Restr10=$Restr0Area+$Restr10
+@if "$Restr0Code"="10.01" then $Restr101=$Restr0Area+$Restr101
+@if "$Restr0Code"="10.02" then $Restr102=$Restr0Area+$Restr102
+@if "$Restr0Code"="10.03" then $Restr103=$Restr0Area+$Restr103
+@if "$Restr0Code"="10.04" then $Restr104=$Restr0Area+$Restr104
+@if "$Restr0Code"="10.05" then $Restr105=$Restr0Area+$Restr105
+@if "$Restr0Code"="10.06" then $Restr106=$Restr0Area+$Restr106
+@if "$Restr0Code"="10.07" then $Restr107=$Restr0Area+$Restr107
+@if "$Restr0Code"="10.08" then $Restr108=$Restr0Area+$Restr108
+@if "$Restr0Code"="10.09" then $Restr109=$Restr0Area+$Restr109
+@if "$Restr0Code"="10.10" then $Restr1010=$Restr0Area+$Restr1010
+@if "$Restr0Code"="10.11" then $Restr1011=$Restr0Area+$Restr1011
+@if "$Restr0Code"="10.12" then $Restr1012=$Restr0Area+$Restr1012
+@if "$Restr0Code"="10.13" then $Restr1013=$Restr0Area+$Restr1013
+@if "$Restr0Code"="10.14" then $Restr1014=$Restr0Area+$Restr1014
+@if "$Restr0Code"="10.15" then $Restr1015=$Restr0Area+$Restr1015
+@if "$Restr0Code"="10.16" then $Restr1016=$Restr0Area+$Restr1016
+@if "$Restr0Code"="10.17" then $Restr1017=$Restr0Area+$Restr1017
+@if "$Restr0Code"="10.18" then $Restr1018=$Restr0Area+$Restr1018
+@if "$Restr0Code"="10.19" then $Restr1019=$Restr0Area+$Restr1019
+@if "$Restr0Code"="10.20" then $Restr1020=$Restr0Area+$Restr1020
+@if "$Restr0Code"="10.21" then $Restr1021=$Restr0Area+$Restr1021
+@if "$Restr0Code"="10.22" then $Restr1022=$Restr0Area+$Restr1022
+@if "$Restr0Code"="10.23" then $Restr1023=$Restr0Area+$Restr1023
+@if "$Restr0Code"="10.24" then $Restr1024=$Restr0Area+$Restr1024
+@if "$Restr0Code"="10.25" then $Restr1025=$Restr0Area+$Restr1025
+@if "$Restr0Code"="10.26" then $Restr1026=$Restr0Area+$Restr1026
+@if "$Restr0Code"="10.27" then $Restr1027=$Restr0Area+$Restr1027
+@if "$Restr0Code"="10.28" then $Restr1028=$Restr0Area+$Restr1028
+@if "$Restr0Code"="10.29" then $Restr1029=$Restr0Area+$Restr1029
+@if "$Restr0Code"="10.30" then $Restr1030=$Restr0Area+$Restr1030
+@if "$Restr0Code"="10.31" then $Restr1031=$Restr0Area+$Restr1031
+@if "$Restr0Code"="10.32" then $Restr1032=$Restr0Area+$Restr1032
+@if "$Restr0Code"="10.33" then $Restr1033=$Restr0Area+$Restr1033
+@if "$Restr0Code"="10.34" then $Restr1034=$Restr0Area+$Restr1034
+@if "$Restr0Code"="10.35" then $Restr1035=$Restr0Area+$Restr1035
+@if "$Restr0Code"="10.36" then $Restr1036=$Restr0Area+$Restr1036
+@if "$Restr0Code"="10.37" then $Restr1037=$Restr0Area+$Restr1037
+@if "$Restr0Code"="10.38" then $Restr1038=$Restr0Area+$Restr1038
+@if "$Restr0Code"="10.39" then $Restr1039=$Restr0Area+$Restr1039
+@if "$Restr0Code"="10.40" then $Restr1040=$Restr0Area+$Restr1040
+@if "$Restr0Code"="10.41" then $Restr1041=$Restr0Area+$Restr1041
+@if "$Restr0Code"="11" then $Restr11=$Restr0Area+$Restr11
+@if "$Restr0Code"="12" then $Restr12=$Restr0Area+$Restr12
+@if "$Restr0Code"="13" then $Restr13=$Restr0Area+$Restr13
+@if "$Restr0Code"="14" then $Restr14=$Restr0Area+$Restr14
+@if "$Restr0Code"="15" then $Restr15=$Restr0Area+$Restr15
+@if "$Restr0Code"="15.01" then $Restr1501=$Restr0Area+$Restr1501
+@if "$Restr0Code"="16" then $Restr16=$Restr0Area+$Restr16
+@if "$Restr0Code"="16.01" then $Restr1601=$Restr0Area+$Restr1601
+@if "$Restr0Code"="16.02" then $Restr1602=$Restr0Area+$Restr1602
+@if "$Restr0Code"="16.03" then $Restr1603=$Restr0Area+$Restr1603
+@if "$Restr0Code"="16.04" then $Restr1604=$Restr0Area+$Restr1604
+@if "$Restr0Code"="16.05" then $Restr1605=$Restr0Area+$Restr1605
+@if "$Restr0Code"="16.06" then $Restr1606=$Restr0Area+$Restr1606
+@if "$Restr0Code"="16.07" then $Restr1607=$Restr0Area+$Restr1607
+@if "$Restr0Code"="16.08" then $Restr1608=$Restr0Area+$Restr1608
+@if "$Restr0Code"="16.09" then $Restr1609=$Restr0Area+$Restr1609
+;
+%Continue0Restr
+@if $I<$C then @Goto %Loop0Restr
+;--------------- ¬ит€гнули площ≥ на€вних обмежень ---------------
+;
+@Text.Add $Restr01
+@Text.Add $Restr0101
+@Text.Add $Restr0102
+@Text.Add $Restr01021
+@Text.Add $Restr01022
+@Text.Add $Restr01023
+@Text.Add $Restr01024
+@Text.Add $Restr0103
+@Text.Add $Restr01031
+@Text.Add $Restr0104
+@Text.Add $Restr01041
+@Text.Add $Restr01042
+@Text.Add $Restr0105
+@Text.Add $Restr01051
+@Text.Add $Restr0106
+@Text.Add $Restr0107
+@Text.Add $Restr0108
+@Text.Add $Restr01081
+@Text.Add $Restr0109
+@Text.Add $Restr01091
+@Text.Add $Restr02
+@Text.Add $Restr0201
+@Text.Add $Restr02011
+@Text.Add $Restr02012
+@Text.Add $Restr02013
+@Text.Add $Restr02014
+@Text.Add $Restr0202
+@Text.Add $Restr02021
+@Text.Add $Restr02022
+@Text.Add $Restr02023
+@Text.Add $Restr03
+@Text.Add $Restr0301
+@Text.Add $Restr0302
+@Text.Add $Restr04
+@Text.Add $Restr0401
+@Text.Add $Restr0402
+@Text.Add $Restr0403
+@Text.Add $Restr05
+@Text.Add $Restr0501
+@Text.Add $Restr0502
+@Text.Add $Restr0503
+@Text.Add $Restr0504
+@Text.Add $Restr0505
+@Text.Add $Restr0506
+@Text.Add $Restr06
+@Text.Add $Restr0601
+@Text.Add $Restr06011
+@Text.Add $Restr06012
+@Text.Add $Restr06013
+@Text.Add $Restr06014
+@Text.Add $Restr06015
+@Text.Add $Restr06016
+@Text.Add $Restr0602
+@Text.Add $Restr06021
+@Text.Add $Restr06022
+@Text.Add $Restr06023
+@Text.Add $Restr0603
+@Text.Add $Restr0604
+@Text.Add $Restr0605
+@Text.Add $Restr06051
+@Text.Add $Restr06052
+@Text.Add $Restr06053
+@Text.Add $Restr06054
+@Text.Add $Restr06055
+@Text.Add $Restr06056
+@Text.Add $Restr0606
+@Text.Add $Restr06061
+@Text.Add $Restr06062
+@Text.Add $Restr06063
+@Text.Add $Restr06064
+@Text.Add $Restr06065
+@Text.Add $Restr06066
+@Text.Add $Restr06067
+@Text.Add $Restr06068
+@Text.Add $Restr0607
+@Text.Add $Restr06071
+@Text.Add $Restr06072
+@Text.Add $Restr06073
+@Text.Add $Restr07
+@Text.Add $Restr0701
+@Text.Add $Restr0702
+@Text.Add $Restr0703
+@Text.Add $Restr0704
+@Text.Add $Restr0705
+@Text.Add $Restr0706
+@Text.Add $Restr0707
+@Text.Add $Restr0708
+@Text.Add $Restr0709
+@Text.Add $Restr0710
+@Text.Add $Restr0711
+@Text.Add $Restr0712
+@Text.Add $Restr0713
+@Text.Add $Restr0714
+@Text.Add $Restr0715
+@Text.Add $Restr0716
+@Text.Add $Restr0717
+@Text.Add $Restr0718
+@Text.Add $Restr08
+@Text.Add $Restr09
+@Text.Add $Restr10
+@Text.Add $Restr101
+@Text.Add $Restr102
+@Text.Add $Restr103
+@Text.Add $Restr104
+@Text.Add $Restr105
+@Text.Add $Restr106
+@Text.Add $Restr107
+@Text.Add $Restr108
+@Text.Add $Restr109
+@Text.Add $Restr1010
+@Text.Add $Restr1011
+@Text.Add $Restr1012
+@Text.Add $Restr1013
+@Text.Add $Restr1014
+@Text.Add $Restr1015
+@Text.Add $Restr1016
+@Text.Add $Restr1017
+@Text.Add $Restr1018
+@Text.Add $Restr1019
+@Text.Add $Restr1020
+@Text.Add $Restr1021
+@Text.Add $Restr1022
+@Text.Add $Restr1023
+@Text.Add $Restr1024
+@Text.Add $Restr1025
+@Text.Add $Restr1026
+@Text.Add $Restr1027
+@Text.Add $Restr1028
+@Text.Add $Restr1029
+@Text.Add $Restr1030
+@Text.Add $Restr1031
+@Text.Add $Restr1032
+@Text.Add $Restr1033
+@Text.Add $Restr1034
+@Text.Add $Restr1035
+@Text.Add $Restr1036
+@Text.Add $Restr1037
+@Text.Add $Restr1038
+@Text.Add $Restr1039
+@Text.Add $Restr1040
+@Text.Add $Restr1041
+@Text.Add $Restr11
+@Text.Add $Restr12
+@Text.Add $Restr13
+@Text.Add $Restr14
+@Text.Add $Restr15
+@Text.Add $Restr1501
+@Text.Add $Restr16
+@Text.Add $Restr1601
+@Text.Add $Restr1602
+@Text.Add $Restr1603
+@Text.Add $Restr1604
+@Text.Add $Restr1605
+@Text.Add $Restr1606
+@Text.Add $Restr1607
+@Text.Add $Restr1608
+@Text.Add $Restr1609
+@Text.Add $RestrCountAll
+@Text.Add $RestrAreaAll
+$Papka=@ProgramFolder
+@Text.Save $Papka\TD\Temp\TempRestr1.ini

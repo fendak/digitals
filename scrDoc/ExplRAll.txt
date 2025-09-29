@@ -1,0 +1,1242 @@
+$Papka=@ProgramFolder
+$Tab=@Calc char(9)
+$Tab=@DequoteText $Tab
+$Space=@Calc char(32)
+$Space=@DequoteText $Space
+$VBar=@Calc Char(124)
+$VBar=@DequoteText $VBar
+@Text.Load $Papka\TD\Temp\TempExplNext.ini
+$CountRR=@Text.Count
+@if $CountRR<67 then @Break Оновіть файли скрипту TD\scripts\ExplRAll.txt та TD\scripts\ExplRList.txt до версії 4.18 чи вище (відсутнє угіддя "003.07 Луки")
+$C001=@Text.Line[1]
+$C00100=@Text.Line[2]
+$C00101=@Text.Line[3]
+$C00102=@Text.Line[4]
+$C00103=@Text.Line[5]
+$C002=@Text.Line[6]
+$C00200=@Text.Line[7]
+$C00201=@Text.Line[8]
+$C00202=@Text.Line[9]
+$C00203=@Text.Line[10]
+$C003=@Text.Line[11]
+$C00300=@Text.Line[12]
+$C00301=@Text.Line[13]
+$C00302=@Text.Line[14]
+$C00303=@Text.Line[15]
+$C00304=@Text.Line[16]
+$C00305=@Text.Line[17]
+$C00306=@Text.Line[18]
+$C00307=@Text.Line[19]
+$C004=@Text.Line[20]
+$C00400=@Text.Line[21]
+$C005=@Text.Line[22]
+$C00500=@Text.Line[23]
+$C00501=@Text.Line[24]
+$C00502=@Text.Line[25]
+$C00503=@Text.Line[26]
+$C00504=@Text.Line[27]
+$C00505=@Text.Line[28]
+$C006=@Text.Line[29]
+$C00600=@Text.Line[30]
+$C00601=@Text.Line[31]
+$C00602=@Text.Line[32]
+$C00603=@Text.Line[33]
+$C00604=@Text.Line[34]
+$C00605=@Text.Line[35]
+$C007=@Text.Line[36]
+$C00700=@Text.Line[37]
+$C00701=@Text.Line[38]
+$C00702=@Text.Line[39]
+$C008=@Text.Line[40]
+$C00800=@Text.Line[41]
+$C00801=@Text.Line[42]
+$C00802=@Text.Line[43]
+$C00803=@Text.Line[44]
+$C009=@Text.Line[45]
+$C00900=@Text.Line[46]
+$C00901=@Text.Line[47]
+$C00902=@Text.Line[48]
+$C00903=@Text.Line[49]
+$C010=@Text.Line[50]
+$C01000=@Text.Line[51]
+$C011=@Text.Line[52]
+$C01100=@Text.Line[53]
+$C01101=@Text.Line[54]
+$C01102=@Text.Line[55]
+$C01103=@Text.Line[56]
+$C012=@Text.Line[57]
+$C01200=@Text.Line[58]
+$C013=@Text.Line[59]
+$C01300=@Text.Line[60]
+$C014=@Text.Line[61]
+$C01400=@Text.Line[62]
+$C015=@Text.Line[63]
+$C01500=@Text.Line[64]
+$C01501=@Text.Line[65]
+$C01502=@Text.Line[66]
+$C01503=@Text.Line[67]
+@if $C001<>0 then $C001=@RoundTo $C001 4
+@if $C00100<>0 then $C00100=@RoundTo $C00100 4
+@if $C00101<>0 then $C00101=@RoundTo $C00101 4
+@if $C00102<>0 then $C00102=@RoundTo $C00102 4
+@if $C00103<>0 then $C00103=@RoundTo $C00103 4
+@if $C002<>0 then $C002=@RoundTo $C002 4
+@if $C00200<>0 then $C00200=@RoundTo $C00200 4
+@if $C00201<>0 then $C00201=@RoundTo $C00201 4
+@if $C00202<>0 then $C00202=@RoundTo $C00202 4
+@if $C00203<>0 then $C00203=@RoundTo $C00203 4
+@if $C003<>0 then $C003=@RoundTo $C003 4
+@if $C00300<>0 then $C00300=@RoundTo $C00300 4
+@if $C00301<>0 then $C00301=@RoundTo $C00301 4
+@if $C00302<>0 then $C00302=@RoundTo $C00302 4
+@if $C00303<>0 then $C00303=@RoundTo $C00303 4
+@if $C00304<>0 then $C00304=@RoundTo $C00304 4
+@if $C00305<>0 then $C00305=@RoundTo $C00305 4
+@if $C00306<>0 then $C00306=@RoundTo $C00306 4
+@if $C00307<>0 then $C00307=@RoundTo $C00307 4
+@if $C004<>0 then $C004=@RoundTo $C004 4
+@if $C00400<>0 then $C00400=@RoundTo $C00400 4
+@if $C005<>0 then $C005=@RoundTo $C005 4
+@if $C00500<>0 then $C00500=@RoundTo $C00500 4
+@if $C00501<>0 then $C00501=@RoundTo $C00501 4
+@if $C00502<>0 then $C00502=@RoundTo $C00502 4
+@if $C00503<>0 then $C00503=@RoundTo $C00503 4
+@if $C00504<>0 then $C00504=@RoundTo $C00504 4
+@if $C00505<>0 then $C00505=@RoundTo $C00505 4
+@if $C006<>0 then $C006=@RoundTo $C006 4
+@if $C00600<>0 then $C00600=@RoundTo $C00600 4
+@if $C00601<>0 then $C00601=@RoundTo $C00601 4
+@if $C00602<>0 then $C00602=@RoundTo $C00602 4
+@if $C00603<>0 then $C00603=@RoundTo $C00603 4
+@if $C00604<>0 then $C00604=@RoundTo $C00604 4
+@if $C00605<>0 then $C00605=@RoundTo $C00605 4
+@if $C007<>0 then $C007=@RoundTo $C007 4
+@if $C00700<>0 then $C00700=@RoundTo $C00700 4
+@if $C00701<>0 then $C00701=@RoundTo $C00701 4
+@if $C00702<>0 then $C00702=@RoundTo $C00702 4
+@if $C008<>0 then $C008=@RoundTo $C008 4
+@if $C00800<>0 then $C00800=@RoundTo $C00800 4
+@if $C00801<>0 then $C00801=@RoundTo $C00801 4
+@if $C00802<>0 then $C00802=@RoundTo $C00802 4
+@if $C00803<>0 then $C00803=@RoundTo $C00803 4
+@if $C009<>0 then $C009=@RoundTo $C009 4
+@if $C00900<>0 then $C00900=@RoundTo $C00900 4
+@if $C00901<>0 then $C00901=@RoundTo $C00901 4
+@if $C00902<>0 then $C00902=@RoundTo $C00902 4
+@if $C00903<>0 then $C00903=@RoundTo $C00903 4
+@if $C010<>0 then $C010=@RoundTo $C010 4
+@if $C01000<>0 then $C01000=@RoundTo $C01000 4
+@if $C011<>0 then $C011=@RoundTo $C011 4
+@if $C01100<>0 then $C01100=@RoundTo $C01100 4
+@if $C01101<>0 then $C01101=@RoundTo $C01101 4
+@if $C01102<>0 then $C01102=@RoundTo $C01102 4
+@if $C01103<>0 then $C01103=@RoundTo $C01103 4
+@if $C012<>0 then $C012=@RoundTo $C012 4
+@if $C01200<>0 then $C01200=@RoundTo $C01200 4
+@if $C013<>0 then $C013=@RoundTo $C013 4
+@if $C01300<>0 then $C01300=@RoundTo $C01300 4
+@if $C014<>0 then $C014=@RoundTo $C014 4
+@if $C01400<>0 then $C01400=@RoundTo $C01400 4
+@if $C015<>0 then $C015=@RoundTo $C015 4
+@if $C01500<>0 then $C01500=@RoundTo $C01500 4
+@if $C01501<>0 then $C01501=@RoundTo $C01501 4
+@if $C01502<>0 then $C01502=@RoundTo $C01502 4
+@if $C01503<>0 then $C01503=@RoundTo $C01503 4
+;
+;+++++++++++++ Формуємо експлікацію +++++++++++++++++++++
+@if $C00100<>0 then @Text[4].Add 001$Tab 00$TabРілля$Tab $C00100
+@if $C00101<>0 then @Text[4].Add 001$Tab 01$TabРілля$Tab $C00101
+@if $C00102<>0 then @Text[4].Add 001$Tab 02$TabПерелоги$Tab $C00102
+@if $C00103<>0 then @Text[4].Add 001$Tab 03$TabПарники, оранжереї, теплиці$Tab $C00103
+@if $C00200<>0 then @Text[4].Add 002$Tab 00$TabРослинний покрив земель і ґрунти$Tab $C00200
+@if $C00201<>0 then @Text[4].Add 002$Tab 01$TabСіножаті$Tab $C00201
+@if $C00202<>0 then @Text[4].Add 002$Tab 02$TabПасовища$Tab $C00202
+@if $C00203<>0 then @Text[4].Add 002$Tab 03$TabБагаторічні насадження$Tab $C00203
+@if $C00300<>0 then @Text[4].Add 003$Tab 00$TabЗемлі без рослинного покриву або з незначним рослинним покривом, або з трав’янистим рослинним покривом природного походження$Tab $C00300
+@if $C00301<>0 then @Text[4].Add 003$Tab 01$TabКам'янисті місця$Tab $C00301
+@if $C00302<>0 then @Text[4].Add 003$Tab 02$TabПіски$Tab $C00302
+@if $C00303<>0 then @Text[4].Add 003$Tab 03$TabБолота$Tab $C00303
+@if $C00304<>0 then @Text[4].Add 003$Tab 04$TabСолончаки$Tab $C00304
+@if $C00305<>0 then @Text[4].Add 003$Tab 05$TabЯри$Tab $C00305
+@if $C00306<>0 then @Text[4].Add 003$Tab 06$TabСтепи$Tab $C00306
+@if $C00307<>0 then @Text[4].Add 003$Tab 07$TabЛуки$Tab $C00307
+@if $C00400<>0 then @Text[4].Add 004$Tab 00$TabЧагарникова рослинність природного походження$Tab $C00400
+@if $C00500<>0 then @Text[4].Add 005$Tab 00$TabЛіси та інші лісовкриті землі$Tab $C00500
+@if $C00501<>0 then @Text[4].Add 005$Tab 01$TabЗемельні лісові ділянки, вкриті лісовою рослинністю$Tab $C00501
+@if $C00502<>0 then @Text[4].Add 005$Tab 02$TabЗемельні лісові ділянки, не вкриті лісовою рослинністю$Tab $C00502
+@if $C00503<>0 then @Text[4].Add 005$Tab 03$TabЗ усіх лісів лісові насадження лінійного типу$Tab $C00503
+@if $C00504<>0 then @Text[4].Add 005$Tab 04$TabІнші лісовкриті площі$Tab $C00504
+@if $C00505<>0 then @Text[4].Add 005$Tab 05$TabСамозаліснені землі$Tab $C00505
+@if $C00600<>0 then @Text[4].Add 006$Tab 00$TabВоди$Tab $C00600
+@if $C00601<>0 then @Text[4].Add 006$Tab 01$TabПриродні водотоки (річки та струмки)$Tab $C00601
+@if $C00602<>0 then @Text[4].Add 006$Tab 02$TabШтучні водотоки (канали, колектори, канави)$Tab $C00602
+@if $C00603<>0 then @Text[4].Add 006$Tab 03$TabОзера, прибережні замкнуті водойми, лимани$Tab $C00603
+@if $C00604<>0 then @Text[4].Add 006$Tab 04$TabСтавки$Tab $C00604
+@if $C00605<>0 then @Text[4].Add 006$Tab 05$TabШтучні водосховища$Tab $C00605
+@if $C00700<>0 then @Text[4].Add 007$Tab 00$TabЗемлі під житловою забудовою$Tab $C00700
+@if $C00701<>0 then @Text[4].Add 007$Tab 01$TabМалоповерхова забудова$Tab $C00701
+@if $C00702<>0 then @Text[4].Add 007$Tab 02$TabБагатоповерхова забудова$Tab $C00702
+@if $C00800<>0 then @Text[4].Add 008$Tab 00$TabЗемлі під громадською забудовою$Tab $C00800
+@if $C00801<>0 then @Text[4].Add 008$Tab 01$TabЗемлі під громадськими спорудами, які мають історико-архітектурну цінність, об’єктами культурної спадщини$Tab $C00801
+@if $C00802<>0 then @Text[4].Add 008$Tab 02$TabВулиці та бульвари (включаючи тротуари), набережні, площі$Tab $C00802
+@if $C00803<>0 then @Text[4].Add 008$Tab 03$TabЗемлі під соціально-культурними об'єктами$Tab $C00803
+@if $C00900<>0 then @Text[4].Add 009$Tab 00$TabЗемлі, які використовуються для транспорту$Tab $C00900
+@if $C00901<>0 then @Text[4].Add 009$Tab 01$TabЗемлі під залізницями$Tab $C00901
+@if $C00902<>0 then @Text[4].Add 009$Tab 02$TabЗемлі під дорогами, зокрема підґрунтовими$Tab $C00902
+@if $C00903<>0 then @Text[4].Add 009$Tab 03$TabЗемлі під будівлями та спорудами транспорту$Tab $C00903
+@if $C01000<>0 then @Text[4].Add 010$Tab 00$TabЗемлі, які використовуються для технічної інфраструктури$Tab $C01000
+@if $C01100<>0 then @Text[4].Add 011$Tab 00$TabЗемлі під промисловою забудовою$Tab $C01100
+@if $C01101<>0 then @Text[4].Add 011$Tab 01$TabЗемлі під будівлями та спорудами промислових підприємств$Tab $C01101
+@if $C01102<>0 then @Text[4].Add 011$Tab 02$TabЗемлі під відкритими розробками, шахтами, кар'єрами, торфорозробками та відповідними спорудами$Tab $C01102
+@if $C01103<>0 then @Text[4].Add 011$Tab 03$TabЗемлі, які забруднені промисловими та іншими відходами, включаючи відвали та терикони, а також радіоактивно забруднені$Tab $C01103
+@if $C01200<>0 then @Text[4].Add 012$Tab 00$TabЗемлі, зайняті поточним будівництвом та відведені під будівництво (будівництво на яких не розпочато)$Tab $C01200
+@if $C01300<>0 then @Text[4].Add 013$Tab 00$TabЗемлі під сільськогосподарськими та іншими господарськими будівлями і дворами$Tab $C01300
+@if $C01400<>0 then @Text[4].Add 014$Tab 00$TabЗемлі, які використовуються для відпочинку та оздоровлення$Tab $C01400
+@if $C01500<>0 then @Text[4].Add 015$Tab 00$TabЗемлі під об'єктами та спорудами спеціального призначення$Tab $C01500
+@if $C01501<>0 then @Text[4].Add 015$Tab 01$TabЗемлі під військовими базами, об'єктами, фортецями, фортами укріплення$Tab $C01501
+@if $C01502<>0 then @Text[4].Add 015$Tab 02$TabЗемлі під кладовищами, крематоріями, меморіальними комплексами та пам'ятниками, скотомогильниками$Tab $C01502
+@if $C01503<>0 then @Text[4].Add 015$Tab 03$TabЗемлі, які перебувають у стадії меліоративного освоєння та відновлення родючості ґрунтів$Tab $C01503
+
+$C00100plus00200=$C001+$C002
+;назва угіддя
+$C00100name=
+$C00101name=
+$C00102name=
+$C00103name=
+$C00200name=
+$C00201name=
+$C00202name=
+$C00203name=
+$C00300name=
+$C00301name=
+$C00302name=
+$C00303name=
+$C00304name=
+$C00305name=
+$C00306name=
+$C00307name=
+$C00400name=
+$C00500name=
+$C00501name=
+$C00502name=
+$C00503name=
+$C00504name=
+$C00505name=
+$C00600name=
+$C00601name=
+$C00602name=
+$C00603name=
+$C00604name=
+$C00605name=
+$C00700name=
+$C00701name=
+$C00702name=
+$C00800name=
+$C00801name=
+$C00802name=
+$C00803name=
+$C00900name=
+$C00901name=
+$C00902name=
+$C00903name=
+$C01000name=
+$C01100name=
+$C01101name=
+$C01102name=
+$C01103name=
+$C01200name=
+$C01300name=
+$C01400name=
+$C01500name=
+$C01501name=
+$C01502name=
+$C01503name=
+$C00100name2=
+$C00101name2=
+$C00102name2=
+$C00103name2=
+$C00200name2=
+$C00201name2=
+$C00202name2=
+$C00203name2=
+$C00300name2=
+$C00301name2=
+$C00302name2=
+$C00303name2=
+$C00304name2=
+$C00305name2=
+$C00306name2=
+$C00307name2=
+$C00400name2=
+$C00500name2=
+$C00501name2=
+$C00502name2=
+$C00503name2=
+$C00504name2=
+$C00505name2=
+$C00600name2=
+$C00601name2=
+$C00602name2=
+$C00603name2=
+$C00604name2=
+$C00605name2=
+$C00700name2=
+$C00701name2=
+$C00702name2=
+$C00800name2=
+$C00801name2=
+$C00802name2=
+$C00803name2=
+$C00900name2=
+$C00901name2=
+$C00902name2=
+$C00903name2=
+$C01000name2=
+$C01100name2=
+$C01101name2=
+$C01102name2=
+$C01103name2=
+$C01200name2=
+$C01300name2=
+$C01400name2=
+$C01500name2=
+$C01501name2=
+$C01502name2=
+$C01503name2=
+$C00100plus00200name=
+;
+@if $C001<>0 then $C00100name=Рілля
+@if $C00101<>0 then $C00101name=в т.ч. Рілля
+@if $C00102<>0 then $C00102name=в т.ч. Перелоги
+@if $C00103<>0 then $C00103name=в т.ч. Парники, оранжереї, теплиці
+@if $C002<>0 then $C00200name=Рослинний покрив земель і ґрунти
+@if $C00201<>0 then $C00201name=в т.ч. Сіножаті
+@if $C00202<>0 then $C00202name=в т.ч. Пасовища
+@if $C00203<>0 then $C00203name=в т.ч. Багаторічні насадження
+@if $C003<>0 then $C00300name=Землі без рослинного покриву або з незначним рослинним покривом, або з трав’янистим рослинним покривом природного походження
+@if $C00301<>0 then $C00301name=в т.ч. Кам’янисті місця
+@if $C00302<>0 then $C00302name=в т.ч. Піски
+@if $C00303<>0 then $C00303name=в т.ч. Болота
+@if $C00304<>0 then $C00304name=в т.ч. Солончаки
+@if $C00305<>0 then $C00305name=в т.ч. Яри
+@if $C00306<>0 then $C00306name=в т.ч. Степи
+@if $C00307<>0 then $C00307name=в т.ч. Луки
+@if $C004<>0 then $C00400name=Чагарникова рослинність природного походження
+@if $C005<>0 then $C00500name=Ліси та інші лісовкриті землі
+@if $C00501<>0 then $C00501name=в т.ч. Земельні лісові ділянки, вкриті лісовою рослинністю
+@if $C00502<>0 then $C00502name=в т.ч. Земельні лісові ділянки, не вкриті лісовою рослинністю
+@if $C00503<>0 then $C00503name=в т.ч. З усіх лісів лісові насадження лінійного типу
+@if $C00504<>0 then $C00504name=в т.ч. Інші лісовкриті площі
+@if $C00505<>0 then $C00505name=в т.ч. Самозаліснені землі
+@if $C006<>0 then $C00600name=Води
+@if $C00601<>0 then $C00601name=в т.ч. Природні водотоки (річки та струмки)
+@if $C00602<>0 then $C00602name=в т.ч. Штучні водотоки (канали, колектори, канави)
+@if $C00603<>0 then $C00603name=в т.ч. Озера, прибережні замкнуті водойми, лимани
+@if $C00604<>0 then $C00604name=в т.ч. Ставки
+@if $C00605<>0 then $C00605name=в т.ч. Штучні водосховища
+@if $C007<>0 then $C00700name=Землі під житловою забудовою
+@if $C00701<>0 then $C00701name=в т.ч. Малоповерхова забудова
+@if $C00702<>0 then $C00702name=в т.ч. Багатоповерхова забудова
+@if $C008<>0 then $C00800name=Землі під громадською забудовою
+@if $C00801<>0 then $C00801name=в т.ч. Землі під громадськими спорудами, які мають історико-архітектурну цінність
+@if $C00802<>0 then $C00802name=в т.ч. Вулиці та бульвари (включаючи тротуари), набережні, площі
+@if $C00803<>0 then $C00803name=в т.ч. Землі під соціально-культурними об’єктами
+@if $C009<>0 then $C00900name=Землі, які використовуються для транспорту
+@if $C00901<>0 then $C00901name=в т.ч. Землі під залізницями
+@if $C00902<>0 then $C00902name=в т.ч. Землі під дорогами, зокрема підґрунтовими
+@if $C00903<>0 then $C00903name=в т.ч. Землі під будівлями та спорудами транспорту
+@if $C010<>0 then $C01000name=Землі, які використовуються для технічної інфраструктури
+@if $C011<>0 then $C01100name=Землі під промисловою забудовою
+@if $C01101<>0 then $C01101name=в т.ч. Землі під будівлями та спорудами промислових підприємств
+@if $C01102<>0 then $C01102name=в т.ч. Землі під відкритими розробками, шахтами, кар’єрами, торфорозробками та відповідними спорудами
+@if $C01103<>0 then $C01103name=в т.ч. Землі, які забруднені промисловими та іншими відходами, включаючи відвали та терикони, а також радіоактивно забруднені
+@if $C012<>0 then $C01200name=Землі, зайняті поточним будівництвом та відведені під будівництво
+@if $C013<>0 then $C01300name=Землі під с/г-кими та ін. госп. буд. і дворами
+@if $C014<>0 then $C01400name=Землі, які використовуються для відпочинку та оздоровлення
+@if $C015<>0 then $C01500name=Землі під об’єктами та спорудами спеціального призначення
+@if $C01501<>0 then $C01501name=в т.ч. Землі під військовими базами, об’єктами, фортецями, фортами укріплення
+@if $C01502<>0 then $C01502name=в т.ч. Землі під кладовищами, крематоріями, меморіальними комплексами та пам’ятниками, скотомогильниками 
+@if $C01503<>0 then $C01503name=в т.ч. Землі, які перебувають у стадії меліоративного освоєння та відновлення родючості ґрунтів
+@if $C00100plus00200<>0 then $C00100plus00200name=Усього с/г угідь
+;
+@if $C00100<>0 then $C00100name2=Рілля
+@if $C00101<>0 then $C00101name2=Рілля
+@if $C00102<>0 then $C00102name2=Перелоги
+@if $C00103<>0 then $C00103name2=Парники, оранжереї, теплиці
+@if $C00200<>0 then $C00200name2=Рослинний покрив земель і ґрунти
+@if $C00201<>0 then $C00201name2=Сіножаті
+@if $C00202<>0 then $C00202name2=Пасовища
+@if $C00203<>0 then $C00203name2=Багаторічні насадження
+@if $C00300<>0 then $C00300name2=Землі без рослинного покриву або з незначним рослинним покривом, або з трав’янистим рослинним покривом природного походження
+@if $C00301<>0 then $C00301name2=Кам’янисті місця
+@if $C00302<>0 then $C00302name2=Піски
+@if $C00303<>0 then $C00303name2=Болота
+@if $C00304<>0 then $C00304name2=Солончаки
+@if $C00305<>0 then $C00305name2=Яри
+@if $C00306<>0 then $C00306name2=Степи
+@if $C00307<>0 then $C00307name2=Луки
+@if $C00400<>0 then $C00400name2=Чагарникова рослинність природного походження
+@if $C00500<>0 then $C00500name2=Ліси та інші лісовкриті землі
+@if $C00501<>0 then $C00501name2=Земельні лісові ділянки, вкриті лісовою рослинністю
+@if $C00502<>0 then $C00502name2=Земельні лісові ділянки, не вкриті лісовою рослинністю
+@if $C00503<>0 then $C00503name2=З усіх лісів лісові насадження лінійного типу
+@if $C00504<>0 then $C00504name2=Інші лісовкриті площі
+@if $C00505<>0 then $C00505name2=Самозаліснені землі
+@if $C00600<>0 then $C00600name2=Води
+@if $C00601<>0 then $C00601name2=Природні водотоки (річки та струмки)
+@if $C00602<>0 then $C00602name2=Штучні водотоки (канали, колектори, канави)
+@if $C00603<>0 then $C00603name2=Озера, прибережні замкнуті водойми, лимани
+@if $C00604<>0 then $C00604name2=Ставки
+@if $C00605<>0 then $C00605name2=Штучні водосховища
+@if $C00700<>0 then $C00700name2=Землі під житловою забудовою
+@if $C00701<>0 then $C00701name2=Малоповерхова забудова
+@if $C00702<>0 then $C00702name2=Багатоповерхова забудова
+@if $C00800<>0 then $C00800name2=Землі під громадською забудовою
+@if $C00801<>0 then $C00801name2=Землі під громадськими спорудами, які мають історико-архітектурну цінність
+@if $C00802<>0 then $C00802name2=Вулиці та бульвари (включаючи тротуари), набережні, площі
+@if $C00803<>0 then $C00803name2=Землі під соціально-культурними об’єктами
+@if $C00900<>0 then $C00900name2=Землі, які використовуються для транспорту
+@if $C00901<>0 then $C00901name2=Землі під залізницями
+@if $C00902<>0 then $C00902name2=Землі під дорогами, зокрема підґрунтовими
+@if $C00903<>0 then $C00903name2=Землі під будівлями та спорудами транспорту
+@if $C01000<>0 then $C01000name2=Землі, які використовуються для технічної інфраструктури
+@if $C01100<>0 then $C01100name2=Землі під промисловою забудовою
+@if $C01101<>0 then $C01101name2=Землі під будівлями та спорудами промислових підприємств
+@if $C01102<>0 then $C01102name2=Землі під відкритими розробками, шахтами, кар’єрами, торфорозробками та відповідними спорудами
+@if $C01103<>0 then $C01103name2=Землі, які забруднені промисловими та іншими відходами, включаючи відвали та терикони, а також радіоактивно забруднені
+@if $C01200<>0 then $C01200name2=Землі, зайняті поточним будівництвом та відведені під будівництво
+@if $C01300<>0 then $C01300name2=Землі під сільськогосподарськими та іншими господарськими будівлями і дворами
+@if $C01400<>0 then $C01400name2=Землі, які використовуються для відпочинку та оздоровлення
+@if $C01500<>0 then $C01500name2=Землі під об’єктами та спорудами спеціального призначення
+@if $C01501<>0 then $C01501name2=Землі під військовими базами, об’єктами, фортецями, фортами укріплення
+@if $C01502<>0 then $C01502name2=Землі під кладовищами, крематоріями, меморіальними комплексами та пам’ятниками, скотомогильниками 
+@if $C01503<>0 then $C01503name2=Землі, які перебувають у стадії меліоративного освоєння та відновлення родючості ґрунтів
+;
+@if $C00100name<> then $C00100name=,$Tab,$C00100name
+@if $C00101name<> then $C00101name=,$Tab,$C00101name
+@if $C00102name<> then $C00102name=,$Tab,$C00102name
+@if $C00103name<> then $C00103name=,$Tab,$C00103name
+@if $C00200name<> then $C00200name=,$Tab,$C00200name
+@if $C00201name<> then $C00201name=,$Tab,$C00201name
+@if $C00202name<> then $C00202name=,$Tab,$C00202name
+@if $C00203name<> then $C00203name=,$Tab,$C00203name
+@if $C00300name<> then $C00300name=,$Tab,$C00300name
+@if $C00301name<> then $C00301name=,$Tab,$C00301name
+@if $C00302name<> then $C00302name=,$Tab,$C00302name
+@if $C00303name<> then $C00303name=,$Tab,$C00303name
+@if $C00304name<> then $C00304name=,$Tab,$C00304name
+@if $C00305name<> then $C00305name=,$Tab,$C00305name
+@if $C00306name<> then $C00306name=,$Tab,$C00306name
+@if $C00307name<> then $C00307name=,$Tab,$C00307name
+@if $C00400name<> then $C00400name=,$Tab,$C00400name
+@if $C00500name<> then $C00500name=,$Tab,$C00500name
+@if $C00501name<> then $C00501name=,$Tab,$C00501name
+@if $C00502name<> then $C00502name=,$Tab,$C00502name
+@if $C00503name<> then $C00503name=,$Tab,$C00503name
+@if $C00504name<> then $C00504name=,$Tab,$C00504name
+@if $C00505name<> then $C00505name=,$Tab,$C00505name
+@if $C00600name<> then $C00600name=,$Tab,$C00600name
+@if $C00601name<> then $C00601name=,$Tab,$C00601name
+@if $C00602name<> then $C00602name=,$Tab,$C00602name
+@if $C00603name<> then $C00603name=,$Tab,$C00603name
+@if $C00604name<> then $C00604name=,$Tab,$C00604name
+@if $C00605name<> then $C00605name=,$Tab,$C00605name
+@if $C00700name<> then $C00700name=,$Tab,$C00700name
+@if $C00701name<> then $C00701name=,$Tab,$C00701name
+@if $C00702name<> then $C00702name=,$Tab,$C00702name
+@if $C00800name<> then $C00800name=,$Tab,$C00800name
+@if $C00801name<> then $C00801name=,$Tab,$C00801name
+@if $C00802name<> then $C00802name=,$Tab,$C00802name
+@if $C00803name<> then $C00803name=,$Tab,$C00803name
+@if $C00900name<> then $C00900name=,$Tab,$C00900name
+@if $C00901name<> then $C00901name=,$Tab,$C00901name
+@if $C00902name<> then $C00902name=,$Tab,$C00902name
+@if $C00903name<> then $C00903name=,$Tab,$C00903name
+@if $C01000name<> then $C01000name=,$Tab,$C01000name
+@if $C01100name<> then $C01100name=,$Tab,$C01100name
+@if $C01101name<> then $C01101name=,$Tab,$C01101name
+@if $C01102name<> then $C01102name=,$Tab,$C01102name
+@if $C01103name<> then $C01103name=,$Tab,$C01103name
+@if $C01200name<> then $C01200name=,$Tab,$C01200name
+@if $C01300name<> then $C01300name=,$Tab,$C01300name
+@if $C01400name<> then $C01400name=,$Tab,$C01400name
+@if $C01500name<> then $C01500name=,$Tab,$C01500name
+@if $C01501name<> then $C01501name=,$Tab,$C01501name
+@if $C01502name<> then $C01502name=,$Tab,$C01502name
+@if $C01503name<> then $C01503name=,$Tab,$C01503name
+@if $C00100plus00200name<> then $C00100plus00200name=,$Tab,$C00100plus00200name
+;
+@if $C00100name2<> then $C00100name2=,$Tab,$C00100name2
+@if $C00101name2<> then $C00101name2=,$Tab,$C00101name2
+@if $C00102name2<> then $C00102name2=,$Tab,$C00102name2
+@if $C00103name2<> then $C00103name2=,$Tab,$C00103name2
+@if $C00200name2<> then $C00200name2=,$Tab,$C00200name2
+@if $C00201name2<> then $C00201name2=,$Tab,$C00201name2
+@if $C00202name2<> then $C00202name2=,$Tab,$C00202name2
+@if $C00203name2<> then $C00203name2=,$Tab,$C00203name2
+@if $C00300name2<> then $C00300name2=,$Tab,$C00300name2
+@if $C00301name2<> then $C00301name2=,$Tab,$C00301name2
+@if $C00302name2<> then $C00302name2=,$Tab,$C00302name2
+@if $C00303name2<> then $C00303name2=,$Tab,$C00303name2
+@if $C00304name2<> then $C00304name2=,$Tab,$C00304name2
+@if $C00305name2<> then $C00305name2=,$Tab,$C00305name2
+@if $C00306name2<> then $C00306name2=,$Tab,$C00306name2
+@if $C00307name2<> then $C00307name2=,$Tab,$C00307name2
+@if $C00400name2<> then $C00400name2=,$Tab,$C00400name2
+@if $C00500name2<> then $C00500name2=,$Tab,$C00500name2
+@if $C00501name2<> then $C00501name2=,$Tab,$C00501name2
+@if $C00502name2<> then $C00502name2=,$Tab,$C00502name2
+@if $C00503name2<> then $C00503name2=,$Tab,$C00503name2
+@if $C00504name2<> then $C00504name2=,$Tab,$C00504name2
+@if $C00505name2<> then $C00505name2=,$Tab,$C00505name2
+@if $C00600name2<> then $C00600name2=,$Tab,$C00600name2
+@if $C00601name2<> then $C00601name2=,$Tab,$C00601name2
+@if $C00602name2<> then $C00602name2=,$Tab,$C00602name2
+@if $C00603name2<> then $C00603name2=,$Tab,$C00603name2
+@if $C00604name2<> then $C00604name2=,$Tab,$C00604name2
+@if $C00605name2<> then $C00605name2=,$Tab,$C00605name2
+@if $C00700name2<> then $C00700name2=,$Tab,$C00700name2
+@if $C00701name2<> then $C00701name2=,$Tab,$C00701name2
+@if $C00702name2<> then $C00702name2=,$Tab,$C00702name2
+@if $C00800name2<> then $C00800name2=,$Tab,$C00800name2
+@if $C00801name2<> then $C00801name2=,$Tab,$C00801name2
+@if $C00802name2<> then $C00802name2=,$Tab,$C00802name2
+@if $C00803name2<> then $C00803name2=,$Tab,$C00803name2
+@if $C00900name2<> then $C00900name2=,$Tab,$C00900name2
+@if $C00901name2<> then $C00901name2=,$Tab,$C00901name2
+@if $C00902name2<> then $C00902name2=,$Tab,$C00902name2
+@if $C00903name2<> then $C00903name2=,$Tab,$C00903name2
+@if $C01000name2<> then $C01000name2=,$Tab,$C01000name2
+@if $C01100name2<> then $C01100name2=,$Tab,$C01100name2
+@if $C01101name2<> then $C01101name2=,$Tab,$C01101name2
+@if $C01102name2<> then $C01102name2=,$Tab,$C01102name2
+@if $C01103name2<> then $C01103name2=,$Tab,$C01103name2
+@if $C01200name2<> then $C01200name2=,$Tab,$C01200name2
+@if $C01300name2<> then $C01300name2=,$Tab,$C01300name2
+@if $C01400name2<> then $C01400name2=,$Tab,$C01400name2
+@if $C01500name2<> then $C01500name2=,$Tab,$C01500name2
+@if $C01501name2<> then $C01501name2=,$Tab,$C01501name2
+@if $C01502name2<> then $C01502name2=,$Tab,$C01502name2
+@if $C01503name2<> then $C01503name2=,$Tab,$C01503name2
+;
+$S=@Concat №,$Tab,Власники землі/землекористувачі,$Tab,КВЦПЗД (код),$Tab,КВЦПЗД (назва),$Tab,Загальна площа
+$S=@Concat $S,$C00100plus00200name,$C00101name,$C00102name,$C00103name,$C00201name,$C00202name,$C00203name,$C00300name
+$S=@Concat $S,$C00301name,$C00302name,$C00303name,$C00304name,$C00305name,$C00306name,$C00307name,$C00400name,$C00500name,$C00501name
+$S=@Concat $S,$C00502name,$C00503name,$C00504name,$C00505name,$C00600name,$C00601name,$C00602name,$C00603name,$C00604name
+$S=@Concat $S,$C00605name,$C00700name,$C00701name,$C00702name,$C00800name,$C00801name,$C00802name,$C00803name
+$S=@Concat $S,$C00900name,$C00901name,$C00902name,$C00903name,$C01000name,$C01100name,$C01101name,$C01102name
+$S=@Concat $S,$C01103name,$C01200name,$C01300name,$C01400name,$C01500name,$C01501name,$C01502name,$C01503name
+@Text[2].Add $S
+;
+$S=@Concat Усього земель (гектарів),$C00100name2,$C00101name2,$C00102name2,$C00103name2,$C00200name2,$C00201name2,$C00202name2,$C00203name2,$C00300name2
+$S=@Concat $S,$C00301name2,$C00302name2,$C00303name2,$C00304name2,$C00305name2,$C00306name2,$C00307name2,$C00400name2,$C00500name2,$C00501name2
+$S=@Concat $S,$C00502name2,$C00503name2,$C00504name2,$C00505name2,$C00600name2,$C00601name2,$C00602name2,$C00603name2,$C00604name2
+$S=@Concat $S,$C00605name2,$C00700name2,$C00701name2,$C00702name2,$C00800name2,$C00801name2,$C00802name2,$C00803name2
+$S=@Concat $S,$C00900name2,$C00901name2,$C00902name2,$C00903name2,$C01000name2,$C01100name2,$C01101name2,$C01102name2
+$S=@Concat $S,$C01103name2,$C01200name2,$C01300name2,$C01400name2,$C01500name2,$C01501name2,$C01502name2,$C01503name2
+@Text[5].Add $S
+;
+;код угіддя
+$C00100kod=
+$C00101kod=
+$C00102kod=
+$C00103kod=
+$C00200kod=
+$C00201kod=
+$C00202kod=
+$C00203kod=
+$C00300kod=
+$C00301kod=
+$C00302kod=
+$C00303kod=
+$C00304kod=
+$C00305kod=
+$C00306kod=
+$C00307kod=
+$C00400kod=
+$C00500kod=
+$C00501kod=
+$C00502kod=
+$C00503kod=
+$C00504kod=
+$C00505kod=
+$C00600kod=
+$C00601kod=
+$C00602kod=
+$C00603kod=
+$C00604kod=
+$C00605kod=
+$C00700kod=
+$C00701kod=
+$C00702kod=
+$C00800kod=
+$C00801kod=
+$C00802kod=
+$C00803kod=
+$C00900kod=
+$C00901kod=
+$C00902kod=
+$C00903kod=
+$C01000kod=
+$C01100kod=
+$C01101kod=
+$C01102kod=
+$C01103kod=
+$C01200kod=
+$C01300kod=
+$C01400kod=
+$C01500kod=
+$C01501kod=
+$C01502kod=
+$C01503kod=
+$C00100kodGroup=
+$C00101kodGroup=
+$C00102kodGroup=
+$C00103kodGroup=
+$C00200kodGroup=
+$C00201kodGroup=
+$C00202kodGroup=
+$C00203kodGroup=
+$C00300kodGroup=
+$C00301kodGroup=
+$C00302kodGroup=
+$C00303kodGroup=
+$C00304kodGroup=
+$C00305kodGroup=
+$C00306kodGroup=
+$C00307kodGroup=
+$C00400kodGroup=
+$C00500kodGroup=
+$C00501kodGroup=
+$C00502kodGroup=
+$C00503kodGroup=
+$C00504kodGroup=
+$C00505kodGroup=
+$C00600kodGroup=
+$C00601kodGroup=
+$C00602kodGroup=
+$C00603kodGroup=
+$C00604kodGroup=
+$C00605kodGroup=
+$C00700kodGroup=
+$C00701kodGroup=
+$C00702kodGroup=
+$C00800kodGroup=
+$C00801kodGroup=
+$C00802kodGroup=
+$C00803kodGroup=
+$C00900kodGroup=
+$C00901kodGroup=
+$C00902kodGroup=
+$C00903kodGroup=
+$C01000kodGroup=
+$C01100kodGroup=
+$C01101kodGroup=
+$C01102kodGroup=
+$C01103kodGroup=
+$C01200kodGroup=
+$C01300kodGroup=
+$C01400kodGroup=
+$C01500kodGroup=
+$C01501kodGroup=
+$C01502kodGroup=
+$C01503kodGroup=
+$C00100kodSubgroup=
+$C00101kodSubgroup=
+$C00102kodSubgroup=
+$C00103kodSubgroup=
+$C00200kodSubgroup=
+$C00201kodSubgroup=
+$C00202kodSubgroup=
+$C00203kodSubgroup=
+$C00300kodSubgroup=
+$C00301kodSubgroup=
+$C00302kodSubgroup=
+$C00303kodSubgroup=
+$C00304kodSubgroup=
+$C00305kodSubgroup=
+$C00306kodSubgroup=
+$C00307kodSubgroup=
+$C00400kodSubgroup=
+$C00500kodSubgroup=
+$C00501kodSubgroup=
+$C00502kodSubgroup=
+$C00503kodSubgroup=
+$C00504kodSubgroup=
+$C00505kodSubgroup=
+$C00600kodSubgroup=
+$C00601kodSubgroup=
+$C00602kodSubgroup=
+$C00603kodSubgroup=
+$C00604kodSubgroup=
+$C00605kodSubgroup=
+$C00700kodSubgroup=
+$C00701kodSubgroup=
+$C00702kodSubgroup=
+$C00800kodSubgroup=
+$C00801kodSubgroup=
+$C00802kodSubgroup=
+$C00803kodSubgroup=
+$C00900kodSubgroup=
+$C00901kodSubgroup=
+$C00902kodSubgroup=
+$C00903kodSubgroup=
+$C01000kodSubgroup=
+$C01100kodSubgroup=
+$C01101kodSubgroup=
+$C01102kodSubgroup=
+$C01103kodSubgroup=
+$C01200kodSubgroup=
+$C01300kodSubgroup=
+$C01400kodSubgroup=
+$C01500kodSubgroup=
+$C01501kodSubgroup=
+$C01502kodSubgroup=
+$C01503kodSubgroup=
+$C00100plus00200kod=
+;
+@if $C001<>0 then $C00100kod=001
+@if $C00101<>0 then $C00101kod=001.01
+@if $C00102<>0 then $C00102kod=001.02
+@if $C00103<>0 then $C00103kod=001.03
+@if $C002<>0 then $C00200kod=002
+@if $C00201<>0 then $C00201kod=002.01
+@if $C00202<>0 then $C00202kod=002.02
+@if $C00203<>0 then $C00203kod=002.03
+@if $C003<>0 then $C00300kod=003
+@if $C00301<>0 then $C00301kod=003.01
+@if $C00302<>0 then $C00302kod=003.02
+@if $C00303<>0 then $C00303kod=003.03
+@if $C00304<>0 then $C00304kod=003.04
+@if $C00305<>0 then $C00305kod=003.05
+@if $C00306<>0 then $C00306kod=003.06
+@if $C00307<>0 then $C00307kod=003.07
+@if $C004<>0 then $C00400kod=004
+@if $C005<>0 then $C00500kod=005
+@if $C00501<>0 then $C00501kod=005.01
+@if $C00502<>0 then $C00502kod=005.02
+@if $C00503<>0 then $C00503kod=005.03
+@if $C00504<>0 then $C00504kod=005.04
+@if $C00505<>0 then $C00505kod=005.05
+@if $C006<>0 then $C00600kod=006
+@if $C00601<>0 then $C00601kod=006.01
+@if $C00602<>0 then $C00602kod=006.02
+@if $C00603<>0 then $C00603kod=006.03
+@if $C00604<>0 then $C00604kod=006.04
+@if $C00605<>0 then $C00605kod=006.05
+@if $C007<>0 then $C00700kod=007
+@if $C00701<>0 then $C00701kod=007.01
+@if $C00702<>0 then $C00702kod=007.02
+@if $C008<>0 then $C00800kod=008
+@if $C00801<>0 then $C00801kod=008.01
+@if $C00802<>0 then $C00802kod=008.02
+@if $C00803<>0 then $C00803kod=008.03
+@if $C009<>0 then $C00900kod=009
+@if $C00901<>0 then $C00901kod=009.01
+@if $C00902<>0 then $C00902kod=009.02
+@if $C00903<>0 then $C00903kod=009.03
+@if $C010<>0 then $C01000kod=010
+@if $C011<>0 then $C01100kod=011
+@if $C01101<>0 then $C01101kod=011.01
+@if $C01102<>0 then $C01102kod=011.02
+@if $C01103<>0 then $C01103kod=011.03
+@if $C012<>0 then $C01200kod=012
+@if $C013<>0 then $C01300kod=013
+@if $C014<>0 then $C01400kod=014
+@if $C015<>0 then $C01500kod=015
+@if $C01501<>0 then $C01501kod=015.01
+@if $C01502<>0 then $C01502kod=015.02
+@if $C01503<>0 then $C01503kod=015.03
+@if $C00100plus00200<>0 then $C00100plus00200kod="001 та 002"
+@if ($C001<>0) and ($C002=0) then $C00100plus00200kod="001"
+@if ($C001=0) and ($C002<>0) then $C00100plus00200kod="002"
+$C00100plus00200kod=@DequoteText $C00100plus00200kod
+;
+@if $C00100<>0 then $C00100kodGroup=001
+@if $C00101<>0 then $C00101kodGroup=001
+@if $C00102<>0 then $C00102kodGroup=001
+@if $C00103<>0 then $C00103kodGroup=001
+@if $C00200<>0 then $C00200kodGroup=002
+@if $C00201<>0 then $C00201kodGroup=002
+@if $C00202<>0 then $C00202kodGroup=002
+@if $C00203<>0 then $C00203kodGroup=002
+@if $C00300<>0 then $C00300kodGroup=003
+@if $C00301<>0 then $C00301kodGroup=003
+@if $C00302<>0 then $C00302kodGroup=003
+@if $C00303<>0 then $C00303kodGroup=003
+@if $C00304<>0 then $C00304kodGroup=003
+@if $C00305<>0 then $C00305kodGroup=003
+@if $C00306<>0 then $C00306kodGroup=003
+@if $C00307<>0 then $C00307kodGroup=003
+@if $C00400<>0 then $C00400kodGroup=004
+@if $C00500<>0 then $C00500kodGroup=005
+@if $C00501<>0 then $C00501kodGroup=005
+@if $C00502<>0 then $C00502kodGroup=005
+@if $C00503<>0 then $C00503kodGroup=005
+@if $C00504<>0 then $C00504kodGroup=005
+@if $C00505<>0 then $C00505kodGroup=005
+@if $C00600<>0 then $C00600kodGroup=006
+@if $C00601<>0 then $C00601kodGroup=006
+@if $C00602<>0 then $C00602kodGroup=006
+@if $C00603<>0 then $C00603kodGroup=006
+@if $C00604<>0 then $C00604kodGroup=006
+@if $C00605<>0 then $C00605kodGroup=006
+@if $C00700<>0 then $C00700kodGroup=007
+@if $C00701<>0 then $C00701kodGroup=007
+@if $C00702<>0 then $C00702kodGroup=007
+@if $C00800<>0 then $C00800kodGroup=008
+@if $C00801<>0 then $C00801kodGroup=008
+@if $C00802<>0 then $C00802kodGroup=008
+@if $C00803<>0 then $C00803kodGroup=008
+@if $C00900<>0 then $C00900kodGroup=009
+@if $C00901<>0 then $C00901kodGroup=009
+@if $C00902<>0 then $C00902kodGroup=009
+@if $C00903<>0 then $C00903kodGroup=009
+@if $C01000<>0 then $C01000kodGroup=010
+@if $C01100<>0 then $C01100kodGroup=011
+@if $C01101<>0 then $C01101kodGroup=011
+@if $C01102<>0 then $C01102kodGroup=011
+@if $C01103<>0 then $C01103kodGroup=011
+@if $C01200<>0 then $C01200kodGroup=012
+@if $C01300<>0 then $C01300kodGroup=013
+@if $C01400<>0 then $C01400kodGroup=014
+@if $C01500<>0 then $C01500kodGroup=015
+@if $C01501<>0 then $C01501kodGroup=015
+@if $C01502<>0 then $C01502kodGroup=015
+@if $C01503<>0 then $C01503kodGroup=015
+;
+@if $C00100<>0 then $C00100kodSubgroup=00
+@if $C00101<>0 then $C00101kodSubgroup=01
+@if $C00102<>0 then $C00102kodSubgroup=02
+@if $C00103<>0 then $C00103kodSubgroup=03
+@if $C00200<>0 then $C00200kodSubgroup=00
+@if $C00201<>0 then $C00201kodSubgroup=01
+@if $C00202<>0 then $C00202kodSubgroup=02
+@if $C00203<>0 then $C00203kodSubgroup=03
+@if $C00300<>0 then $C00300kodSubgroup=00
+@if $C00301<>0 then $C00301kodSubgroup=01
+@if $C00302<>0 then $C00302kodSubgroup=02
+@if $C00303<>0 then $C00303kodSubgroup=03
+@if $C00304<>0 then $C00304kodSubgroup=04
+@if $C00305<>0 then $C00305kodSubgroup=05
+@if $C00306<>0 then $C00306kodSubgroup=06
+@if $C00307<>0 then $C00307kodSubgroup=07
+@if $C00400<>0 then $C00400kodSubgroup=00
+@if $C00500<>0 then $C00500kodSubgroup=00
+@if $C00501<>0 then $C00501kodSubgroup=01
+@if $C00502<>0 then $C00502kodSubgroup=02
+@if $C00503<>0 then $C00503kodSubgroup=03
+@if $C00504<>0 then $C00504kodSubgroup=04
+@if $C00505<>0 then $C00505kodSubgroup=05
+@if $C00600<>0 then $C00600kodSubgroup=00
+@if $C00601<>0 then $C00601kodSubgroup=01
+@if $C00602<>0 then $C00602kodSubgroup=02
+@if $C00603<>0 then $C00603kodSubgroup=03
+@if $C00604<>0 then $C00604kodSubgroup=04
+@if $C00605<>0 then $C00605kodSubgroup=05
+@if $C00700<>0 then $C00700kodSubgroup=00
+@if $C00701<>0 then $C00701kodSubgroup=01
+@if $C00702<>0 then $C00702kodSubgroup=02
+@if $C00800<>0 then $C00800kodSubgroup=00
+@if $C00801<>0 then $C00801kodSubgroup=01
+@if $C00802<>0 then $C00802kodSubgroup=02
+@if $C00803<>0 then $C00803kodSubgroup=03
+@if $C00900<>0 then $C00900kodSubgroup=00
+@if $C00901<>0 then $C00901kodSubgroup=01
+@if $C00902<>0 then $C00902kodSubgroup=02
+@if $C00903<>0 then $C00903kodSubgroup=03
+@if $C01000<>0 then $C01000kodSubgroup=00
+@if $C01100<>0 then $C01100kodSubgroup=00
+@if $C01101<>0 then $C01101kodSubgroup=01
+@if $C01102<>0 then $C01102kodSubgroup=02
+@if $C01103<>0 then $C01103kodSubgroup=03
+@if $C01200<>0 then $C01200kodSubgroup=00
+@if $C01300<>0 then $C01300kodSubgroup=00
+@if $C01400<>0 then $C01400kodSubgroup=00
+@if $C01500<>0 then $C01500kodSubgroup=00
+@if $C01501<>0 then $C01501kodSubgroup=01
+@if $C01502<>0 then $C01502kodSubgroup=02
+@if $C01503<>0 then $C01503kodSubgroup=03
+;
+@if $C00100kod<> then $C00100kod=,$Tab,$C00100kod
+@if $C00101kod<> then $C00101kod=,$Tab,$C00101kod
+@if $C00102kod<> then $C00102kod=,$Tab,$C00102kod
+@if $C00103kod<> then $C00103kod=,$Tab,$C00103kod
+@if $C00200kod<> then $C00200kod=,$Tab,$C00200kod
+@if $C00201kod<> then $C00201kod=,$Tab,$C00201kod
+@if $C00202kod<> then $C00202kod=,$Tab,$C00202kod
+@if $C00203kod<> then $C00203kod=,$Tab,$C00203kod
+@if $C00300kod<> then $C00300kod=,$Tab,$C00300kod
+@if $C00301kod<> then $C00301kod=,$Tab,$C00301kod
+@if $C00302kod<> then $C00302kod=,$Tab,$C00302kod
+@if $C00303kod<> then $C00303kod=,$Tab,$C00303kod
+@if $C00304kod<> then $C00304kod=,$Tab,$C00304kod
+@if $C00305kod<> then $C00305kod=,$Tab,$C00305kod
+@if $C00306kod<> then $C00306kod=,$Tab,$C00306kod
+@if $C00307kod<> then $C00307kod=,$Tab,$C00307kod
+@if $C00400kod<> then $C00400kod=,$Tab,$C00400kod
+@if $C00500kod<> then $C00500kod=,$Tab,$C00500kod
+@if $C00501kod<> then $C00501kod=,$Tab,$C00501kod
+@if $C00502kod<> then $C00502kod=,$Tab,$C00502kod
+@if $C00503kod<> then $C00503kod=,$Tab,$C00503kod
+@if $C00504kod<> then $C00504kod=,$Tab,$C00504kod
+@if $C00505kod<> then $C00505kod=,$Tab,$C00505kod
+@if $C00600kod<> then $C00600kod=,$Tab,$C00600kod
+@if $C00601kod<> then $C00601kod=,$Tab,$C00601kod
+@if $C00602kod<> then $C00602kod=,$Tab,$C00602kod
+@if $C00603kod<> then $C00603kod=,$Tab,$C00603kod
+@if $C00604kod<> then $C00604kod=,$Tab,$C00604kod
+@if $C00605kod<> then $C00605kod=,$Tab,$C00605kod
+@if $C00700kod<> then $C00700kod=,$Tab,$C00700kod
+@if $C00701kod<> then $C00701kod=,$Tab,$C00701kod
+@if $C00702kod<> then $C00702kod=,$Tab,$C00702kod
+@if $C00800kod<> then $C00800kod=,$Tab,$C00800kod
+@if $C00801kod<> then $C00801kod=,$Tab,$C00801kod
+@if $C00802kod<> then $C00802kod=,$Tab,$C00802kod
+@if $C00803kod<> then $C00803kod=,$Tab,$C00803kod
+@if $C00900kod<> then $C00900kod=,$Tab,$C00900kod
+@if $C00901kod<> then $C00901kod=,$Tab,$C00901kod
+@if $C00902kod<> then $C00902kod=,$Tab,$C00902kod
+@if $C00903kod<> then $C00903kod=,$Tab,$C00903kod
+@if $C01000kod<> then $C01000kod=,$Tab,$C01000kod
+@if $C01100kod<> then $C01100kod=,$Tab,$C01100kod
+@if $C01101kod<> then $C01101kod=,$Tab,$C01101kod
+@if $C01102kod<> then $C01102kod=,$Tab,$C01102kod
+@if $C01103kod<> then $C01103kod=,$Tab,$C01103kod
+@if $C01200kod<> then $C01200kod=,$Tab,$C01200kod
+@if $C01300kod<> then $C01300kod=,$Tab,$C01300kod
+@if $C01400kod<> then $C01400kod=,$Tab,$C01400kod
+@if $C01500kod<> then $C01500kod=,$Tab,$C01500kod
+@if $C01501kod<> then $C01501kod=,$Tab,$C01501kod
+@if $C01502kod<> then $C01502kod=,$Tab,$C01502kod
+@if $C01503kod<> then $C01503kod=,$Tab,$C01503kod
+@if "$C00100plus00200kod"<>"" then $C00100plus00200kod=,$Tab,$C00100plus00200kod
+;
+@if $C00100kodGroup<> then $C00100kodGroup=,$Tab,$C00100kodGroup
+@if $C00101kodGroup<> then $C00101kodGroup=,$Tab,$C00101kodGroup
+@if $C00102kodGroup<> then $C00102kodGroup=,$Tab,$C00102kodGroup
+@if $C00103kodGroup<> then $C00103kodGroup=,$Tab,$C00103kodGroup
+@if $C00200kodGroup<> then $C00200kodGroup=,$Tab,$C00200kodGroup
+@if $C00201kodGroup<> then $C00201kodGroup=,$Tab,$C00201kodGroup
+@if $C00202kodGroup<> then $C00202kodGroup=,$Tab,$C00202kodGroup
+@if $C00203kodGroup<> then $C00203kodGroup=,$Tab,$C00203kodGroup
+@if $C00300kodGroup<> then $C00300kodGroup=,$Tab,$C00300kodGroup
+@if $C00301kodGroup<> then $C00301kodGroup=,$Tab,$C00301kodGroup
+@if $C00302kodGroup<> then $C00302kodGroup=,$Tab,$C00302kodGroup
+@if $C00303kodGroup<> then $C00303kodGroup=,$Tab,$C00303kodGroup
+@if $C00304kodGroup<> then $C00304kodGroup=,$Tab,$C00304kodGroup
+@if $C00305kodGroup<> then $C00305kodGroup=,$Tab,$C00305kodGroup
+@if $C00306kodGroup<> then $C00306kodGroup=,$Tab,$C00306kodGroup
+@if $C00307kodGroup<> then $C00307kodGroup=,$Tab,$C00307kodGroup
+@if $C00400kodGroup<> then $C00400kodGroup=,$Tab,$C00400kodGroup
+@if $C00500kodGroup<> then $C00500kodGroup=,$Tab,$C00500kodGroup
+@if $C00501kodGroup<> then $C00501kodGroup=,$Tab,$C00501kodGroup
+@if $C00502kodGroup<> then $C00502kodGroup=,$Tab,$C00502kodGroup
+@if $C00503kodGroup<> then $C00503kodGroup=,$Tab,$C00503kodGroup
+@if $C00504kodGroup<> then $C00504kodGroup=,$Tab,$C00504kodGroup
+@if $C00505kodGroup<> then $C00505kodGroup=,$Tab,$C00505kodGroup
+@if $C00600kodGroup<> then $C00600kodGroup=,$Tab,$C00600kodGroup
+@if $C00601kodGroup<> then $C00601kodGroup=,$Tab,$C00601kodGroup
+@if $C00602kodGroup<> then $C00602kodGroup=,$Tab,$C00602kodGroup
+@if $C00603kodGroup<> then $C00603kodGroup=,$Tab,$C00603kodGroup
+@if $C00604kodGroup<> then $C00604kodGroup=,$Tab,$C00604kodGroup
+@if $C00605kodGroup<> then $C00605kodGroup=,$Tab,$C00605kodGroup
+@if $C00700kodGroup<> then $C00700kodGroup=,$Tab,$C00700kodGroup
+@if $C00701kodGroup<> then $C00701kodGroup=,$Tab,$C00701kodGroup
+@if $C00702kodGroup<> then $C00702kodGroup=,$Tab,$C00702kodGroup
+@if $C00800kodGroup<> then $C00800kodGroup=,$Tab,$C00800kodGroup
+@if $C00801kodGroup<> then $C00801kodGroup=,$Tab,$C00801kodGroup
+@if $C00802kodGroup<> then $C00802kodGroup=,$Tab,$C00802kodGroup
+@if $C00803kodGroup<> then $C00803kodGroup=,$Tab,$C00803kodGroup
+@if $C00900kodGroup<> then $C00900kodGroup=,$Tab,$C00900kodGroup
+@if $C00901kodGroup<> then $C00901kodGroup=,$Tab,$C00901kodGroup
+@if $C00902kodGroup<> then $C00902kodGroup=,$Tab,$C00902kodGroup
+@if $C00903kodGroup<> then $C00903kodGroup=,$Tab,$C00903kodGroup
+@if $C01000kodGroup<> then $C01000kodGroup=,$Tab,$C01000kodGroup
+@if $C01100kodGroup<> then $C01100kodGroup=,$Tab,$C01100kodGroup
+@if $C01101kodGroup<> then $C01101kodGroup=,$Tab,$C01101kodGroup
+@if $C01102kodGroup<> then $C01102kodGroup=,$Tab,$C01102kodGroup
+@if $C01103kodGroup<> then $C01103kodGroup=,$Tab,$C01103kodGroup
+@if $C01200kodGroup<> then $C01200kodGroup=,$Tab,$C01200kodGroup
+@if $C01300kodGroup<> then $C01300kodGroup=,$Tab,$C01300kodGroup
+@if $C01400kodGroup<> then $C01400kodGroup=,$Tab,$C01400kodGroup
+@if $C01500kodGroup<> then $C01500kodGroup=,$Tab,$C01500kodGroup
+@if $C01501kodGroup<> then $C01501kodGroup=,$Tab,$C01501kodGroup
+@if $C01502kodGroup<> then $C01502kodGroup=,$Tab,$C01502kodGroup
+@if $C01503kodGroup<> then $C01503kodGroup=,$Tab,$C01503kodGroup
+;
+@if $C00100kodSubgroup<> then $C00100kodSubgroup=,$Tab,$C00100kodSubgroup
+@if $C00101kodSubgroup<> then $C00101kodSubgroup=,$Tab,$C00101kodSubgroup
+@if $C00102kodSubgroup<> then $C00102kodSubgroup=,$Tab,$C00102kodSubgroup
+@if $C00103kodSubgroup<> then $C00103kodSubgroup=,$Tab,$C00103kodSubgroup
+@if $C00200kodSubgroup<> then $C00200kodSubgroup=,$Tab,$C00200kodSubgroup
+@if $C00201kodSubgroup<> then $C00201kodSubgroup=,$Tab,$C00201kodSubgroup
+@if $C00202kodSubgroup<> then $C00202kodSubgroup=,$Tab,$C00202kodSubgroup
+@if $C00203kodSubgroup<> then $C00203kodSubgroup=,$Tab,$C00203kodSubgroup
+@if $C00300kodSubgroup<> then $C00300kodSubgroup=,$Tab,$C00300kodSubgroup
+@if $C00301kodSubgroup<> then $C00301kodSubgroup=,$Tab,$C00301kodSubgroup
+@if $C00302kodSubgroup<> then $C00302kodSubgroup=,$Tab,$C00302kodSubgroup
+@if $C00303kodSubgroup<> then $C00303kodSubgroup=,$Tab,$C00303kodSubgroup
+@if $C00304kodSubgroup<> then $C00304kodSubgroup=,$Tab,$C00304kodSubgroup
+@if $C00305kodSubgroup<> then $C00305kodSubgroup=,$Tab,$C00305kodSubgroup
+@if $C00306kodSubgroup<> then $C00306kodSubgroup=,$Tab,$C00306kodSubgroup
+@if $C00307kodSubgroup<> then $C00307kodSubgroup=,$Tab,$C00307kodSubgroup
+@if $C00400kodSubgroup<> then $C00400kodSubgroup=,$Tab,$C00400kodSubgroup
+@if $C00500kodSubgroup<> then $C00500kodSubgroup=,$Tab,$C00500kodSubgroup
+@if $C00501kodSubgroup<> then $C00501kodSubgroup=,$Tab,$C00501kodSubgroup
+@if $C00502kodSubgroup<> then $C00502kodSubgroup=,$Tab,$C00502kodSubgroup
+@if $C00503kodSubgroup<> then $C00503kodSubgroup=,$Tab,$C00503kodSubgroup
+@if $C00504kodSubgroup<> then $C00504kodSubgroup=,$Tab,$C00504kodSubgroup
+@if $C00505kodSubgroup<> then $C00505kodSubgroup=,$Tab,$C00505kodSubgroup
+@if $C00600kodSubgroup<> then $C00600kodSubgroup=,$Tab,$C00600kodSubgroup
+@if $C00601kodSubgroup<> then $C00601kodSubgroup=,$Tab,$C00601kodSubgroup
+@if $C00602kodSubgroup<> then $C00602kodSubgroup=,$Tab,$C00602kodSubgroup
+@if $C00603kodSubgroup<> then $C00603kodSubgroup=,$Tab,$C00603kodSubgroup
+@if $C00604kodSubgroup<> then $C00604kodSubgroup=,$Tab,$C00604kodSubgroup
+@if $C00605kodSubgroup<> then $C00605kodSubgroup=,$Tab,$C00605kodSubgroup
+@if $C00700kodSubgroup<> then $C00700kodSubgroup=,$Tab,$C00700kodSubgroup
+@if $C00701kodSubgroup<> then $C00701kodSubgroup=,$Tab,$C00701kodSubgroup
+@if $C00702kodSubgroup<> then $C00702kodSubgroup=,$Tab,$C00702kodSubgroup
+@if $C00800kodSubgroup<> then $C00800kodSubgroup=,$Tab,$C00800kodSubgroup
+@if $C00801kodSubgroup<> then $C00801kodSubgroup=,$Tab,$C00801kodSubgroup
+@if $C00802kodSubgroup<> then $C00802kodSubgroup=,$Tab,$C00802kodSubgroup
+@if $C00803kodSubgroup<> then $C00803kodSubgroup=,$Tab,$C00803kodSubgroup
+@if $C00900kodSubgroup<> then $C00900kodSubgroup=,$Tab,$C00900kodSubgroup
+@if $C00901kodSubgroup<> then $C00901kodSubgroup=,$Tab,$C00901kodSubgroup
+@if $C00902kodSubgroup<> then $C00902kodSubgroup=,$Tab,$C00902kodSubgroup
+@if $C00903kodSubgroup<> then $C00903kodSubgroup=,$Tab,$C00903kodSubgroup
+@if $C01000kodSubgroup<> then $C01000kodSubgroup=,$Tab,$C01000kodSubgroup
+@if $C01100kodSubgroup<> then $C01100kodSubgroup=,$Tab,$C01100kodSubgroup
+@if $C01101kodSubgroup<> then $C01101kodSubgroup=,$Tab,$C01101kodSubgroup
+@if $C01102kodSubgroup<> then $C01102kodSubgroup=,$Tab,$C01102kodSubgroup
+@if $C01103kodSubgroup<> then $C01103kodSubgroup=,$Tab,$C01103kodSubgroup
+@if $C01200kodSubgroup<> then $C01200kodSubgroup=,$Tab,$C01200kodSubgroup
+@if $C01300kodSubgroup<> then $C01300kodSubgroup=,$Tab,$C01300kodSubgroup
+@if $C01400kodSubgroup<> then $C01400kodSubgroup=,$Tab,$C01400kodSubgroup
+@if $C01500kodSubgroup<> then $C01500kodSubgroup=,$Tab,$C01500kodSubgroup
+@if $C01501kodSubgroup<> then $C01501kodSubgroup=,$Tab,$C01501kodSubgroup
+@if $C01502kodSubgroup<> then $C01502kodSubgroup=,$Tab,$C01502kodSubgroup
+@if $C01503kodSubgroup<> then $C01503kodSubgroup=,$Tab,$C01503kodSubgroup
+;
+$S=@Concat А,$Tab,Б,$Tab,В,$Tab,Г,$Tab,3
+$S=@Concat $S,$C00100plus00200kod,$C00101kod,$C00102kod,$C00103kod,$C00201kod,$C00202kod,$C00203kod,$C00300kod
+$S=@Concat $S,$C00301kod,$C00302kod,$C00303kod,$C00304kod,$C00305kod,$C00306kod,$C00307kod,$C00400kod,$C00500kod,$C00501kod
+$S=@Concat $S,$C00502kod,$C00503kod,$C00504kod,$C00505kod,$C00600kod,$C00601kod,$C00602kod,$C00603kod,$C00604kod
+$S=@Concat $S,$C00605kod,$C00700kod,$C00701kod,$C00702kod,$C00800kod,$C00801kod,$C00802kod,$C00803kod
+$S=@Concat $S,$C00900kod,$C00901kod,$C00902kod,$C00903kod,$C01000kod,$C01100kod,$C01101kod,$C01102kod
+$S=@Concat $S,$C01103kod,$C01200kod,$C01300kod,$C01400kod,$C01500kod,$C01501kod,$C01502kod,$C01503kod
+@Text[2].Add $S
+;
+$S=@Concat Група,$C00100kodGroup,$C00101kodGroup,$C00102kodGroup,$C00103kodGroup,$C00200kodGroup,$C00201kodGroup,$C00202kodGroup,$C00203kodGroup,$C00300kodGroup
+$S=@Concat $S,$C00301kodGroup,$C00302kodGroup,$C00303kodGroup,$C00304kodGroup,$C00305kodGroup,$C00306kodGroup,$C00307kodGroup,$C00400kodGroup,$C00500kodGroup,$C00501kodGroup
+$S=@Concat $S,$C00502kodGroup,$C00503kodGroup,$C00504kodGroup,$C00505kodGroup,$C00600kodGroup,$C00601kodGroup,$C00602kodGroup,$C00603kodGroup,$C00604kodGroup
+$S=@Concat $S,$C00605kodGroup,$C00700kodGroup,$C00701kodGroup,$C00702kodGroup,$C00800kodGroup,$C00801kodGroup,$C00802kodGroup,$C00803kodGroup
+$S=@Concat $S,$C00900kodGroup,$C00901kodGroup,$C00902kodGroup,$C00903kodGroup,$C01000kodGroup,$C01100kodGroup,$C01101kodGroup,$C01102kodGroup
+$S4=@Concat $S,$C01103kodGroup,$C01200kodGroup,$C01300kodGroup,$C01400kodGroup,$C01500kodGroup,$C01501kodGroup,$C01502kodGroup,$C01503kodGroup
+@Text[5].Add $S4
+;
+$S=@Concat Підгрупа,$C00100kodSubgroup,$C00101kodSubgroup,$C00102kodSubgroup,$C00103kodSubgroup,$C00200kodSubgroup,$C00201kodSubgroup,$C00202kodSubgroup,$C00203kodSubgroup,$C00300kodSubgroup
+$S=@Concat $S,$C00301kodSubgroup,$C00302kodSubgroup,$C00303kodSubgroup,$C00304kodSubgroup,$C00305kodSubgroup,$C00306kodSubgroup,$C00307kodSubgroup,$C00400kodSubgroup,$C00500kodSubgroup,$C00501kodSubgroup
+$S=@Concat $S,$C00502kodSubgroup,$C00503kodSubgroup,$C00504kodSubgroup,$C00505kodSubgroup,$C00600kodSubgroup,$C00601kodSubgroup,$C00602kodSubgroup,$C00603kodSubgroup,$C00604kodSubgroup
+$S=@Concat $S,$C00605kodSubgroup,$C00700kodSubgroup,$C00701kodSubgroup,$C00702kodSubgroup,$C00800kodSubgroup,$C00801kodSubgroup,$C00802kodSubgroup,$C00803kodSubgroup
+$S=@Concat $S,$C00900kodSubgroup,$C00901kodSubgroup,$C00902kodSubgroup,$C00903kodSubgroup,$C01000kodSubgroup,$C01100kodSubgroup,$C01101kodSubgroup,$C01102kodSubgroup
+$S5=@Concat $S,$C01103kodSubgroup,$C01200kodSubgroup,$C01300kodSubgroup,$C01400kodSubgroup,$C01500kodSubgroup,$C01501kodSubgroup,$C01502kodSubgroup,$C01503kodSubgroup
+@Text[5].Add $S5
+
+@Text[6].Load $Papka\TD\Temp\TempRestrforUh.ini
+$AreaOZahal=@Text[6].Line[1]
+$S2=в т.ч. в зоні дії обмежень: $AreaOZahal 
+$PartCount=@StringPartCount $Tab $S4
+$Part=1
+%StartPart
+$Part=$Part+1
+$Name=@StringPart $Part$Tab$S4
+$Name1=@StringPart $Part$Tab$S5
+$Name=$Name.$Name1
+$TextCount=@Text[6].Count
+$T=1
+%StartT
+$T=$T+1
+@if $TextCount=1 then $S2=@Concat $S2,$Tab,0
+@if $TextCount=1 then @Goto %BezOb
+$TextLine=@Text[6].Line[$T]
+$Name2=@StringPart 1$Tab$TextLine
+$Area2=@StringPart 2$Tab$TextLine
+$Area2=@Calc Trim("$Area2")
+$Area2=@DequoteText $Area2
+%BezOb
+@if $Name2=$Name then $S2=@Concat $S2,$Tab,$Area2
+@if $T<$TextCount then @Goto %StartT
+@if $Part<$PartCount then @Goto %StartPart
+;
+;площа угідь
+@if "$C00100plus00200"<>"0" then $C00100plus00200p=,$Tab,$C00100plus00200
+@if $C001<>0 then $C001p=,$Tab,$C001
+@if $C00100<>0 then $C00100p=,$Tab,$C00100
+@if $C00101<>0 then $C00101p=,$Tab,$C00101
+@if $C00102<>0 then $C00102p=,$Tab,$C00102
+@if $C00103<>0 then $C00103p=,$Tab,$C00103
+@if $C002<>0 then $C002p=,$Tab,$C002
+@if $C00200<>0 then $C00200p=,$Tab,$C00200
+@if $C00201<>0 then $C00201p=,$Tab,$C00201
+@if $C00202<>0 then $C00202p=,$Tab,$C00202
+@if $C00203<>0 then $C00203p=,$Tab,$C00203
+@if $C003<>0 then $C003p=,$Tab,$C003
+@if $C00300<>0 then $C00300p=,$Tab,$C00300
+@if $C00301<>0 then $C00301p=,$Tab,$C00301
+@if $C00302<>0 then $C00302p=,$Tab,$C00302
+@if $C00303<>0 then $C00303p=,$Tab,$C00303
+@if $C00304<>0 then $C00304p=,$Tab,$C00304
+@if $C00305<>0 then $C00305p=,$Tab,$C00305
+@if $C00306<>0 then $C00306p=,$Tab,$C00306
+@if $C00307<>0 then $C00307p=,$Tab,$C00307
+@if $C004<>0 then $C004p=,$Tab,$C004
+@if $C00400<>0 then $C00400p=,$Tab,$C00400
+@if $C005<>0 then $C005p=,$Tab,$C005
+@if $C00500<>0 then $C00500p=,$Tab,$C00500
+@if $C00501<>0 then $C00501p=,$Tab,$C00501
+@if $C00502<>0 then $C00502p=,$Tab,$C00502
+@if $C00503<>0 then $C00503p=,$Tab,$C00503
+@if $C00504<>0 then $C00504p=,$Tab,$C00504
+@if $C00505<>0 then $C00505p=,$Tab,$C00505
+@if $C006<>0 then $C006p=,$Tab,$C006
+@if $C00600<>0 then $C00600p=,$Tab,$C00600
+@if $C00601<>0 then $C00601p=,$Tab,$C00601
+@if $C00602<>0 then $C00602p=,$Tab,$C00602
+@if $C00603<>0 then $C00603p=,$Tab,$C00603
+@if $C00604<>0 then $C00604p=,$Tab,$C00604
+@if $C00605<>0 then $C00605p=,$Tab,$C00605
+@if $C007<>0 then $C007p=,$Tab,$C007
+@if $C00700<>0 then $C00700p=,$Tab,$C00700
+@if $C00701<>0 then $C00701p=,$Tab,$C00701
+@if $C00702<>0 then $C00702p=,$Tab,$C00702
+@if $C008<>0 then $C008p=,$Tab,$C008
+@if $C00800<>0 then $C00800p=,$Tab,$C00800
+@if $C00801<>0 then $C00801p=,$Tab,$C00801
+@if $C00802<>0 then $C00802p=,$Tab,$C00802
+@if $C00803<>0 then $C00803p=,$Tab,$C00803
+@if $C009<>0 then $C009p=,$Tab,$C009
+@if $C00900<>0 then $C00900p=,$Tab,$C00900
+@if $C00901<>0 then $C00901p=,$Tab,$C00901
+@if $C00902<>0 then $C00902p=,$Tab,$C00902
+@if $C00903<>0 then $C00903p=,$Tab,$C00903
+@if $C010<>0 then $C010p=,$Tab,$C010
+@if $C01000<>0 then $C01000p=,$Tab,$C01000
+@if $C011<>0 then $C011p=,$Tab,$C011
+@if $C01100<>0 then $C01100p=,$Tab,$C01100
+@if $C01101<>0 then $C01101p=,$Tab,$C01101
+@if $C01102<>0 then $C01102p=,$Tab,$C01102
+@if $C01103<>0 then $C01103p=,$Tab,$C01103
+@if $C012<>0 then $C012p=,$Tab,$C012
+@if $C01200<>0 then $C01200p=,$Tab,$C01200
+@if $C013<>0 then $C013p=,$Tab,$C013
+@if $C01300<>0 then $C01300p=,$Tab,$C01300
+@if $C014<>0 then $C014p=,$Tab,$C014
+@if $C01400<>0 then $C01400p=,$Tab,$C01400
+@if $C015<>0 then $C015p=,$Tab,$C015
+@if $C01500<>0 then $C01500p=,$Tab,$C01500
+@if $C01501<>0 then $C01501p=,$Tab,$C01501
+@if $C01502<>0 then $C01502p=,$Tab,$C01502
+@if $C01503<>0 then $C01503p=,$Tab,$C01503
+;
+@if $C001=0 then $C001p=
+@if $C00100=0 then $C00100p=
+@if $C00101=0 then $C00101p=
+@if $C00102=0 then $C00102p=
+@if $C00103=0 then $C00103p=
+@if $C002=0 then $C002p=
+@if $C00200=0 then $C00200p=
+@if $C00201=0 then $C00201p=
+@if $C00202=0 then $C00202p=
+@if $C00203=0 then $C00203p=
+@if $C003=0 then $C003p=
+@if $C00300=0 then $C00300p=
+@if $C00301=0 then $C00301p=
+@if $C00302=0 then $C00302p=
+@if $C00303=0 then $C00303p=
+@if $C00304=0 then $C00304p=
+@if $C00305=0 then $C00305p=
+@if $C00306=0 then $C00306p=
+@if $C00307=0 then $C00307p=
+@if $C004=0 then $C004p=
+@if $C00400=0 then $C00400p=
+@if $C005=0 then $C005p=
+@if $C00500=0 then $C00500p=
+@if $C00501=0 then $C00501p=
+@if $C00502=0 then $C00502p=
+@if $C00503=0 then $C00503p=
+@if $C00504=0 then $C00504p=
+@if $C00505=0 then $C00505p=
+@if $C006=0 then $C006p=
+@if $C00600=0 then $C00600p=
+@if $C00601=0 then $C00601p=
+@if $C00602=0 then $C00602p=
+@if $C00603=0 then $C00603p=
+@if $C00604=0 then $C00604p=
+@if $C00605=0 then $C00605p=
+@if $C007=0 then $C007p=
+@if $C00700=0 then $C00700p=
+@if $C00701=0 then $C00701p=
+@if $C00702=0 then $C00702p=
+@if $C008=0 then $C008p=
+@if $C00800=0 then $C00800p=
+@if $C00801=0 then $C00801p=
+@if $C00802=0 then $C00802p=
+@if $C00803=0 then $C00803p=
+@if $C009=0 then $C009p=
+@if $C00900=0 then $C00900p=
+@if $C00901=0 then $C00901p=
+@if $C00902=0 then $C00902p=
+@if $C00903=0 then $C00903p=
+@if $C010=0 then $C010p=
+@if $C01000=0 then $C01000p=
+@if $C011=0 then $C011p=
+@if $C01100=0 then $C01100p=
+@if $C01101=0 then $C01101p=
+@if $C01102=0 then $C01102p=
+@if $C01103=0 then $C01103p=
+@if $C012=0 then $C012p=
+@if $C01200=0 then $C01200p=
+@if $C013=0 then $C013p=
+@if $C01300=0 then $C01300p=
+@if $C014=0 then $C014p=
+@if $C01400=0 then $C01400p=
+@if $C015=0 then $C015p=
+@if $C01500=0 then $C01500p=
+@if $C01501=0 then $C01501p=
+@if $C01502=0 then $C01502p=
+@if $C01503=0 then $C01503p=
+@if $C00100plus00200=0 then $C00100plus00200p=
+;
+@Text[3].Load $Papka\TD\Temp\TempforExpl.ini
+$Temp=@Text[3].Line[1]
+$NMN=@StringPart 1/$Temp
+$CPKod=@StringPart 2/$Temp
+$CPNazva=@StringPart 3/$Temp
+$AreaZahal=@StringPart 4/$Temp
+@Text[3].Load $Papka\TD\Temp\TempforExpl2.ini
+$Temp=@Text[3].Line[1]
+$Area=@StringPart 1/$Temp
+$S=@Concat 1,$Tab,$NMN,$Tab,$CPKod,$Tab,$CPNazva,$Tab,$AreaZahal
+$S=@Concat $S,$C00100plus00200p,$C00101p,$C00102p,$C00103p,$C00201p,$C00202p,$C00203p,$C003p
+$S=@Concat $S,$C00301p,$C00302p,$C00303p,$C00304p,$C00305p,$C00306p,$C00307p,$C004p,$C005p,$C00501p
+$S=@Concat $S,$C00502p,$C00503p,$C00504p,$C00505p,$C006p,$C00601p,$C00602p,$C00603p,$C00604p
+$S=@Concat $S,$C00605p,$C007p,$C00701p,$C00702p,$C008p,$C00801p,$C00802p,$C00803p
+$S=@Concat $S,$C009p,$C00901p,$C00902p,$C00903p,$C010p,$C011p,$C01101p,$C01102p
+$S=@Concat $S,$C01103p,$C012p,$C013p,$C014p,$C015p,$C01501p,$C01502p,$C01503p
+@Text[2].Add $S
+;
+$S=@Concat Площа земельної ділянки: $Area,$C00100p,$C00101p,$C00102p,$C00103p,$C00200p,$C00201p,$C00202p,$C00203p,$C00300p
+$S=@Concat $S,$C00301p,$C00302p,$C00303p,$C00304p,$C00305p,$C00306p,$C00307p,$C00400p,$C00500p,$C00501p
+$S=@Concat $S,$C00502p,$C00503p,$C00504p,$C00505p,$C00600p,$C00601p,$C00602p,$C00603p,$C00604p
+$S=@Concat $S,$C00605p,$C00700p,$C00701p,$C00702p,$C00800p,$C00801p,$C00802p,$C00803p
+$S=@Concat $S,$C00900p,$C00901p,$C00902p,$C00903p,$C01000p,$C01100p,$C01101p,$C01102p
+$S=@Concat $S,$C01103p,$C01200p,$C01300p,$C01400p,$C01500p,$C01501p,$C01502p,$C01503p
+@Text[5].Add $S
+
+@Text[5].Add $S2
+;
+@Text[2].Save $Papka\TD\Temp\Expl.ini
+@Text[4].Save $Papka\TD\Temp\Expl2.ini
+@Text[5].Save $Papka\TD\Temp\Expl3.ini
+;------------- Сформували експлікацію --------------------

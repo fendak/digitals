@@ -1,0 +1,102 @@
+$ProgramFolder=@ProgramFolder
+$Tab=@Calc char(9)
+$Tab=@DequoteText $Tab
+$Folder=
+$Name=@ExtractFileName $PARAMETERS
+$FolderDo=@ExtractFilePath $PARAMETERS
+@Text[1].Load $ProgramFolder\TD\Temp\Bufer.ini
+$Text=@Text[1].Text
+;
+;витягуємо дані у змінні
+$CPKod=@StringPart 77$Tab$Text
+$CPKod=@Calc Trim("$CPKod")
+$CPKod=@DequoteText $CPKod
+;
+$GPS=@StringPart 362$Tab$Text
+$GPS=@ReplaceChar "*$GPS
+$GPS=@Calc Trim("$GPS")
+$GPS=@DequoteText $GPS
+;
+$FormatA=@StringPart 236$Tab$Text
+$FormatA=@Calc Trim("$FormatA")
+$FormatA=@DequoteText $FormatA
+
+$DAct=@StringPart 104$Tab$Text
+$DAct=@Calc Trim("$DAct")
+$DAct=@DequoteText $DAct
+
+$FormaNad=@StringPart 94$Tab$Text
+$FormaNad=@Calc Trim("$FormaNad")
+$FormaNad=@DequoteText $FormaNad
+
+$OrganizaciyaSkor=@StringPart 323$Tab$Text
+$FOP=@StringPart 2 $OrganizaciyaSkor
+$FOP=@DequoteText $FOP
+
+$RTKName=@StringPart 365$Tab$Text
+$RTKName=@Calc Trim("$RTKName")
+$RTKName=@DequoteText $RTKName
+;
+;тут прописуємо умову
+;якщо код документації 01.01 — то беремо окремі шаблони з папки "паї"
+@if $CPKod=01.01 then $Folder=паї
+
+;якщо оператор RTK Систем Солюшнс — то беремо окремі шаблони з папки "Систем Солюшнс"
+@if $RTKName=Систем Солюшнс then $Folder=Систем Солюшнс
+
+;якщо ФОП — то беремо окремі шаблони з папки "ФОП" (стосується 4-тої сторінки пояснювальної)
+@if $FOP=ФОП then $Folder=ФОП
+
+;якщо не вказано gps — то беремо окремі шаблони з папки "тахеометр"
+@if $GPS= then $Folder=тахеометр
+
+;якщо вказано державний акт — то беремо окремі шаблони з папки "держакт"
+@if $DAct<> then $Folder=держакт
+
+;якщо форма надання "в оренду" — то беремо окремі шаблони з папки "оренда"
+@if $FormaNad=в оренду then $Folder=оренда
+
+;якщо форма надання "в постійне користування" — то беремо окремі шаблони з папки "постійне користування"
+@if $FormaNad=в постійне користування then $Folder=постійне користування
+;
+;спеціальні умови для форматів аркушів
+$Folder=$FormatA
+@if $FormatA=A4 then @Goto %A4
+@if $FormatA=A0h then $Folder=A0h
+$FE=@FileExists $FolderDo$Folder\$Name
+@if $FE=1 then @Goto %A4
+$Folder=A0v
+@if $FormatA=A0v then $Folder=A0v
+$FE=@FileExists $FolderDo$Folder\$Name
+@if $FE=1 then @Goto %A4
+$Folder=A1h
+@if $FormatA=A1h then $Folder=A1h
+$FE=@FileExists $FolderDo$Folder\$Name
+@if $FE=1 then @Goto %A4
+$Folder=A1v
+@if $FormatA=A1v then $Folder=A1v
+$FE=@FileExists $FolderDo$Folder\$Name
+@if $FE=1 then @Goto %A4
+$Folder=A2h
+@if $FormatA=A2h then $Folder=A2h
+$FE=@FileExists $FolderDo$Folder\$Name
+@if $FE=1 then @Goto %A4
+$Folder=A2v
+@if $FormatA=A2v then $Folder=A2v
+$FE=@FileExists $FolderDo$Folder\$Name
+@if $FE=1 then @Goto %A4
+$Folder=A3h
+@if $FormatA=A3h then $Folder=A3h
+$FE=@FileExists $FolderDo$Folder\$Name
+@if $FE=1 then @Goto %A4
+$Folder=A3v
+@if $FormatA=A3v then $Folder=A3v
+$FE=@FileExists $FolderDo$Folder\$Name
+@if $FE=1 then @Goto %A4
+$Folder=
+%A4
+;
+$NewFolder=$FolderDo$Folder
+$FE=@FileExists $NewFolder\$Name
+$Result=
+@if $FE=1 then $Result=$NewFolder
