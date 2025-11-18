@@ -2,9 +2,9 @@ $Vers2=$PARAMETERS
 $Papka=@ProgramFolder
 @Text[1].Load $Papka\TD\Scripts\ControlUpdate.txt
 $Line=@Text[1].Line[1]
-
+;
 @if $Line>501 then @Goto %TrueControlUpdate501
-
+;
 ;Відомість МЗ для об'єднання
 $FE=@FolderExists $Papka\TD\Doc008
 @if $FE=0 then @CreateFolder $Papka\TD\Doc008
@@ -12,6 +12,8 @@ $Download=@Download https://fendak.github.io/digitals/scrDoc/vidomist_mz-ob-edna
 ;@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/vidomist_mz-ob-ednannja.dmt $Papka\TD\Doc008
 @if $Download=0 then @Text[2].Add Шаблон \TD\Doc008\Відомість МЗ (об'єднання).dmt - не вдалося завантажити з сервера
 @if $Download=0 then @Goto %Update50101
+$FE=@FileExists $Papka\TD\Doc008\Відомість МЗ (об'єднання).dmt.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc008\Відомість МЗ (об'єднання).dmt.bak
 $FE=@FileExists $Papka\TD\Doc008\Відомість МЗ (об'єднання).dmt
 @if $FE=1 then @RenameFile $Papka\TD\Doc008\Відомість МЗ (об'єднання).dmt|$Papka\TD\Doc008\Відомість МЗ (об'єднання).dmt.bak
 $FE=@FileExists $Papka\TD\Doc008\vidomist_mz-ob-ednannja.dmt
@@ -19,12 +21,14 @@ $FE=@FileExists $Papka\TD\Doc008\vidomist_mz-ob-ednannja.dmt
 @if $FE=1 then @Text[2].Add Шаблон \TD\Doc008\Відомість МЗ (об'єднання).dmt - не вдалося перейменувати із \TD\Doc008\vidomist_mz-ob-ednannja.dmt (перейменуйте самостійно, не закриваючи це вікно)
 @if $FE=0 then @Text[2].Add Шаблон \TD\Doc008\Відомість МЗ (об'єднання).dmt - успішно
 %Update50101
-
+;
 ;Відомість МЗ для поділу
 $Download=@Download https://fendak.github.io/digitals/scrDoc/vidomist_mz-podil.dmt $Papka\TD\Doc008
 ;@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/vidomist_mz-podil.dmt $Papka\TD\Doc008
 @if $Download=0 then @Text[2].Add Шаблон \TD\Doc008\Відомість МЗ (поділ).dmt - не вдалося завантажити з сервера
 @if $Download=0 then @Goto %Update50102
+$FE=@FileExists $Papka\TD\Doc008\Відомість МЗ (поділ).dmt.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc008\Відомість МЗ (поділ).dmt.bak
 $FE=@FileExists $Papka\TD\Doc008\Відомість МЗ (поділ).dmt
 @if $FE=1 then @RenameFile $Papka\TD\Doc008\Відомість МЗ (поділ).dmt|$Papka\TD\Doc008\Відомість МЗ (поділ).dmt.bak
 $FE=@FileExists $Papka\TD\Doc008\vidomist_mz-podil.dmt
@@ -32,7 +36,7 @@ $FE=@FileExists $Papka\TD\Doc008\vidomist_mz-podil.dmt
 @if $FE=1 then @Text[2].Add Шаблон \TD\Doc008\Відомість МЗ (поділ).dmt - не вдалося перейменувати із \TD\Doc008\vidomist_mz-podil.dmt (перейменуйте самостійно, не закриваючи це вікно)
 @if $FE=0 then @Text[2].Add Шаблон \TD\Doc008\Відомість МЗ (поділ).dmt - успішно
 %Update50102
-
+;
 ;Відомість МЗ для поділу А3
 $FE=@FolderExists $Papka\TD\Doc008\A3h
 @if $FE=0 then @CreateFolder $Papka\TD\Doc008\A3h
@@ -40,6 +44,8 @@ $Download=@Download https://fendak.github.io/digitals/scrDoc/vidomist_mz-podil-A
 ;@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/vidomist_mz-podil-A3.dmt $Papka\TD\Doc008\A3h
 @if $Download=0 then @Text[2].Add Шаблон \TD\Doc008\A3h\Відомість МЗ (поділ).dmt - не вдалося завантажити з сервера
 @if $Download=0 then @Goto %Update50102
+$FE=@FileExists $Papka\TD\Doc008\A3h\Відомість МЗ (поділ).dmt.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc008\A3h\Відомість МЗ (поділ).dmt.bak
 $FE=@FileExists $Papka\TD\Doc008\A3h\Відомість МЗ (поділ).dmt
 @if $FE=1 then @RenameFile $Papka\TD\Doc008\A3h\Відомість МЗ (поділ).dmt|$Papka\TD\Doc008\A3h\Відомість МЗ (поділ).dmt.bak
 $FE=@FileExists $Papka\TD\Doc008\A3h\vidomist_mz-podil-A3.dmt
@@ -47,8 +53,8 @@ $FE=@FileExists $Papka\TD\Doc008\A3h\vidomist_mz-podil-A3.dmt
 @if $FE=1 then @Text[2].Add Шаблон \TD\Doc008\A3h\Відомість МЗ (поділ).dmt - не вдалося перейменувати із \TD\Doc008\A3h\vidomist_mz-podil-A3.dmt (перейменуйте самостійно, не закриваючи це вікно)
 @if $FE=0 then @Text[2].Add Шаблон \TD\Doc008\A3h\Відомість МЗ (поділ).dmt - успішно
 %Update50102
-
-
+;
+;
 %TrueControlUpdate502
 ;
 $TC=@Text[2].Count
