@@ -3,7 +3,7 @@ $Papka=@ProgramFolder
 @Text[1].Load $Papka\TD\Scripts\ControlUpdate.txt
 $Line=@Text[1].Line[1]
 
-@if $Line>501 then @Goto %TrueControlUpdate501
+@if $Line>500 then @Goto %TrueControlUpdate501
 
 ;Відомість МЗ для об'єднання
 $FE=@FolderExists $Papka\TD\Doc008
@@ -47,9 +47,8 @@ $FE=@FileExists $Papka\TD\Doc008\A3h\vidomist_mz-podil-A3.dmt
 @if $FE=1 then @Text[2].Add Шаблон \TD\Doc008\A3h\Відомість МЗ (поділ).dmt - не вдалося перейменувати із \TD\Doc008\A3h\vidomist_mz-podil-A3.dmt (перейменуйте самостійно, не закриваючи це вікно)
 @if $FE=0 then @Text[2].Add Шаблон \TD\Doc008\A3h\Відомість МЗ (поділ).dmt - успішно
 %Update005
-
-
 %TrueControlUpdate501
+
 @if $Line>501 then @Goto %TrueControlUpdate502
 $Download=@Download https://fendak.github.io/digitals/scrDoc/RestrCodes.txt $Papka\Lists\
 @if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/RestrCodes.txt $Papka\Lists\
@@ -87,44 +86,44 @@ $Download=@Download https://fendak.github.io/digitals/scrDoc/Zakony.txt $Papka\L
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/perelik_obm1.dmf $Papka\TD\Doc\
 @if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/perelik_obm1.dmf $Papka\TD\Doc\
-@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\Пер обмежень1.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм1.dmf - не вдалося завантажити з сервера
 @if $Download=0 then @Goto %Update001
-$FE=@FileExists $Papka\TD\Doc\Пер обмежень1.dmf.bak
-@if $FE=1 then @DeleteFile $Papka\TD\Doc\Пер обмежень1.dmf.bak
-$FE=@FileExists $Papka\TD\Doc\Пер обмежень1.dmf
-@if $FE=1 then @RenameFile $Papka\TD\Doc\Пер обмежень1.dmf|$Papka\TD\Doc\Пер обмежень1.dmf.bak
-$FE=@FileExists $Papka\TD\Doc\30_perelik_obmezhen1.dmf
-@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\perelik_obm1.dmf|$Papka\TD\Doc\Пер обмежень1.dmf
-@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\Пер обмежень1.dmf - не вдалося перейменувати з \TD\Doc\perelik_obm1.dmf (перейменуйте самостійно)
-@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\Пер обмежень1.dmf - успішно
+$FE=@FileExists $Papka\TD\Doc\Перелік обм1.dmf.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\Перелік обм1.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\Перелік обм1.dmf
+@if $FE=1 then @RenameFile $Papka\TD\Doc\Перелік обм1.dmf|$Papka\TD\Doc\Перелік обм1.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\perelik_obm1.dmf
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\perelik_obm1.dmf|$Papka\TD\Doc\Перелік обм1.dmf
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\Перелік обм1.dmf - не вдалося перейменувати з \TD\Doc\perelik_obm1.dmf (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм1.dmf - успішно
 %Update001
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/perelik_obm2.dmf $Papka\TD\Doc\
 @if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/perelik_obm2.dmf $Papka\TD\Doc\
-@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\Пер обмежень2.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм2.dmf - не вдалося завантажити з сервера
 @if $Download=0 then @Goto %Update002
-$FE=@FileExists $Papka\TD\Doc\Пер обмежень2.dmf.bak
-@if $FE=1 then @DeleteFile $Papka\TD\Doc\Пер обмежень2.dmf.bak
-$FE=@FileExists $Papka\TD\Doc\Пер обмежень2.dmf
-@if $FE=1 then @RenameFile $Papka\TD\Doc\Пер обмежень2.dmf|$Papka\TD\Doc\Пер обмежень2.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\Перелік обм2.dmf.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\Перелік обм2.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\Перелік обм2.dmf
+@if $FE=1 then @RenameFile $Papka\TD\Doc\Перелік обм2.dmf|$Papka\TD\Doc\Перелік обм2.dmf.bak
 $FE=@FileExists $Papka\TD\Doc\perelik_obm2.dmf
-@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\perelik_obm2.dmf|$Papka\TD\Doc\Пер обмежень2.dmf
-@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\Пер обмежень2.dmf - не вдалося перейменувати з \TD\Doc\perelik_obm2.dmf (перейменуйте самостійно)
-@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\Пер обмежень2.dmf - успішно
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\perelik_obm2.dmf|$Papka\TD\Doc\Перелік обм2.dmf
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\Перелік обм2.dmf - не вдалося перейменувати з \TD\Doc\perelik_obm2.dmf (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм2.dmf - успішно
 %Update002
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/perelik_obm3.dmf $Papka\TD\Doc
 @if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/perelik_obm3.dmf $Papka\TD\Doc
-@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\Пер обмежень3.dmf - не вдалося завантажити з сервера
+@if $Download=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм3.dmf - не вдалося завантажити з сервера
 @if $Download=0 then @Goto %Update003
-$FE=@FileExists $Papka\TD\Doc\Пер обмежень3.dmf.bak
-@if $FE=1 then @DeleteFile $Papka\TD\Doc\Пер обмежень3.dmf.bak
-$FE=@FileExists $Papka\TD\Doc\Пер обмежень3.dmf
-@if $FE=1 then @RenameFile $Papka\TD\Doc\Пер обмежень3.dmf|$Papka\TD\Doc\Пер обмежень3.dmf.bak
-$FE=@FileExists $Papka\TD\Doc\30_perelik_obmezhen3.dmf
-@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\perelik_obm3.dmf|$Papka\TD\Doc\Пер обмежень3.dmf
-@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\Пер обмежень3.dmf - не вдалося перейменувати з \TD\Doc\perelik_obm3.dmf (перейменуйте самостійно)
-@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\Пер обмежень3.dmf - успішно
+$FE=@FileExists $Papka\TD\Doc\Перелік обм3.dmf.bak
+@if $FE=1 then @DeleteFile $Papka\TD\Doc\Перелік обм3.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\Перелік обм3.dmf
+@if $FE=1 then @RenameFile $Papka\TD\Doc\Перелік обм3.dmf|$Papka\TD\Doc\Перелік обм3.dmf.bak
+$FE=@FileExists $Papka\TD\Doc\perelik_obm3.dmf
+@if $FE=1 then $FE=@RenameFile $Papka\TD\Doc\perelik_obm3.dmf|$Papka\TD\Doc\Перелік обм3.dmf
+@if $FE=1 then @Text[2].Add Шаблон \TD\Doc\Перелік обм3.dmf - не вдалося перейменувати з \TD\Doc\perelik_obm3.dmf (перейменуйте самостійно)
+@if $FE=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм3.dmf - успішно
 %Update003
 
 
