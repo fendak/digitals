@@ -133,5 +133,5 @@ $TC=@Text[2].Count
 @Text[1].Clear
 @Text[1].Add $Vers2
 @Text[1].Save $Papka\TD\Scripts\ControlUpdate.txt
-@if $TC<>0 then @Dialog.Message Оновлено (додано) шаблони:|$Text
+@if $TC<>0 then @Dialog.Message Оновлено файли:|$Text
 %TrueControlUpdate502
