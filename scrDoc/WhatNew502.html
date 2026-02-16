@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Digitals - геодезія, картографія та землевпорядкування</title>
+  <style>
+    body {
+      background-image: url("https://fendak.github.io/digitals/scrDoc/Fon.jpg");
+      background-size: cover;      /* картинка масштабується під екран */
+      background-position: center; /* центрування */
+      background-attachment: fixed; /* картинка не рухається при прокрутці */
+      font-family: Arial, sans-serif;
+      font-size: 16px; /* розмір шрифту */
+      line-height: 1.5; /* відстань між рядками для легшого читання */
+      background: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 40px 0; /* відступ зверху/знизу */
+      display: flex;
+      justify-content: center; /* центрування контейнера */
+    }
+
+    .container {
+      max-width: 900px;  /* ширина для великих екранів */
+      background: rgba(255, 255, 255, 0.9); /* легка біла підкладка */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* тінь для гарного вигляду */
+      text-align: justify; /* додаємо вирівнювання по обидві сторони */
+    }
+
+    h1 {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+<p>Див. <a href="https://fendak.github.io/digitals/scrDoc/WhatNew.html">Про оновлення 5.0</a></p>
+
+<h2>Оновлення модуля &quot;Документація&quot; до версії 5.02</h2>
+
+<p>Відповідно до&nbsp;<a href="https://zakon.rada.gov.ua/laws/show/140-2026-%D0%BF#Text">пост. КМУ №140 від 05.02.2026 р.</a>&nbsp;внесено зміни в постанову 1051, а саме:</p>
+
+<p><span style="font-family: &quot;Times New Roman&quot;, serif; font-size: 14px;">1)&nbsp;Додано новий сервітут:</span><br />
+<span style="font-family:Times New Roman,Times,serif;"><span style="font-size:14px;"><span style="color:#00b050;"><em>07.19 Право на розгортання, експлуатацію електронних комунікаційних мереж&nbsp;Технічна зона метрополітену</em></span></span></span><br />
+<span style="font-size:14px;"><span style="font-family:Antiqua,sans-serif"><span style="font-family:&quot;Times New Roman&quot;,serif">а також змінено назви двох інших обмежень:</span></span><br />
+<span style="font-family:Times New Roman,Times,serif;"><em>01.04 Охоронна зона навколо</em> <i><span lang="EN-US"><span style="color:black">[</span></span><s><span style="color:#c00000">(уздовж) об&#39;єкта зв&#39;язку</span></s></i><i><span lang="EN-US">]</span><span style="color:#00b050">інфраструктури електронних комунікаційних мереж</span></i><br />
+<em>07.03 Право прокладення та експлуатації ліній електропередачі, </em><i><span lang="EN-US"><span style="color:black">[</span></span><s><span style="color:#c00000">електронних комунікаційних мереж</span></s><span lang="EN-US">]</span></i><em>трубопроводів, інших лінійних комунікацій</em></span></span><br />
+<span style="font-size:12px;"><span style="font-family:Antiqua,sans-serif">(відповідно додано нові змінну&nbsp;<b>$Restr0719</b>, оновлено довідники&nbsp;<em>\Lists\RestrCodes.txt,&nbsp;\Lists\Zakony.txt&nbsp;</em>та 5 скриптів у папці TD/Scripts: <em>Restr1, Restr2, RestrNext, RestrR1List, RestrRList</em>)</span></span><br />
+<span style="font-size:14px;"><span style="font-family:Antiqua,sans-serif">І, відповідно, оновлено 3 шаблони (старі шаблони, які були у вас до того, можете знайти в папці TD\Doc з розширенням .bak):</span></span></p>
+
+<p><span style="font-size:14px;"><span style="font-family:Antiqua,sans-serif"><a href="http://digitals.at.ua/photo/zjomka_za_dopomogoju_gps_v_rezhimi_rtk/perelik_obmezhen_2_stor/2-0-420">Перелік обмежень (стор.1)</a><br />
+<a href="http://digitals.at.ua/photo/zjomka_za_dopomogoju_gps_v_rezhimi_rtk/perelik_obmezhen_2_stor/2-0-421">Перелік обмежень (стор.2)</a><br />
+<a href="http://digitals.at.ua/photo/zjomka_za_dopomogoju_gps_v_rezhimi_rtk/perelik_obmezhen_3_stor/2-0-422">Перелік обмежень (стор.3)</a></span></span></p>
+
+<p><span style="font-size:14px;"><span style="font-family:Antiqua,sans-serif"><span style="font-family:&quot;Times New Roman&quot;,serif">2) Змінено назву одного пункту цільового призначення:</span></span><br />
+<em><span style="font-family:Times New Roman,Times,serif;">13.01 </span></em><span style="font-family:Times New Roman,Times,serif;"><i><span lang="EN-US"><span style="color:black">[</span></span><s><span style="color:#c00000">Для розміщення та експлуатації об&#39;єктів і споруд електронних комунікацій</span></s></i><i><span lang="EN-US">]</span></i></span><em><span style="font-family:Times New Roman,Times,serif;"><span style="color:#00b050;">Для розгортання, експлуатації електронних комунікаційних мереж</span></span></em></span><br />
+<span style="font-size:12px;"><span style="font-family:Antiqua,sans-serif">(оновлено довідник Lists/scrDocPurpose)</span></span></p>
+
+<p>Оновлено довідник підстав встановлення обмежень:&nbsp;<em>\Lists\Zakony.txt</em> (старий довідник буде збережено на всякий випадок в тій же папці з відміткою в дужках, що це старий).<br />
+В довіднику додано рядок для нового сервітуту і змінено набір підстав встановлення для обмеження 03.01. Оскільки обмеження 03.01 раніше ставили переважно для санітарно-захисних зон кладовищ, а для промислових та інших об&#39;єктів були інші обмеження, як от 01.09, які&nbsp;згідно &nbsp;Постанови №1557 від 31.12.2024 р.&nbsp;були вилучені з переліку, тому їх тепер подаємо як 03.01. Але в довіднику обмежень (Zakony.txt у папці Lists) цей момент було упущено. Тому в довідник для обмежень 03.01 додано Наказ МОЗ України &quot;Про затвердження Державних санітарних правил планування та забудови населених пунктів&quot; від 24.07.1996 р. N379/1404. Бо це основний документ, який регулює санітарно-захисні зони по більшості з цих видалених обмежень. Але Гігієнічні норми для кладовищ залишено, бо воно часто вживається саме для цього обмеження.<br />
+<br />
+Серед іншого:<br />
+- виправлено помилку, яку видавало при формуванні документації щодо поділу, якщо вибрано було тільки &quot;Відомість МЗ (поділ)&quot; і &quot;Кад план&quot;.<br />
+- виправлено, коли в описі місцерозташування не ставило тип проїзду, якщо він нестандартний.</p>
+
+<p>Оновлений перелік обмежень для шаблонів word можна скачати <a href="https://fendak.github.io/digitals/scrDoc/perelik_obmezhen.docx">ТУТ</a>.</p>
+
+
+  </div>
+</body>
+</html>
