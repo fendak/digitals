@@ -97,6 +97,7 @@ $Restr0715=0
 $Restr0716=0
 $Restr0717=0
 $Restr0718=0
+$Restr0719=0
 $Restr08=0
 $Restr09=0
 $Restr10=0
@@ -273,6 +274,7 @@ $RestrAreaAll=$RestrAreaAll+$Restr0Area
 @if "$Restr0Code"="07.16" then $Restr0716=$Restr0Area+$Restr0716
 @if "$Restr0Code"="07.17" then $Restr0717=$Restr0Area+$Restr0717
 @if "$Restr0Code"="07.18" then $Restr0718=$Restr0Area+$Restr0718
+@if "$Restr0Code"="07.19" then $Restr0719=$Restr0Area+$Restr0719
 @if "$Restr0Code"="08" then $Restr08=$Restr0Area+$Restr08
 @if "$Restr0Code"="09" then $Restr09=$Restr0Area+$Restr09
 @if "$Restr0Code"="10" then $Restr10=$Restr0Area+$Restr10
@@ -435,6 +437,7 @@ $RestrAreaAll=$RestrAreaAll+$Restr0Area
 @Text.Add $Restr0716
 @Text.Add $Restr0717
 @Text.Add $Restr0718
+@Text.Add $Restr0719
 @Text.Add $Restr08
 @Text.Add $Restr09
 @Text.Add $Restr10

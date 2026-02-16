@@ -3,7 +3,7 @@ $F=@FileExists $Papka\TD\Temp\TempRestrNext.ini
 @if $F=0 then @Goto %NoText
 @Text.Load $Papka\TD\Temp\TempRestrNext.ini
 $CountRR=@Text.Count
-@if $CountRR<159 then @Break Оновіть файл скрипту TD\Temp\TempRestrNext.ini до версії 4.18 чи вище (відсутні нові обмеження)
+@if $CountRR<160 then @Break Оновіть файл скрипту TD\Temp\TempRestrNext.ini до версії 5.02 (або 4.19) чи вище - відсутні нові обмеження.
 $Restr01=@Text.Line[1]
 $Restr0101=@Text.Line[2]
 $Restr0102=@Text.Line[3]
@@ -101,68 +101,69 @@ $Restr0715=@Text.Line[94]
 $Restr0716=@Text.Line[95]
 $Restr0717=@Text.Line[96]
 $Restr0718=@Text.Line[97]
-$Restr08=@Text.Line[98]
-$Restr09=@Text.Line[99]
-$Restr10=@Text.Line[100]
-$Restr101=@Text.Line[101]
-$Restr102=@Text.Line[102]
-$Restr103=@Text.Line[103]
-$Restr104=@Text.Line[104]
-$Restr105=@Text.Line[105]
-$Restr106=@Text.Line[106]
-$Restr107=@Text.Line[107]
-$Restr108=@Text.Line[108]
-$Restr109=@Text.Line[109]
-$Restr1010=@Text.Line[110]
-$Restr1011=@Text.Line[111]
-$Restr1012=@Text.Line[112]
-$Restr1013=@Text.Line[113]
-$Restr1014=@Text.Line[114]
-$Restr1015=@Text.Line[115]
-$Restr1016=@Text.Line[116]
-$Restr1017=@Text.Line[117]
-$Restr1018=@Text.Line[118]
-$Restr1019=@Text.Line[119]
-$Restr1020=@Text.Line[120]
-$Restr1021=@Text.Line[121]
-$Restr1022=@Text.Line[122]
-$Restr1023=@Text.Line[123]
-$Restr1024=@Text.Line[124]
-$Restr1025=@Text.Line[125]
-$Restr1026=@Text.Line[126]
-$Restr1027=@Text.Line[127]
-$Restr1028=@Text.Line[128]
-$Restr1029=@Text.Line[129]
-$Restr1030=@Text.Line[130]
-$Restr1031=@Text.Line[131]
-$Restr1032=@Text.Line[132]
-$Restr1033=@Text.Line[133]
-$Restr1034=@Text.Line[134]
-$Restr1035=@Text.Line[134]
-$Restr1036=@Text.Line[136]
-$Restr1037=@Text.Line[137]
-$Restr1038=@Text.Line[138]
-$Restr1039=@Text.Line[139]
-$Restr1040=@Text.Line[140]
-$Restr1041=@Text.Line[141]
-$Restr11=@Text.Line[142]
-$Restr12=@Text.Line[143]
-$Restr13=@Text.Line[144]
-$Restr14=@Text.Line[145]
-$Restr15=@Text.Line[146]
-$Restr1501=@Text.Line[147]
-$Restr16=@Text.Line[148]
-$Restr1601=@Text.Line[149]
-$Restr1602=@Text.Line[150]
-$Restr1603=@Text.Line[151]
-$Restr1604=@Text.Line[152]
-$Restr1605=@Text.Line[153]
-$Restr1606=@Text.Line[154]
-$Restr1607=@Text.Line[155]
-$Restr1608=@Text.Line[156]
-$Restr1609=@Text.Line[157]
-$RestrCountAll=@Text.Line[158]
-$RestrAreaAll=@Text.Line[159]
+$Restr0719=@Text.Line[98]
+$Restr08=@Text.Line[99]
+$Restr09=@Text.Line[100]
+$Restr10=@Text.Line[101]
+$Restr101=@Text.Line[102]
+$Restr102=@Text.Line[103]
+$Restr103=@Text.Line[104]
+$Restr104=@Text.Line[105]
+$Restr105=@Text.Line[106]
+$Restr106=@Text.Line[107]
+$Restr107=@Text.Line[108]
+$Restr108=@Text.Line[109]
+$Restr109=@Text.Line[110]
+$Restr1010=@Text.Line[111]
+$Restr1011=@Text.Line[112]
+$Restr1012=@Text.Line[113]
+$Restr1013=@Text.Line[114]
+$Restr1014=@Text.Line[115]
+$Restr1015=@Text.Line[116]
+$Restr1016=@Text.Line[117]
+$Restr1017=@Text.Line[118]
+$Restr1018=@Text.Line[119]
+$Restr1019=@Text.Line[120]
+$Restr1020=@Text.Line[121]
+$Restr1021=@Text.Line[122]
+$Restr1022=@Text.Line[123]
+$Restr1023=@Text.Line[124]
+$Restr1024=@Text.Line[125]
+$Restr1025=@Text.Line[126]
+$Restr1026=@Text.Line[127]
+$Restr1027=@Text.Line[128]
+$Restr1028=@Text.Line[129]
+$Restr1029=@Text.Line[130]
+$Restr1030=@Text.Line[131]
+$Restr1031=@Text.Line[132]
+$Restr1032=@Text.Line[133]
+$Restr1033=@Text.Line[134]
+$Restr1034=@Text.Line[135]
+$Restr1035=@Text.Line[136]
+$Restr1036=@Text.Line[137]
+$Restr1037=@Text.Line[138]
+$Restr1038=@Text.Line[139]
+$Restr1039=@Text.Line[140]
+$Restr1040=@Text.Line[141]
+$Restr1041=@Text.Line[142]
+$Restr11=@Text.Line[143]
+$Restr12=@Text.Line[144]
+$Restr13=@Text.Line[145]
+$Restr14=@Text.Line[146]
+$Restr15=@Text.Line[147]
+$Restr1501=@Text.Line[148]
+$Restr16=@Text.Line[149]
+$Restr1601=@Text.Line[150]
+$Restr1602=@Text.Line[151]
+$Restr1603=@Text.Line[152]
+$Restr1604=@Text.Line[153]
+$Restr1605=@Text.Line[154]
+$Restr1606=@Text.Line[155]
+$Restr1607=@Text.Line[156]
+$Restr1608=@Text.Line[157]
+$Restr1609=@Text.Line[158]
+$RestrCountAll=@Text.Line[159]
+$RestrAreaAll=@Text.Line[160]
 @Goto %YesText
 %NoText
 $Restr01=0
@@ -262,6 +263,7 @@ $Restr0715=0
 $Restr0716=0
 $Restr0717=0
 $Restr0718=0
+$Restr0719=0
 $Restr08=0
 $Restr09=0
 $Restr10=0
@@ -439,6 +441,7 @@ if "$Restr0Code"="01" then $Restr01=$Restr0Area+$Restr01
 @if "$Restr0Code"="07.16" then $Restr0716=$Restr0Area+$Restr0716
 @if "$Restr0Code"="07.17" then $Restr0717=$Restr0Area+$Restr0717
 @if "$Restr0Code"="07.18" then $Restr0718=$Restr0Area+$Restr0718
+@if "$Restr0Code"="07.19" then $Restr0719=$Restr0Area+$Restr0719
 @if "$Restr0Code"="08" then $Restr08=$Restr0Area+$Restr08
 @if "$Restr0Code"="09" then $Restr09=$Restr0Area+$Restr09
 @if "$Restr0Code"="10" then $Restr10=$Restr0Area+$Restr10
@@ -601,6 +604,7 @@ if "$Restr0Code"="01" then $Restr01=$Restr0Area+$Restr01
 @Text.Add $Restr0716
 @Text.Add $Restr0717
 @Text.Add $Restr0718
+@Text.Add $Restr0719
 @Text.Add $Restr08
 @Text.Add $Restr09
 @Text.Add $Restr10
