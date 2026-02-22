@@ -33,9 +33,74 @@
     h1, h2 {
       color: #0056b3;
     }
+	
+	/* ===== Dropdown menu ===== */
+
+.menu-wrapper {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.menu-button {
+  background: #0056b3;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.menu-button:hover {
+  background: #003f85;
+}
+
+.dropdown {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background: white;
+  min-width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.menu-wrapper:hover .dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.2s ease;
+}
+
+.dropdown a:hover {
+  background: #f2f6fc;
+}
 	</style>
 </head>
 <body>
+<div class="menu-wrapper">
+  <div class="menu-button">☰ Меню</div>
+  <div class="dropdown">
+    <a href="http://digitals.at.ua/">Головна</a>
+    <a href="http://digitals.at.ua/blog/skript_modul_dokumentacija/2016-08-29-15">Скрипт-модуль "Документація"</a>
+  </div>
+</div>
+
   <div class="container">
 <p>Див. <a href="https://fendak.github.io/digitals/scrDoc/WhatNew.html">Про оновлення 5.0</a></p>
 
