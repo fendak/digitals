@@ -35,7 +35,7 @@
       color: #0056b3;
     }
 	
-/* ===== Icon dropdown with tooltip ===== */
+/* ===== Dropdown text menu ===== */
 
 .menu-wrapper {
   position: fixed;
@@ -71,10 +71,8 @@
   pointer-events: none;
   transition: all 0.25s ease;
 
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  padding: 10px 0;
+  min-width: 260px;
 }
 
 .menu-wrapper:hover .dropdown {
@@ -83,48 +81,48 @@
   pointer-events: auto;
 }
 
-/* ===== Icons ===== */
+/* ===== Menu items ===== */
 
 .dropdown a {
   position: relative;
-  display: inline-block;
-}
-
-.dropdown a img {
-  height: 32px;
-  width: auto;
-  max-width: 96px;
   display: block;
-  transition: transform 0.2s ease;
+  padding: 10px 18px;
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  transition: background 0.2s ease;
 }
 
-.dropdown a:hover img {
-  transform: scale(1.1);
+.dropdown a:hover {
+  background: #f1f6ff;
 }
 
-/* ===== Tooltip ===== */
+/* ===== Image preview tooltip ===== */
 
-.dropdown a::after {
-  content: attr(data-tooltip);
+.dropdown a .preview {
   position: absolute;
-  left: 110%;
+  left: 105%;
   top: 50%;
-  transform: translateY(-50%) translateX(-5px);
-  background: rgba(0,0,0,0.85);
-  color: white;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 14px;
-  white-space: nowrap;
-
+  transform: translateY(-50%) scale(0.95);
   opacity: 0;
   pointer-events: none;
   transition: all 0.2s ease;
+
+  background: white;
+  padding: 6px;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
 }
 
-.dropdown a:hover::after {
+.dropdown a .preview img {
+  display: block;
+  max-width: 260px;
+  height: auto;
+}
+
+.dropdown a:hover .preview {
   opacity: 1;
-  transform: translateY(-50%) translateX(0);
+  transform: translateY(-50%) scale(1);
 }
 	</style>
 </head>
@@ -134,35 +132,49 @@
 <body>
 <div class="menu-wrapper">
   <div class="menu-button">☰ Меню</div>
+
   <div class="dropdown">
 
-    <a href="http://digitals.at.ua/" data-tooltip="Головна">
-      <img src="icons/home.png" alt="Головна">
+    <a href="http://digitals.at.ua/">
+      Головна
+      <div class="preview">
+        <img src="preview/home.png" alt="">
+      </div>
     </a>
 
-    <a href="http://digitals.at.ua/blog/skript_modul_dokumentacija/2016-08-29-15"
-       data-tooltip="Модуль 'Документація'">
-      <img src="icons/doc.png" alt="Документація">
+    <a href="http://digitals.at.ua/blog/skript_modul_dokumentacija/2016-08-29-15">
+      Модуль "Документація"
+      <div class="preview">
+        <img src="preview/doc.png" alt="">
+      </div>
     </a>
 
-    <a href="https://fendak.github.io/digitals/scrDoc/WhatNew.html"
-       data-tooltip="Про оновлення 5">
-      <alt="Оновлення">
+    <a href="https://fendak.github.io/digitals/scrDoc/WhatNew.html">
+      Про оновлення 5
+      <div class="preview">
+        <img src="preview/update.png" alt="">
+      </div>
     </a>
 
-    <a href="http://digitals.at.ua/blog/shabloni_dlja_zvitu_po_rtk/2016-12-12-18"
-       data-tooltip="РТК">
-      <img src="icons/rtk.png" alt="РТК">
+    <a href="http://digitals.at.ua/blog/shabloni_dlja_zvitu_po_rtk/2016-12-12-18">
+      РТК
+      <div class="preview">
+        <img src="preview/rtk.png" alt="">
+      </div>
     </a>
 
-    <a href="http://digitals.at.ua/blog/skhema_priv_39_jazki_do_geodezichnikh_punktiv_dgm/2016-08-13-13"
-       data-tooltip="ДГМ">
-      <img src="icons/dgm.png" alt="ДГМ">
+    <a href="http://digitals.at.ua/blog/skhema_priv_39_jazki_do_geodezichnikh_punktiv_dgm/2016-08-13-13">
+      ДГМ
+      <div class="preview">
+        <img src="preview/dgm.png" alt="">
+      </div>
     </a>
 
-    <a href="http://digitals.at.ua/blog/zvit_gnss_kontrol_diferencijnogo_polja/2018-12-09-33"
-       data-tooltip="Диференційне поле">
-      <img src="icons/field.png" alt="Диф. поле">
+    <a href="http://digitals.at.ua/blog/zvit_gnss_kontrol_diferencijnogo_polja/2018-12-09-33">
+      Диференційне поле
+      <div class="preview">
+        <img src="preview/field.png" alt="">
+      </div>
     </a>
 
   </div>
