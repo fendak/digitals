@@ -6,33 +6,34 @@
   <style>
     body {
       background-image: url("https://fendak.github.io/digitals/scrDoc/Fon.jpg");
-      background-size: cover;      /* картинка масштабується під екран */
-      background-position: center; /* центрування */
-      background-attachment: fixed; /* картинка не рухається при прокрутці */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       font-family: Arial, sans-serif;
-      font-size: 16px; /* розмір шрифту */
-      line-height: 1.5; /* відстань між рядками для легшого читання */
-      background: #f9f9f9;
+      font-size: 16px;
+      line-height: 1.6;
       color: #333;
       margin: 0;
-      padding: 40px 0; /* відступ зверху/знизу */
+      padding: 40px 0;
       display: flex;
-      justify-content: center; /* центрування контейнера */
+	  justify-content: center;
+      align-items: flex-start;
     }
 
     .container {
-      max-width: 900px;  /* ширина для великих екранів */
-      background: rgba(255, 255, 255, 0.9); /* легка біла підкладка */
-      padding: 20px;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 25px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* тінь для гарного вигляду */
-      text-align: justify; /* додаємо вирівнювання по обидві сторони */
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: justify;
+	  width: 100%;
     }
 
-    h1 {
+    h1, h2 {
       color: #0056b3;
     }
-  </style>
+	</style>
 </head>
 <body>
   <div class="container">
@@ -41,9 +42,9 @@
 <h2>Оновлення модуля &quot;Документація&quot; до версії 5.01</h2>
 
 <p>1. Оновлено Відомість про встановлені межові знаки при поділі/об&#39;єднанні земельної ділянки. Тепер вона формується одна загальна з автоматичним нанесенням межі поділу та встановлених межових знаків по межі поділу (додано окремі шаблони Відомість МЗ для поділу (в т.ч.формату А3)&nbsp;та об&#39;єднання).<br />
-<img alt="" src="https://fendak.github.io/digitals/scrDoc/image/43.jpg" style="width: 600px; height: 863px;" /></p>
+<img alt="" src="https://fendak.github.io/digitals/scrDoc/image/43.jpg" style="width: 900px; height: 1294px;" /></p>
 
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="400" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/YWrhfP6IFTM" title="Оновлення модуля &quot;Документація&quot; 5.01 — Формуємо Відомість МЗ для поділу" width="600"></iframe></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="600" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/YWrhfP6IFTM" title="Оновлення модуля &quot;Документація&quot; 5.01 — Формуємо Відомість МЗ для поділу" width="900"></iframe></p>
 
 <p><br />
 2. Виправлено помилку у змінній <strong>$AreaiCPN</strong>, де якщо документація на дві ділянки, другу дублювало ще раз (використовується в заяві).<br />
