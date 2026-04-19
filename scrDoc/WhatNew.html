@@ -3,228 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Digitals - геодезія, картографія та землевпорядкування</title>
-
-<style>
-  body {
-    background-image: url("https://fendak.github.io/digitals/scrDoc/Fon.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
-    margin: 0;
-    padding: 40px 0;
-    display: flex;
-    justify-content: center;
-  }
-
-  .container {
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.92);
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    text-align: justify;
-  }
-
-  h1, h2 {
-    color: #0056b3;
-  }
-
-  /* Курсив тепер автоматично жирний */
-  em {
-    font-style: italic;
-    font-weight: 700;
-  }
-
-  .times18 {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 18px;
-  }
-
-  .small-note {
-    font-size: 14px;
-    font-family: Antiqua, sans-serif;
-  }
-
-  .green {
-    color: #008a3a;
-  }
-
-  s {
-    color: #c00000;
-  }
-
-  a {
-    color: #0056b3;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-	
-  /* ===== Dropdown text menu ===== */
-
-  .menu-wrapper {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-  }
-
-  .menu-button {
-    background: #0056b3;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s ease;
-  }
-
-  .menu-button:hover {
-    background: #003f85;
-  }
-
-  .dropdown {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: none;
-    transition: all 0.25s ease;
-
-    padding: 10px 0;
-    min-width: 260px;
-  }
-
-  .menu-wrapper:hover .dropdown {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  /* ===== Menu items ===== */
-
-  .dropdown a {
-    position: relative;
-    display: block;
-    padding: 10px 18px;
-    text-decoration: none;
-    color: #333;
-    font-size: 15px;
-    transition: background 0.2s ease;
-  }
-
-  .dropdown a:hover {
-    background: #f1f6ff;
-  }
-
-  /* ===== Thought bubble preview (Оновлено) ===== */
-
-  .dropdown a .preview {
-    position: absolute;
-    left: 105%;
-    top: 50%;
-    transform: translateY(-50%) scale(0.95);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.25s ease;
-
-    background: white;
-    padding: 14px;
-    border-radius: 40px; /* Округлі форми для хмаринки */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-  }
-
-  /* Основна "хмаринка" */
-  .dropdown a .preview img {
-    display: block;
-    max-height: 32px;
-    width: auto;
-  }
-
-  /* Маленька бульбашка */
-  .dropdown a .preview::before {
-    content: "";
-    position: absolute;
-    left: -14px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 16px;
-    height: 16px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
-
-  /* Ще одна менша бульбашка */
-  .dropdown a .preview::after {
-    content: "";
-    position: absolute;
-    left: -26px;
-    top: 60%;
-    width: 10px;
-    height: 10px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-  }
-
-  .dropdown a:hover .preview {
-    opacity: 1;
-    transform: translateY(-50%) scale(1);
-  }
-</style>
+<link rel="stylesheet" href="https://fendak.github.io/digitals/style.css">
 </head>
 
 
 
 <body>
-<div class="menu-wrapper">
-  <div class="menu-button">☰ Меню</div>
-
-  <div class="dropdown">
-    <a href="http://digitals.at.ua/">
-      Головна
-      <div class="preview"><img src="preview/home.png" alt=""></div>
-    </a>
-
-    <a href="http://digitals.at.ua/blog/skript_modul_dokumentacija/2016-08-29-15">
-      Модуль "Документація"
-      <div class="preview"><img src="preview/doc.png" alt=""></div>
-    </a>
-
-    <a href="https://fendak.github.io/digitals/scrDoc/WhatNew.html">
-      Про оновлення 5
-      <div class="preview"><img src="preview/update.png" alt=""></div>
-    </a>
-
-    <a href="http://digitals.at.ua/blog/shabloni_dlja_zvitu_po_rtk/2016-12-12-18">
-      РТК
-      <div class="preview"><img src="preview/rtk.png" alt=""></div>
-    </a>
-
-    <a href="http://digitals.at.ua/blog/skhema_priv_39_jazki_do_geodezichnikh_punktiv_dgm/2016-08-13-13">
-      ДГМ
-      <div class="preview"><img src="preview/dgm.png" alt=""></div>
-    </a>
-
-    <a href="http://digitals.at.ua/blog/zvit_gnss_kontrol_diferencijnogo_polja/2018-12-09-33">
-      Диференційне поле
-      <div class="preview"><img src="preview/field.png" alt=""></div>
-    </a>
-  </div>
-</div>
-
-  <div class="container">
+<div id="menu-container"></div>
+<div class="container">
 <h1>Оновлення модуля &quot;Документація&quot; до версії 5.0</h1>
 
 <p><a href="https://fendak.github.io/digitals/scrDoc/WhatNew501.html">Про оновлення 5.01</a><br />
@@ -1042,5 +828,12 @@
 Вартість оновлення з версії 3 та старіших версій&nbsp;- 800 грн.</p>
 
   </div>
+    <script>
+    fetch('https://fendak.github.io/digitals/menu.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
+      });
+  </script>
 </body>
 </html>

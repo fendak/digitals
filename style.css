@@ -1,109 +1,71 @@
-  body {
-    background-image: url("https://fendak.github.io/digitals/scrDoc/Fon.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
-    margin: 0;
-    padding: 40px 0;
-    display: flex;
-    justify-content: center;
-  }
-
-  .container {
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.92);
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    text-align: justify;
-  }
-
-  h1, h2 {
-    color: #0056b3;
-  }
-
-  .times18 {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 18px;
-  }
-
-  .small-note {
-    font-size: 14px;
-    font-family: Antiqua, sans-serif;
-  }
-
-  .green {
-    color: #008a3a;
-  }
-
-  s {
-    color: #c00000;
-  }
-
-  a {
-    color: #0056b3;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-	
-  /* ===== Dropdown text menu ===== */
-
-  .menu-wrapper {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-  }
-
-  .menu-button {
-    background: #0056b3;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s ease;
-  }
-  
-.dropdown a.sub-item {
-font-size: 14px;
-  color: #777;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background: #fafafa; /* Світло-сірий фон для контрасту */
+/* ===== Основні стилі сторінки ===== */
+body {
+  background-image: url("https://fendak.github.io/digitals/scrDoc/Fon.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
 }
 
-/* Символ стрілочки перед текстом */
-.dropdown a.sub-item::before {
-  content: "└ ";
-  color: #ccc;
-  margin-right: 5px;
+.container {
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  text-align: justify;
 }
 
-  .menu-button:hover {
-    background: #003f85;
-  }
+h1, h2 { color: #0056b3; }
+.times18 { font-family: "Times New Roman", Times, serif; font-size: 18px; }
+.small-note { font-size: 14px; font-family: Antiqua, sans-serif; }
+.green { color: #008a3a; }
+s { color: #c00000; }
+a { color: #0056b3; }
+a:hover { text-decoration: underline; }
 
+/* ===== Контейнер меню ===== */
+.menu-wrapper {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.menu-button {
+  background: #0056b3;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.menu-button:hover {
+  background: #003f85;
+}
+
+/* ===== Випадаючий список ===== */
 .dropdown {
   position: absolute;
-  top: 42px; /* Трохи підняли ближче до кнопки, щоб не було дірки */
+  top: 42px;
   left: 0;
   background: white;
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-
   opacity: 0;
   transform: translateY(-10px);
   pointer-events: none;
   transition: all 0.25s ease;
-  transition-delay: 0.2s; /* Дає тобі 0.2 секунди "фори", щоб не втратити меню */
-
+  transition-delay: 0.2s;
   padding: 10px 0;
   min-width: 260px;
 }
@@ -112,10 +74,10 @@ font-size: 14px;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
-  transition-delay: 0s; /* З'являється миттєво */
+  transition-delay: 0s;
 }
 
-/* Невидима підкладка, щоб мишка не втрачала зв'язок з меню */
+/* Невидимий міст для зручності мишки */
 .dropdown::before {
   content: "";
   position: absolute;
@@ -126,82 +88,100 @@ font-size: 14px;
   background: transparent;
 }
 
-  /* ===== Menu items ===== */
-
-  .dropdown a {
-    position: relative;
-    display: block;
-    padding: 10px 18px;
-    text-decoration: none;
-    color: #333;
-    font-size: 15px;
-    transition: background 0.2s ease;
-	border-bottom: 1px solid #f0f0f0; /* Легка лінія */
-  }
+/* ===== Пункти меню ===== */
+.dropdown a {
+  position: relative;
+  display: block;
+  padding: 10px 18px;
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
 
 .dropdown a:last-child {
-  border-bottom: none; /* Прибираємо лінію у останнього пункту */
+  border-bottom: none;
 }
 
-  .dropdown a:hover {
+/* Ефект наведення на пункт */
+.dropdown a:hover {
   background: #f1f6ff;
-  border-left: 4px solid #0056b3; /* Синя смужка зліва */
-  padding-left: 14px; /* Коригуємо паддінг, щоб текст не стрибав */
+  border-left: 4px solid #0056b3;
+  padding-left: 14px; /* Текст трохи зміщується, звільняючи місце смужці */
+  text-decoration: none;
 }
-  }
 
-  /* ===== Thought bubble preview (Оновлено) ===== */
+/* ===== Підпункти (Оновлення) ===== */
+.dropdown a.sub-item {
+  font-size: 13px;
+  color: #777;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 35px; /* Глибокий відступ для ієрархії */
+  background: #fafafa;
+}
 
-  .dropdown a .preview {
-    position: absolute;
-    left: 105%;
-    top: 50%;
-    transform: translateY(-50%) scale(0.95);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.25s ease;
+.dropdown a.sub-item::before {
+  content: "└ ";
+  color: #ccc;
+  position: absolute;
+  left: 18px;
+}
 
-    background: white;
-    padding: 14px;
-    border-radius: 40px; /* Округлі форми для хмаринки */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-  }
+/* ===== Хмаринки-підказки (Thought bubbles) ===== */
+.dropdown a .preview {
+  position: absolute;
+  left: 105%;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Плавний виліт */
 
-  /* Основна "хмаринка" */
-  .dropdown a .preview img {
-    display: block;
-    max-height: 32px;
-    width: auto;
-  }
+  background: white;
+  padding: 12px;
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  /* Маленька бульбашка */
-  .dropdown a .preview::before {
-    content: "";
-    position: absolute;
-    left: -14px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 16px;
-    height: 16px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
+.dropdown a .preview img {
+  display: block;
+  max-height: 35px;
+  width: auto;
+}
 
-  /* Ще одна менша бульбашка */
-  .dropdown a .preview::after {
-    content: "";
-    position: absolute;
-    left: -26px;
-    top: 60%;
-    width: 10px;
-    height: 10px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-  }
+/* Маленькі бульбашки хмаринки */
+.dropdown a .preview::after,
+.dropdown a .preview::before {
+  content: "";
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+}
 
-  .dropdown a:hover .preview {
-    opacity: 1;
-    transform: translateY(-50%) scale(1);
-  }
+/* Середня бульбашка */
+.dropdown a .preview::before {
+  left: -12px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translateY(-50%);
+}
+
+/* Найменша бульбашка */
+.dropdown a .preview::after {
+  left: -22px;
+  top: 60%;
+  width: 8px;
+  height: 8px;
+}
+
+/* Поява хмаринки */
+.dropdown a:hover .preview {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
