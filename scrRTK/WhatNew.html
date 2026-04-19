@@ -3,39 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Digitals - геодезія, картографія та землевпорядкування</title>
-  <style>
-    body {
-      background-image: url("https://fendak.github.io/digitals/scrDoc/Fon.jpg");
-      background-size: cover;      /* картинка масштабується під екран */
-      background-position: center; /* центрування */
-      background-attachment: fixed; /* картинка не рухається при прокрутці */
-      font-family: Arial, sans-serif;
-      font-size: 16px; /* розмір шрифту */
-      line-height: 1.5; /* відстань між рядками для легшого читання */
-      background: #f9f9f9;
-      color: #333;
-      margin: 0;
-      padding: 40px 0; /* відступ зверху/знизу */
-      display: flex;
-      justify-content: center; /* центрування контейнера */
-    }
-
-    .container {
-      max-width: 900px;  /* ширина для великих екранів */
-      background: rgba(255, 255, 255, 0.9); /* легка біла підкладка */
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* тінь для гарного вигляду */
-      text-align: justify; /* додаємо вирівнювання по обидві сторони */
-    }
-
-    h1 {
-      color: #0056b3;
-    }
-  </style>
+<link rel="stylesheet" href="https://fendak.github.io/digitals/style.css">
 </head>
+
+
+
 <body>
-  <div class="container">
+<div id="menu-container"></div>
+<div class="container">
 <h2>Що нового у скрипті <a href="http://digitals.at.ua/blog/shabloni_dlja_zvitu_po_rtk/2016-12-12-18">Шаблони для звіту по RTK</a>? (21.09.2025)<br />
 &nbsp;</h2>
 
@@ -105,5 +80,12 @@
 
 <p>Оновлення скрипту безкоштовне. Для оновлення звертайтесь на пошту.</p>
   </div>
+    <script>
+    fetch('https://fendak.github.io/digitals/menu.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
+      });
+  </script>
 </body>
 </html>
