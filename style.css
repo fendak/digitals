@@ -72,9 +72,18 @@
   }
   
 .dropdown a.sub-item {
-  padding-left: 20px !important; /* !important гарантує, що відступ спрацює */
-  font-size: 14px;
-  color: #666;
+font-size: 14px;
+  color: #777;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background: #fafafa; /* Світло-сірий фон для контрасту */
+}
+
+/* Символ стрілочки перед текстом */
+.dropdown a.sub-item::before {
+  content: "└ ";
+  color: #ccc;
+  margin-right: 5px;
 }
 
   .menu-button:hover {
@@ -127,10 +136,18 @@
     color: #333;
     font-size: 15px;
     transition: background 0.2s ease;
+	border-bottom: 1px solid #f0f0f0; /* Легка лінія */
   }
 
+.dropdown a:last-child {
+  border-bottom: none; /* Прибираємо лінію у останнього пункту */
+}
+
   .dropdown a:hover {
-    background: #f1f6ff;
+  background: #f1f6ff;
+  border-left: 4px solid #0056b3; /* Синя смужка зліва */
+  padding-left: 14px; /* Коригуємо паддінг, щоб текст не стрибав */
+}
   }
 
   /* ===== Thought bubble preview (Оновлено) ===== */
