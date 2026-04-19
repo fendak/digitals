@@ -3,38 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <title>Digitals - геодезія, картографія та землевпорядкування</title>
-  <style>
-    body {
-      background-image: url("https://fendak.github.io/digitals/scrDoc/Fon.jpg");
-      background-size: cover;      /* картинка масштабується під екран */
-      background-position: center; /* центрування */
-      background-attachment: fixed; /* картинка не рухається при прокрутці */
-      font-family: Arial, sans-serif;
-      font-size: 16px; /* розмір шрифту */
-      line-height: 1.5; /* відстань між рядками для легшого читання */
-      background: #f9f9f9;
-      color: #333;
-      margin: 0;
-      padding: 40px 0; /* відступ зверху/знизу */
-      display: flex;
-      justify-content: center; /* центрування контейнера */
-    }
 
-    .container {
-      max-width: 900px;  /* ширина для великих екранів */
-      background: rgba(255, 255, 255, 0.9); /* легка біла підкладка */
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* тінь для гарного вигляду */
-      text-align: justify; /* додаємо вирівнювання по обидві сторони */
-    }
+<style>
+  body {
+    background-image: url("https://fendak.github.io/digitals/scrDoc/Fon.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+  }
 
-    h1 {
-      color: #0056b3;
-    }
-  </style>
+  .container {
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    text-align: justify;
+  }
+
+  h1, h2 {
+    color: #0056b3;
+  }
+
+  /* Курсив тепер автоматично жирний */
+  em {
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .times18 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+  }
+
+  .small-note {
+    font-size: 14px;
+    font-family: Antiqua, sans-serif;
+  }
+
+  .green {
+    color: #008a3a;
+  }
+
+  s {
+    color: #c00000;
+  }
+
+  a {
+    color: #0056b3;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+	
+  /* ===== Dropdown text menu ===== */
+
+  .menu-wrapper {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
+
+  .menu-button {
+    background: #0056b3;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+
+  .menu-button:hover {
+    background: #003f85;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.25s ease;
+
+    padding: 10px 0;
+    min-width: 260px;
+  }
+
+  .menu-wrapper:hover .dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* ===== Menu items ===== */
+
+  .dropdown a {
+    position: relative;
+    display: block;
+    padding: 10px 18px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    transition: background 0.2s ease;
+  }
+
+  .dropdown a:hover {
+    background: #f1f6ff;
+  }
+
+  /* ===== Thought bubble preview (Оновлено) ===== */
+
+  .dropdown a .preview {
+    position: absolute;
+    left: 105%;
+    top: 50%;
+    transform: translateY(-50%) scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+
+    background: white;
+    padding: 14px;
+    border-radius: 40px; /* Округлі форми для хмаринки */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  }
+
+  /* Основна "хмаринка" */
+  .dropdown a .preview img {
+    display: block;
+    max-height: 32px;
+    width: auto;
+  }
+
+  /* Маленька бульбашка */
+  .dropdown a .preview::before {
+    content: "";
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  /* Ще одна менша бульбашка */
+  .dropdown a .preview::after {
+    content: "";
+    position: absolute;
+    left: -26px;
+    top: 60%;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+  }
+
+  .dropdown a:hover .preview {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+</style>
 </head>
+
+
+
 <body>
+<div class="menu-wrapper">
+  <div class="menu-button">☰ Меню</div>
+
+  <div class="dropdown">
+    <a href="http://digitals.at.ua/">
+      Головна
+      <div class="preview"><img src="preview/home.png" alt=""></div>
+    </a>
+
+    <a href="http://digitals.at.ua/blog/skript_modul_dokumentacija/2016-08-29-15">
+      Модуль "Документація"
+      <div class="preview"><img src="preview/doc.png" alt=""></div>
+    </a>
+
+    <a href="https://fendak.github.io/digitals/scrDoc/WhatNew.html">
+      Про оновлення 5
+      <div class="preview"><img src="preview/update.png" alt=""></div>
+    </a>
+
+    <a href="http://digitals.at.ua/blog/shabloni_dlja_zvitu_po_rtk/2016-12-12-18">
+      РТК
+      <div class="preview"><img src="preview/rtk.png" alt=""></div>
+    </a>
+
+    <a href="http://digitals.at.ua/blog/skhema_priv_39_jazki_do_geodezichnikh_punktiv_dgm/2016-08-13-13">
+      ДГМ
+      <div class="preview"><img src="preview/dgm.png" alt=""></div>
+    </a>
+
+    <a href="http://digitals.at.ua/blog/zvit_gnss_kontrol_diferencijnogo_polja/2018-12-09-33">
+      Диференційне поле
+      <div class="preview"><img src="preview/field.png" alt=""></div>
+    </a>
+  </div>
+</div>
   <div class="container">
 
 <div style="border-bottom:solid #39a5b7 1.5pt; padding:0cm 0cm 4.0pt 0cm">
@@ -45,6 +233,39 @@
 <br />
 <strong>Перед оновленням відключіть захищене з&#39;єднання з НКС для програми Digitals.</strong><br />
 <img alt="" src="https://fendak.github.io/digitals/scrXML/image/1.png" style="float: left; width: 375px; height: 128px;" />Щоб оновити скрипт, перейдіть в налаштування скрипту (натисніть кнопку налаштувань) і поставте &quot;<em>так</em>&quot; в опції &quot;<em>Перевірити наявність нової версії</em>&quot; (дана опція доступна тільки&nbsp;якщо ви раніше вже оновили були скрипт до версії 6.01 і вище).</p>
+
+<p><span style="color:#880000;"><span style="font-size:14px;"><strong>Що нового у версії 6.07</strong></span></span>?</p>
+
+<p>1. Додано автоматичне заповнення в xml тегів для позначення &laquo;Інформації про наявність особливостей, визначених підпунктом 26 пункту 27 та абзацом шістнадцятим пункту 28 розділу X &laquo;Перехідні положення&raquo; Земельного кодексу України&raquo; (TemporarilyOccupiedZoneInfo). Скрипт автоматично за замовчуванням додає тег із значенням&nbsp;False (Відсутні особливості). Наявність тегу&nbsp;TemporarilyOccupiedZoneInfo стала критичнно важливою після нещодавніх змін в НКС, яка без нього почала видавати критичну помилку.<br />
+<br />
+2. До першої кнопки додано новий режим запуску - автоматичне заповнення назви і кадастрового номера в суміжнику. Щоб активувався даний режим, має виконуватись дві умови:<br />
+1) на відкритий xml додатково нанесено ділянки JSON (вони мають бути або в&nbsp;шарі<strong><em> id12496901</em></strong> (стандартний шар, в якому додаються ділянки JSON в програмі Digitals) або в шарі&nbsp;<strong><em>id8899</em></strong> (спеціальний шар, в якому ділянки JSON додаються скриптом <em>Панелі інструментів для kadastr.live</em>);<br />
+2) перед запуском скрипту виділено один чи декілька суміжників.<br />
+Тоді, якщо поряд із суміжником на XML знайдено ділянку JSON, інформація з неї переноситься у відповідний суміжник.</p>
+
+<p>3. В скрипт, який створює охоронні зони (кнопка №4) додано опцію, яка дозволяє вибрати відстань між точками в дузі скруглених країв охоронних зон:<br />
+<img alt="" src="http://digitals.at.ua/image2/2026-04-19_140717.png" style="width: 600px; height: 294px;" /></p>
+
+<p>Чому саме такі цифри? Бо саме з такими параметрами скруглення створює програма Digitals залежнно від того іншого масштабу карти (скрипт на час вторення охоронної зони тимчасово змінює машстаб карти на відповідний заданій довжині)</p>
+
+<p>4. Оскільки відповідно до&nbsp;<a href="https://zakon.rada.gov.ua/laws/show/140-2026-%D0%BF#Text">пост. КМУ №140 від 05.02.2026 р.</a>&nbsp;було внесено зміни в постанову 1051, а саме додано новий сервітут:<br />
+<span style="color:#00b050;"><em>07.19 Право на розгортання, експлуатацію електронних комунікаційних мереж&nbsp;Технічна зона метрополітену</em></span><br />
+а також змінено назви двох інших обмежень:<br />
+<em>01.04 Охоронна зона навколо</em>&nbsp;<i>[<span style="color:#ff0000;"><s>(уздовж) об&#39;єкта зв&#39;язку</s></span></i><i>]<span style="color:#00b050;">інфраструктури електронних комунікаційних мереж</span></i><br />
+<em>07.03 Право прокладення та експлуатації ліній електропередачі,&nbsp;</em><i>[<span style="color:#ff0000;"><s>електронних комунікаційних мереж</s></span>]</i><span style="color:#00b050;"><em>трубопроводів, інших лінійних комунікацій</em></span><br />
+оновлено довідник&nbsp;<strong><em>scrOZRestrCodes.txt</em></strong> у папці <em>Lists\scrXML (використовується у випадаючому списку під час вибору обмежень кнопкою №4).</em><br />
+Також&nbsp;змінено назву одного пункту цільового призначення:<br />
+<em>13.01&nbsp;</em><i>[<span style="color:#ff0000;"><s>Для розміщення та експлуатації об&#39;єктів і споруд електронних комунікацій</s></span></i><i>]</i><span style="color:#00b050;"><em>Для розгортання, експлуатації електронних комунікаційних мереж</em></span><br />
+(оновлено довідники <strong><em>Purpose.txt</em></strong> та <strong><em>PurposeReverse.txt</em></strong> у папці <em>Lists/scrXML</em>).</p>
+
+<p>5. Вилучено ряд застарілих опцій:</p>
+
+<ul>
+ <li>форма власності ділянки - НКС уже її не підятягує і нема вже сенсу її заповнювати</li>
+ <li>напис, коли відсутній кадастровий номер суміжника - колись там вимагали, щоб було написано щось типу&nbsp;&quot;кадастровий номер відсутній&quot;, зараз там дозволено писати тільки цифри і, коли номер відсутній, просто не ставимо нічого;</li>
+ <li>читати кад. номери суміжників - колись, коли був доступ до публічки, вони читалися автоматично, зараз опція втратила сенс, а читання суміжників тепер відбувається так, як описано вище в п.2.</li>
+</ul>
+
 
 <p><span style="color:#880000;"><span style="font-size:14px;"><strong>Що нового у версії 6.06</strong></span></span>?</p>
 
