@@ -9,44 +9,8 @@
 
 
 <body>
-<div class="menu-wrapper">
-  <div class="menu-button">☰ Меню</div>
-
-  <div class="dropdown">
-    <a href="http://digitals.at.ua/">
-      Головна
-      <div class="preview"><img src="https://fendak.github.io/digitals/preview/home.png" alt=""></div>
-    </a>
-    <a href="http://digitals.at.ua/blog/skript_modul_dokumentacija/2016-08-29-15">
-      Модуль "Документація"
-      <div class="preview"><img src="https://fendak.github.io/digitals/preview/doc.png" alt=""></div>
-    </a>
-    <a href="https://fendak.github.io/digitals/scrDoc/WhatNew.html">
-		(про оновлення версії 5)
-		<div class="sub-item""></div>
-    </a>
-    <a href="http://digitals.at.ua/blog/shabloni_dlja_zvitu_po_rtk/2016-12-12-18">
-      РТК
-      <div class="preview"><img src="https://fendak.github.io/digitals/preview/rtk.png" alt=""></div>
-    </a>
-    <a href="http://digitals.at.ua/blog/skhema_priv_39_jazki_do_geodezichnikh_punktiv_dgm/2016-08-13-13">
-      ДГМ
-      <div class="preview"><img src="https://fendak.github.io/digitals/preview/dgm.png" alt=""></div>
-    </a>
-    <a href="http://digitals.at.ua/blog/zvit_gnss_kontrol_diferencijnogo_polja/2018-12-09-33">
-      Диференційне поле
-      <div class="preview"><img src="https://fendak.github.io/digitals/preview/field.png" alt=""></div>	  
-	<a href="http://digitals.at.ua/blog/skript_modul_xml/2018-02-11-27">
-      Модуль "XML"
-      <div class="sub-item"><img src="https://fendak.github.io/digitals/preview/xml.png" alt=""></div>	  
-	<a href="https://fendak.github.io/digitals/scrXML/WhatNew.html">
-		(про оновлення версії 6)
-		<div class="sub-item""></div>
-    </a>
-    </a>
-  </div>
-</div>
-  <div class="container">
+<div id="menu-container"></div>
+<div class="container">
 
 <div style="border-bottom:solid #39a5b7 1.5pt; padding:0cm 0cm 4.0pt 0cm">
 <h2 class="MsoTitle"><span style="color:#add8e6;"><strong><span style="font-size:16px;">Оновлення модуля XML (версія 6)</span></strong></span></h2>
@@ -160,5 +124,12 @@
 <p><a href="http://digitals.at.ua/index/onovlennja_modulja_quot_xml_quot_prodovzhennja/0-27">Дивитися історію попередніх версій</a></p>
 
   </div>
+  <script>
+    fetch('https://fendak.github.io/digitals/menu.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
+      });
+  </script>
 </body>
 </html>
