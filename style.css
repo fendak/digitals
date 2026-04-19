@@ -72,8 +72,8 @@
   }
   
 .dropdown a.sub-item {
-  padding-left: 40px !important; /* !important гарантує, що відступ спрацює */
-  font-size: 13px;
+  padding-left: 20px !important; /* !important гарантує, що відступ спрацює */
+  font-size: 14px;
   color: #666;
 }
 
