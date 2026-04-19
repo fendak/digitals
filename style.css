@@ -71,11 +71,11 @@
     transition: background 0.3s ease;
   }
   
-  .dropdown a.sub-item {
-  padding-left: 20px; /* Регулюй це число, щоб змінити розмір відступу */
-  font-size: 14px;    /* Можна трохи зменшити шрифт для підпункту */
-  color: #666;        /* І зробити колір м'якшим */
-    }
+.dropdown a.sub-item {
+  padding-left: 40px !important; /* !important гарантує, що відступ спрацює */
+  font-size: 13px;
+  color: #666;
+}
 
   .menu-button:hover {
     background: #003f85;
