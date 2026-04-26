@@ -1,0 +1,24 @@
+;перевірка площі ділянки з сумою площ угідь
+@Map.DeselectAll
+@Map.SelectLayer id70005
+$N=@Map.SelectedObject
+$AreaD=0
+$SumArea=0
+@if $N=0 then @Goto %Next
+$AreaD=@Map.Object[$N].Parameter[0]
+$AreaD=@Calc replace("$AreaD",",",".")
+$AreaD=@DequoteText $AreaD
+$AreaD=$AreaD+0
+@Map.DeselectAll
+@Map.SelectLayer id70009
+$N=0
+%Start
+$N=@Map.NextSelected $N
+@if $N=0 then @Goto %Next
+$Area=@Map.Object[$N].Parameter[0]
+$Area=@Calc replace("$Area",",",".")
+$Area=@DequoteText $Area
+$SumArea=@Calc $SumArea+$Area
+@Goto %Start
+%Next
+@if $SumArea<>$AreaD then @Break Площа ділянки ($AreaD) не сходиться з сумою площ угідь ($SumArea)
