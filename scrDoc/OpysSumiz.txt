@@ -1,0 +1,550 @@
+$Papka=@ProgramFolder
+$Prefiks=земл≥
+$NapysSum=не визначено
+$KorekSumiz=н≥
+@Text.Load $Papka\TD\ онстанти.txt
+$PublKN=@Text.Line[36]
+$PublKN=@StringPart 2=$PublKN
+$KNuSum=@Text.Line[48]
+$KNuSum=@StringPart 2=$KNuSum
+@if $PublKN=так then $KNuSum=так
+$Ver=@Version
+@if $Ver<42345 then $PublKN=н≥
+$Tab=@Calc char(9)
+$Tab=@DequoteText $Tab
+$Space=@Calc char(32)
+$Space=@DequoteText $Space
+$VBar=@Calc Char(124)
+$VBar=@DequoteText $VBar
+$Nom=0
+@ExecuteMenu MapCheckPurgeDeleted
+@Text[14].Add 0
+@Text[15].Add 0
+;
+;++++++++++++++ ќписуЇмо сум≥жники +++++++++++++++++
+;визначаЇмо в €к≥й сторон≥ св≥ту сум≥жник
+@Map.DeselectAll
+@Map.SelectLayer ID70005
+$Dil=@Map.SelectedObject
+@if $Dil=0 then @Break ”пс.. кудись зникла д≥л€нка
+$CentrX=@Map.Object[$Dil].Parameter[-4]
+$CentrY=@Map.Object[$Dil].Parameter[-3]
+$AreaDil=@Map.Object[$Dil].Parameter[0]
+$AreaDil=@ReplaceChar ,.$AreaDil
+;
+$MC=@Map.Count
+$N=0
+%StartVSS
+@Map.DeselectAll
+$N=$N+1
+$LID=@Map.Object[$N].LayerID
+@If $LID<>70010 then @Goto %NextVSS
+$XSumiz=@Map.Object[$N].Parameter[-4]
+$YSumiz=@Map.Object[$N].Parameter[-3]
+$NObj=@Map.NewObject id70002
+@Map.Object[$NObj].Point[1] $CentrX $CentrY
+@Map.Object[$NObj].AddPoint $XSumiz $YSumiz
+@Map.RefreshObject $NObj
+$Dyr=@Map.Object[$NObj].LineAngle[1]
+$Dyr=@ReplaceChar ,.$Dyr
+@Map.DeleteObject $NObj
+$storona=(не визначено!!!)
+@if ("$Dyr"<"22.5") or ("$Dyr">="337.5") then $storona=Х ≥з п≥вноч≥
+@if ("$Dyr">"22.5") and ("$Dyr"<="67.5") then $storona=Х з п≥вн≥чного сходу
+@if ("$Dyr">"67.5") and ("$Dyr"<="112.5") then $storona=Х з≥ сходу
+@if ("$Dyr">"112.5") and ("$Dyr"<="157.5") then $storona=Х з п≥вденного сходу
+@if ("$Dyr">"157.5") and ("$Dyr"<="202.5") then $storona=Х ≥з п≥вдн€
+@if ("$Dyr">"202.5") and ("$Dyr"<="247.5") then $storona=Х з п≥вденного заходу
+@if ("$Dyr">"247.5") and ("$Dyr"<="292.5") then $storona=Х ≥з заходу
+@if ("$Dyr">"292.5") and ("$Dyr"<="337.5") then $storona=Х з п≥вн≥чного заходу
+@Text[2].Add $storona
+%NextVSS
+@if $N<$MC then @Goto %StartVSS
+$T2Count=@Text[2].Count
+;к≥льк≥сть об'Їкт≥в в шар≥ XML_—ум≥жник
+$AC=@Map.Layers.ObjectCount ID70010
+@Map.SelectAll
+$SelCountdo=@Map.SelCount
+@Map.DeselectAll
+$SelectedList=0
+;
+;+++++++++ „»“ј™ћќ  јƒј—“–ќ¬≤ Ќќћ≈–» ++++++++++
+@Map.Layers.Add 1111211 1 ¬каз≥вник до центроњда
+$NL=@Map.Layers.FindByID id1111211
+@Map.Layers.SetAttributes $NL 0 0 16711935 30 1 16777215 0 Courier_New 80 0 -2147483640
+@Text.Clear
+$CN=@Map.Count
+@if $PublKN<>так then @Goto %NoKNvSum										
+$I=0
+$PointObj=0
+$PointCPM=0
+@Progress.Start $AC „итаЇмо кад. номери сум≥жник≥в
+%StartKNvSum
+$I=$I+1
+$LID=@Map.Object[$I].LayerID
+@If $LID<>70010 then @Goto %NextKNvSum
+@If $SelectedList=0 then @Goto %NoSelectedSum
+$IndexOf=@Text[27].IndexOf $I
+@If $IndexOf=0 then @Goto %NextKNvSum
+%NoSelectedSum
+@Progress.StepBy
+$Canceled=@Progress.Canceled
+@if $Canceled=1 then @Goto %NoKNvSum
+$KNS=@Map.Object[$I].Parameter[ID7001000]
+@if ("$KNS"<>"") and ("$SelectedList"="0") then @Goto %NextKNvSum
+$Param=@Map.Object[$I].Parameter[ID7001003]
+$Param=@ReplaceChar "*$Param
+$Pustyi=0
+$IP=@Calc Pos("дорога","$Param")
+$Pustyi=$Pustyi+$IP
+$IP=@Calc Pos("проњзд","$Param")
+$Pustyi=$Pustyi+$IP
+$IP=@Calc Pos("прох≥д","$Param")
+$Pustyi=$Pustyi+$IP
+$IP=@Calc Pos("вулиц€","$Param")
+$Pustyi=$Pustyi+$IP
+$IP=@Calc Pos("канава","$Param")
+$Pustyi=$Pustyi+$IP
+$IP=@Calc Pos("вул.","$Param")
+$Pustyi=$Pustyi+$IP
+@if $Pustyi>0 then @Map.Object[$I].Parameter[ID7001000]=$NONE
+@if $Pustyi>0 then @Goto %NextKNvSum
+;
+@Map.DeselectAll
+@Map.SelectObject $I
+$Centroid=@Map.Object[$I].Centroid
+@Map.Selected.ExpandPolygon -0.01
+$PerpendObj=0
+$ExpObj=@Map.SelectedObject
+@if $ExpObj<>0 then $Centroid2=@Map.Object[$ExpObj].Centroid
+@if $ExpObj<>0 then @Map.DeleteObject $ExpObj
+@if $ExpObj<>0 then $PerpendObj=@Map.PerpendicularToNearestLine $Centroid2 $I id10000 Reverse
+@if $PerpendObj=0 then @Goto %NoPublKN
+$Sobj=@Map.Count
+$XYS=@Map.Object[$Sobj].Point[1]
+$XS=@StringPart 1 $XYS
+$YS=@StringPart 2 $XYS
+$Dyr=@Map.Object[$Sobj].LineAngle[1]
+@Map.DeleteObject $Sobj
+$PointObj=@Map.NewObject id1111211
+@Map.Object[$PointObj].Point[1] $Centroid
+@Map.RefreshObject $PointObj
+$ParentObjIN4=@Map.ParentObject $PointObj id20000
+$ParentObjXML=@Map.ParentObject $PointObj id70005
+$ParentObj=$ParentObjIN4+$ParentObjXML
+$Dyr=@ReplaceChar ,.$Dyr
+@if $ParentObj>0 then $Dyr=$Dyr+180
+@if $Dyr>360 then $Dyr=$Dyr-360
+$Pi=3.1415927
+$XST=@Calc $XS+Cos($Dyr*$Pi/180)*4
+$YST=@Calc $YS+Sin($Dyr*$Pi/180)*4
+$XST=@RoundTo $XST 3
+$YST=@RoundTo $YST 3
+$S=@Map.Object[$I].Parameter[0]
+$S=@ReplaceChar ,.$S
+@if ("$S">"0") and ("$S"<="0.0025") then $XST=@Map.Object[$I].Parameter[-4]
+@if ("$S">"0") and ("$S"<="0.0025") then $YST=@Map.Object[$I].Parameter[-3]
+@Map.Object[$PointObj].Point[1] $XST $YST
+@Map.RefreshObject $PointObj
+@if $KorekSumiz=н≥ then @Map.DeleteObject $PointObj
+$KNT=$NapysSum
+; 
+$Datum=@Map.Datum
+@if $Datum= then @Map.Datum SK63
+$Tab=@Calc char(9)
+$Tab=@DequoteText $Tab
+;$BL=@Map.Object[$PointObj].GoogleBLCode
+;@Map.DeleteObject $PointObj
+;$B=@StringPart 1,$BL
+;$L=@StringPart 2,$BL
+;$clientId=-GaRyP9FhsktOy-jHTir2KyK1Loxzrt60eUOxkYviUs5EYNO-tU6sMOXJXScjwldUW8LKXQSOl8SRzZg
+;$key=m_I7F3w-0bp8WAuAjq9qkVcWyyQ1AD64IuYs1MPmFuNGYBMC4_d1U1rQ8PneuJG8-Og9NB_kADOs8iuR
+;$URL=https://soft.farm/api/open/cadastral/find-cadastral-number-by-point?lat=$B&lng=$L&clientId=$clientId&key=$key
+;$ResXML=@HTTP.Get $URL
+;$KNT=@StringPart 6"$ResXML
+;@Window.Refresh
+;@if "$KNT"<>"" then @Goto %Yessoftfarm
+@Map.DeselectAll
+@Map.SelectObject $I
+@Map.SelectObject $PointObj
+@Window.ShowSelected
+@Window.ZoomOut
+$Res=@Map.GetPublicMapParcelInfo $XST $YST
+@if "$Res"="0" then $Res=
+@if "$Res"<>"" then @Text.Text $Res
+@if "$Res"<>"" then $KNT=@Text.Line[1]
+@if "$Res"="" then $PointCPM="$XST $YST 0"
+@if "$Res"="" then $PointCPM=@DequoteText $PointCPM
+@if "$Res"="" then @Goto %NoCPM
+@if $KorekSumiz=н≥ then @Goto %NoCPM
+;%Yessoftfarm
+$CountDo=@Map.Count
+@Map.DeselectAll
+@CreateParcelMarker $KNT
+$CountAfter=@Map.Count
+@if $CountDo<>$CountAfter then @Map.SelectObject $CountAfter
+$CPMObj=@Map.SelectedObject
+@if $CPMObj=0 then $PointCPM="$XST $YST 0"
+@if $CPMObj=0 then $PointCPM=@DequoteText $PointCPM
+@if $CPMObj=0 then @Goto %NoCPM
+$LIDKNPoint=@Map.Object[$CPMObj].LayerID
+$GetValidPar=@Map.Layers.GetValidParameters id$LIDKNPoint
+$ParamBuf=@Map.GetObjectParamBuf $CPMObj
+@Map.Layers.SetValidParameters id1111211 $GetValidPar
+$PointCPM=@Map.Object[$CPMObj].Point[1]
+$X=@StringPart 1 $PointCPM
+$Y=@StringPart 2 $PointCPM
+$X=@RoundTo $X 3
+$Y=@RoundTo $Y 3
+$PointCPM="$X $Y 0"
+$PointCPM=@DequoteText $PointCPM
+@Map.Object[$PointObj].AddPoint $PointCPM
+@Map.SetObjectParamBuf $PointObj|$ParamBuf
+@Map.RefreshObject $PointObj
+%NoCPM
+;
+@Map.Object[$I].Parameter[ID7001000]=$KNT
+$OID=@Map.Object[$I].ID
+$PointOID=@Map.Object[$PointObj].ID
+;
+$SumtoPoint=@Concat $OID,$Tab,$PointOID,$Tab,$PointCPM
+@Text[26].Add $SumtoPoint
+;@Text[26].Save C:\Digitals\≤¬≤.txt
+%NextKNvSum
+@if $I<$CN then @Goto %StartKNvSum
+;
+%NoKNvSum
+@Progress.Stop
+@Map.SelectAll
+$SelCount=@Map.SelCount
+@Map.DeselectAll
+@if $SelCount=$SelCountdo then @Goto %EndTLK
+;
+;++++++++++++++ƒ»¬»ћќ—я, я ≤ Ѕ”Ћ» «ћ≤Ќ»+++++++++++++++
+@if $KorekSumiz=н≥ then @Goto %NoKor2
+@ExecuteMenu LoadFromInet
+@Map.DeselectAll
+@Map.SelectLayer id70005
+@Window.ShowSelected
+@Map.DeselectAll
+@Window.ZoomOut
+$Dialog=@Dialog.WaitBox ѕерев≥рте, чи добре заповнились кад.номери сум≥жник≥в ≥ натисн≥ть "ѕродовжити"
+@if $Dialog=0 then @Break
+$TLC=@Text[26].Count
+@if $TLC=0 then @Goto %EndTLK
+$I=0
+@Progress.Start $AC ѕерев≥рка кад. номер≥в
+%StartTLK
+$I=$I+1
+@Progress.StepBy
+$Canceled=@Progress.Canceled
+@if $Canceled=1 then @Goto %NoKNvSum
+$Line=@Text[26].Line[$I]
+$LineObj=@StringPart 2$Tab$Line
+$LineObj=@Map.FindByParameters 1|-6=$LineObj
+$LineObj=@Map.SelectedObject
+$SumObj=@StringPart 1$Tab$Line
+$SumObj=@Map.FindByParameters 1|-6=$SumObj
+$SumObj=@Map.SelectedObject
+@if $LineObj=0 then @Map.Object[$SumObj].Parameter[ID7001000]=$NapysSum
+@if $SumObj=0 then @Goto %NextTLK
+@if $LineObj=0 then @Goto %NextTLK
+$PointCPMdo=@StringPart 3$Tab$Line
+$PointCount=@Map.Object[$LineObj].Count
+@if $PointCount=1 then $PointCPM=@Map.Object[$LineObj].Point[1]
+@if $PointCount=2 then $PointCPM=@Map.Object[$LineObj].Point[2]
+$X=@StringPart 1 $PointCPM
+$Y=@StringPart 2 $PointCPM
+$X=@RoundTo $X 3
+$Y=@RoundTo $Y 3
+$PointCPM="$X $Y 0"
+$PointCPM=@DequoteText $PointCPM
+@if $PointCPMdo=$PointCPM then @Goto %NextTLK
+@Map.DeselectAll
+@Map.SelectObject $SumObj
+@Map.SelectObject $LineObj
+@Window.ShowSelected
+@Window.ZoomOut
+$Res=@Map.GetPublicMapParcelInfo $PointCPM
+@if "$Res"="0" then $Res=
+@if "$Res"<>"" then @Text.Text $Res
+@if "$Res"<>"" then $KNT=@Text.Line[1]
+@if "$Res"="" then @Goto %NoTLK
+$CountDo=@Map.Count
+@Map.DeselectAll
+@CreateParcelMarker $KNT
+$CountAfter=@Map.Count
+@if $CountDo<>$CountAfter then @Map.SelectObject $CountAfter
+$CPMObj=@Map.SelectedObject
+@if $CPMObj=0 then @Goto %NoTLK
+$PointCPM=@Map.Object[$CPMObj].Point[1]
+@if $PointCount=2 then @Map.Object[$LineObj].Point[2] $PointCPM
+@Map.RefreshObject $LineObj
+%NoTLK
+@Map.Object[$SumObj].Parameter[ID7001000]=$KNT
+%NextTLK
+@If $I<$TLC then @Goto %StartTLK
+@Map.DeselectAll
+%EndTLK
+@Map.DeselectAll
+@Map.SelectLayer id1111211 id$LIDKNPoint
+@Map.Selected.Delete
+@Map.SelectLayer id70005 id20000
+@Window.ShowSelected
+@Map.DeselectAll
+@Window.ZoomOut
+%NoKor2
+;«находимо к≥льк≥сть замкнутих сум≥жник≥в ≥ в≥дн≥маЇмо в≥д загального числа сум≥ник≥в
+$I=0
+%StartZamk
+$I=$I+1
+$LID=@Map.Object[$I].LayerID
+@if $LID<>70010 then @Goto %NextZamk
+$Closed=@Map.Object[$I].Closed
+@if $AreaDil=$AreaSumiz then $Closed=0
+@If $Closed=1 then $AC=$AC-1
+%NextZamk
+@if $I<$MC then @Goto %StartZamk
+;
+;
+;+++++++++++ –ќ«ѕ»—”™ћќ —”ћ≤∆Ќ» » ++++++++++++
+@Text.Clear
+;јЅ¬√ƒ≈™∆«»≤ѓ… ЋћЌќѕ–—“”‘’÷„Ўў№ёя
+$Letters=@GetConstant UkrainianLetters
+$LettCount=@Calc Length("$Letters")
+$LettCount=$LettCount+1
+$CC=0
+$I=0
+$VK=0
+$NameFull=
+$SumList2=
+$Reshta=@Concat ________,$Tab,______________
+;початок циклу
+;
+%StartExplSu
+$I=$I+1
+$LID=@Map.Object[$I].LayerID
+@if $LID<>70010 then @Goto %NextExplSu
+$CC=$CC+1
+$AreaSumiz=@Map.Object[$I].Parameter[0]
+$AreaSumiz=@ReplaceChar ,.$AreaSumiz
+;перша буква
+$Lett=$CC/$LettCount
+$Lett=@StringPart 1.$Lett
+$Rah=$CC-$LettCount*$Lett+$Lett
+$FirstLetter=@Calc Copy("$Letters",$Rah,1)
+$FirstLetter=@DequoteText $FirstLetter
+@if $Lett=0 then $Lett=
+$FirstLetter=@Concat $FirstLetter,$Lett
+;друга буква
+$Lett2=($CC+1)/$LettCount
+$Lett2=@StringPart 1.$Lett2
+$Rah2=$CC-$LettCount*$Lett2+1+$Lett2
+$SecondLetter=@Calc Copy("$Letters",$Rah2,1)
+$SecondLetter=@DequoteText $SecondLetter
+@if $Lett2=0 then $Lett2=
+$SecondLetter=@Concat $SecondLetter,$Lett2
+;€кщо останн≥й сум≥жник, то буква "ј"
+@if $CC=$AC then $SecondLetter=@Calc Copy("$Letters",1,1) 
+@if $CC=$AC then $SecondLetter=@DequoteText $SecondLetter
+@if $AreaDil=$AreaSumiz then $SecondLetter=ј
+$StorSvity=Х з внутр≥шньоњ сторони
+@if $CC<=$T2Count then $StorSvity=@Text[2].Line[$CC]
+;д≥стаЇмо назву сум≥жника 
+$Param=@Map.Object[$I].Parameter[ID7001003]
+$KNSumiz=@Map.Object[$I].Parameter[ID7001000]
+$DodInfo=@Map.Object[$I].Parameter[ID7001004]
+$DodInfo=@XML.XPath AdditionalInfo $DodInfo
+$F=0
+$PPIB=
+$PIPB=
+$PViP=
+$NameFullNext=
+$NameFullNext2=
+$PPIB=@XML.XPath Proprietor[1]/LegalEntity/Name <root>$Param</root>
+$Name=@XML.XPath Proprietor[1]/LegalEntity/Name <root>$Param</root>
+@if $Name<> then $NameFullNext=$Name
+@if $Name<> then $NameFullNext2=$Name
+@if $PPIB<> then @Goto %NoFiz
+%StartPFiz
+$F=$F+1
+$P1PrFiz=@XML.XPath Proprietor[$F]/NaturalPerson/FullName/LastName <root>$Param</root>
+@if $P1PrFiz= then @Goto %NoFiz
+$P1ImFiz=@XML.XPath Proprietor[$F]/NaturalPerson/FullName/FirstName <root>$Param</root>
+$P1PoFiz=@XML.XPath Proprietor[$F]/NaturalPerson/FullName/MiddleName <root>$Param</root>
+$P1PrFizV=@UpperCase $P1PrFiz
+@if $P1ImFiz=- then $P1ImFiz=
+$P1VImFiz=$P1ImFiz
+@if $NameFullNext<> then $NameFullNext=$NameFullNext/
+$NameFullNext=$NameFullNext$P1PrFiz $P1ImFiz $P1PoFiz
+@if $NameFullNext2<> then $NameFullNext2=$NameFullNext2/
+$NameFullNext2=$NameFullNext2гр.$P1PrFiz $P1ImFiz $P1PoFiz
+@if $P1PoFiz=- then $P1PoFiz=
+@if $P1ImFiz<> then $P1ImFiz=@Calc Copy("$P1ImFiz",1,1)
+$P1ImFiz=@DequoteText $P1ImFiz
+@if $P1ImFiz<> then $P1ImFiz=$P1ImFiz.
+@if $P1PoFiz<> then $P1PoFiz=@Calc Copy("$P1PoFiz",1,1)
+$P1PoFiz=@DequoteText $P1PoFiz
+@if $P1PoFiz<> then $P1PoFiz=$P1PoFiz.
+$P1PIB=$P1PrFiz $P1ImFiz $P1PoFiz
+$P1IPB=$P1ImFiz $P1PoFiz $P1PrFiz
+$P1ViP=$P1VImFiz $P1PrFizV
+@if $PPIB<> then $PPIB=$PPIB, гр.$P1PIB
+@if $PPIB= then $PPIB=гр.$P1PIB
+@if $PIPB<> then $PIPB=$PIPB, $P1IPB
+@if $PIPB= then $PIPB=$P1IPB
+@if $PViP<> then $PViP=$PViP, $P1ViP
+@if $PViP= then $PViP=$P1ViP
+$PPIB555555=$PPIB
+@if $F<6 then @Goto %StartPFiz
+;
+%NoFiz
+$CH1=@StringPart 1 $PPIB
+$CH2=@StringPart 1 $NameFullNext2
+@If $Prefiks= then @Goto %NoZemli
+@If $CH1<>$Prefiks then $PPIB=$Prefiks $PPIB
+@If $CH2<>$Prefiks then $NameFullNext2=$Prefiks $NameFullNext2
+%NoZemli
+$PPIB2=$PPIB
+$Kontrol=0
+$Zemli=
+$PIBTab=$PPIB
+;
+@if "$KNuSum"<>"так" then @Goto %NoSumizKN
+;
+@if "$KNSumiz"<>"" then @Goto %YesKNPl
+$Param=@ReplaceChar "*$Param
+$Pustyi=0
+$IP=@Calc Pos("дорога","$Param")
+$Pustyi=$Pustyi+$IP
+$IP=@Calc Pos("проњзд","$Param")
+$Pustyi=$Pustyi+$IP
+$IP=@Calc Pos("прох≥д","$Param")
+$Pustyi=$Pustyi+$IP
+$IP=@Calc Pos("вулиц€","$Param")
+$Pustyi=$Pustyi+$IP
+$IP=@Calc Pos("канава","$Param")
+$Pustyi=$Pustyi+$IP
+$IP=@Calc Pos("вул.","$Param")
+$Pustyi=$Pustyi+$IP
+@if $Pustyi=0 then $KNSumiz=$NapysSum
+%YesKNPl
+;
+@if "$KNSumiz"="-" then @Goto %NoSumizKN
+$KNT=(кад. номер не визначено)
+@if "$KNSumiz"<>"" then $KNT=(кад. номер $KNSumiz)
+@if "$KNSumiz"<>"" then $PPIB=$PPIB $KNT
+@if "$KNSumiz"<>"" then $NameFullNext2=$NameFullNext2 $KNT
+;$DodInfo=$DodInfo $KNT
+%NoSumizKN
+;
+;
+;формуЇмо радок опису сум≥жника
+$F1=в≥д $FirstLetter до $SecondLetter$Tab$PPIB
+$F1p=в≥д $FirstLetter до $SecondLetter - $PPIB
+$F2=$StorSvity - $PPIB
+$F3=в≥д $FirstLetter до $SecondLetter$Tab$PPIB2
+;$F3=в≥д $FirstLetter до $SecondLetter$Tab$DodInfo
+$Full=в≥д $FirstLetter до $SecondLetter - $NameFullNext2
+$Closed=@Map.Object[$I].Closed
+@if $AreaDil=$AreaSumiz then $Closed=0
+$VK=$VK+$Closed
+@If $VK=1 then @Text[33].Add   ¬крапл.контури:
+@If $VK=1 then @Text[38].Add   ¬крапл.контури:
+@If $VK=1 then @Text[36].Add   $Tab¬краплен≥ контури:
+@If $VK=1 then @Text[34].Add та в тому числ≥ вкраплених сум≥жних земельних д≥л€нок:
+@If $Closed=1 then $F1p=$FirstLetter($FirstLetter') - $PPIB
+@If $Closed=1 then $F1=$FirstLetter($FirstLetter') $Tab$PPIB
+@If $Closed=1 then $F2=Х вкрапл.контур - $PPIB
+@If $Closed=1 then $F3=$FirstLetter($FirstLetter') $Tab$PPIB2
+@If $Closed=1 then $Full=$FirstLetter($FirstLetter') - $NameFullNext2
+@If $Closed<>1 then @Goto %NoClos
+@Text[14].Add $FirstLetter
+$XYClos=@Map.Object[$I].Centroid
+@Text[15].Add $XYClos
+%NoClos
+@Text[35].Add $F2
+$OpysSum=@Text[35].Text
+@Text[33].Add $F1
+@Text[34].Add $F1p
+@Text[36].Add $F3
+@Text[37].Add $F1p
+@Text[38].Add $Full
+@if $SumList2<> then $SumList2=$SumList2,$Space
+$SumList2=$SumList2$F1p
+;@if ("$KNSumiz"<>"-") and ("$PublKN"<>"н≥") then @Text[36].Add $Tab$KNT
+@if "$KNSumiz"<>"" then @Text[36].Add $Tab$KNT
+;
+@If $Name= then @Goto %NoName
+$Exist=@FileExists $Papka\TD\Scripts\NotPersonNames.txt
+@if $Exist<>0 then @Text[29].Load $Papka\TD\Scripts\NotPersonNames.txt
+$TC29=@Text[29].Count
+$TL=0
+%StartTC29
+$TL=$TL+1
+@if $TL>$TC29 then @Goto %EndTC29
+@if $Exist<>0 then $TLV=@Text[29].Line[$TL]
+$NamebezL=@ReplaceChar "*$Name
+$Pos=@Calc Pos("$TLV","$Name")
+$Name=@Calc replace("$NamebezL","земл≥ приватноњ власност≥ гр. ","")
+$Name=@DequoteText $Name
+$Name=@ReplaceChar *"$Name
+@if $Pos>0 then @Goto %UridSumiz
+;@if $Name1=$TLV then @Goto %UridSumiz
+@Goto %StartTC29
+%EndTC29
+@Text[11].Add ________$Tab$Name
+@Text[16].Add ________$Tab$Name
+$Nom=$Nom+1
+@Text[39].Add $Nom. $Name
+@Text[12].Add $Reshta
+@if $NameFull<> then $NameFull=$NameFull,$Space
+$NameFull=$NameFull$NameFullNext
+%UridSumiz
+%NoName
+@If ("$Name"="") and  ("$NameFull"<>"") then $NameFull=$NameFull,$Space
+@If $Name= then $NameFull=$NameFull$NameFullNext
+@If $Name= then @Text[11].Add ________$Tab$PIPB
+@If $Name= then @Text[16].Add ________$Tab$PViP
+@If $Name= then $Nom=$Nom+1
+@If $Name= then @Text[39].Add $Nom. $PPIB555555
+@If $Name= then @Text[12].Add $Reshta
+;
+%NextExplSu
+@if $I<$MC then @Goto %StartExplSu
+@if $PublKN=так then @Progress.Stop
+;
+;
+@Text[11].Add $Reshta
+@Text[11].Add $Reshta
+$OpysSum2=@Text[33].Text
+$OpysSum3=@Text[34].Text
+$OpysSum4=@Text[11].Text
+$OpysSum4VIP=@Text[16].Text
+@Text[35].Save $Papka\TD\Temp\OpysSum.ini
+@Text[33].Save $Papka\TD\Temp\OpysSum2.ini
+@Text[34].Save $Papka\TD\Temp\OpysSum3.ini
+@Text[11].Save $Papka\TD\Temp\OpysSum4.ini
+@Text[36].Save $Papka\TD\Temp\OpysSum5.ini
+@Text[14].Save $Papka\TD\Temp\OpysSumT14.ini
+@Text[15].Save $Papka\TD\Temp\OpysSumT15.ini
+@Text[16].Save $Papka\TD\Temp\OpysSumT16.ini
+@Text.Text $NameFull
+@Text.Save $Papka\TD\Temp\OpysSum6.ini
+@Text.Text $SumList2
+@Text.Save $Papka\TD\Temp\OpysSum7.ini
+@Text[37].Save $Papka\TD\Temp\OpysSum8.ini
+@Text[38].Save $Papka\TD\Temp\OpysSum9.ini
+@Text[39].Save $Papka\TD\Temp\OpysSum10.ini
+;--------------------- «авершили опис сум≥жник≥в ----------------
+$MC=@Map.Count
+$N=0
+%StartVSS5
+@Map.DeselectAll
+$N=$N+1
+$LID=@Map.Object[$N].LayerID
+@If $LID<>70010 then @Goto %NextVSS5
+$KNS=@Map.Object[$N].Parameter[ID7001000]
+@if "$KNS"="$NapysSum" then @Map.Object[$N].Parameter[ID7001000]=$NONE
+%NextVSS5
+@if $N<$MC then @Goto %StartVSS5

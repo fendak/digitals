@@ -1,0 +1,76 @@
+$Papka=@ProgramFolder
+$Tab=@Calc char(9)
+$Tab=@DequoteText $Tab
+$Space=@Calc char(32)
+$Space=@DequoteText $Space
+;створюємо табличку з обмеженнями/сервітутами
+@Map.DeselectAll
+@Map.SelectLayer ID70008
+$ResrtCount=@Map.SelCount
+$FE=@FileExists $Papka\TD\Temp\TempRestrTyp2Next.ini
+@if $FE=1 then @Text[3].Load $Papka\TD\Temp\TempRestrTyp2Next.ini
+@if $FE=0 then @Text[3].Add  
+$T3Count=@Text[3].Count
+@Text[2].Add  
+@Text[4].Add  
+@if $ResrtCount=0 then @Goto %Exit4
+$RestrNumber=@Map.Parameters.Add 7000855 3 Номер обмеження
+@Map.Parameters.SetAttributes ID7000855 0 5 0 10 1 16777215 0 Arial 60 4 -16777208
+$ValParList=@Map.Layers.GetValidParameters ID70008
+$ValParList=$ValParList,$RestrNumber
+@Map.Layers.SetValidParameters ID70008 $ValParList
+@Map.DeselectAll
+$HeaderR=№$Tab Код$Tab Назва обмеження$Tab Основні законодавчі акти$Tab Площа, га
+$HeaderR2=№$Tab Код$Tab Назва обмеження$Tab Площа, га
+@if $FE=1 then @Goto %ObmNext
+@Text[3].Clear
+@Text[3].Add $HeaderR
+%ObmNext
+@Text[2].Clear
+@Text[2].Add $HeaderR
+@Text[4].Clear
+@Text[4].Add $HeaderR2
+;
+$C=@Map.Count
+$I=0
+$J=0
+%LoopR
+$I=$I+1
+$LID=@Map.Object[$I].LayerID 
+@if $LID<>70008 then @Goto %ContinueR
+$J=$J+1
+@Map.Object[$I].Parameter[$RestrNumber] $J
+@Map.Object[$I].CreateCaption $RestrNumber 0 0 1 1 0 0
+$RestrArea=@Map.Object[$I].CalculateFormula P[0]
+$RestrCodeNName=@Map.Object[$I].Parameter[ID7000800]
+$RestrCode=@StringPart 1 $RestrCodeNName
+$RestrName1=@Map.Object[$I].CalculateFormula SEF($RestrCode,RestrCodes.txt)
+$RestrName2=@Map.Object[$I].Parameter[ID7000801]
+$RestrName=$RestrName1, $RestrName2
+$LWCodeNName=@Map.Object[$I].Parameter[ID7000800]
+$LWCode=@StringPart 1 $LWCodeNName
+$Zakon=@Map.Object[$I].Parameter[ID7000803]
+$ZakonDate=@XML.XPath DocumentDate $Zakon
+$ZakonName=@XML.XPath DocumentName $Zakon
+$chyslo=@StringPart 3-$ZakonDate
+$misyac=@StringPart 2-$ZakonDate
+$rik=@StringPart 1-$ZakonDate
+$ZakonDate="$chyslo.$misyac.$rik"
+$ZakonDate=@DequoteText $ZakonDate
+$Zakon=$ZakonName від $ZakonDate року
+$S=$J$Tab $RestrCode$Tab $RestrName$Tab $Zakon
+$S=$S$Tab $RestrArea 
+$S4=$J$Tab $RestrCode$Tab $RestrName$Tab $RestrArea 
+$S3=$T3Count$Tab $RestrCode$Tab $RestrName$Tab $Zakon
+$S3=$S3$Tab $RestrArea 
+@Text[2].Add $S
+@Text[4].Add $S4
+@Text[3].Add $S3
+$T3Count=$T3Count+1
+%ContinueR
+@if $I<$C then @Goto %LoopR
+%Exit4
+$Papka=@ProgramFolder
+@Text[2].Save $Papka\TD\Temp\TempRestrTyp2.ini
+@Text[4].Save $Papka\TD\Temp\TempRestrTyp3.ini
+@Text[3].Save $Papka\TD\Temp\TempRestrTyp2Next.ini

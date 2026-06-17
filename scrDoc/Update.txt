@@ -78,11 +78,6 @@ $Download=@Download https://fendak.github.io/digitals/scrDoc/scrDocPurpose.txt $
 @if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/scrDocPurpose.txt $Papka\Lists\
 @if $Download=0 then @Text[2].Add Довідник \Lists\scrDocPurpose.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \Lists\scrDocPurpose.txt - успішно
-@CopyFile $Papka\Lists\Zakony.txt|$Papka\Lists\Zakony (той що був до версії 4.19).txt
-$Download=@Download https://fendak.github.io/digitals/scrDoc/Zakony.txt $Papka\Lists\
-@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/Zakony.txt $Papka\Lists\
-@if $Download=0 then @Text[2].Add Довідник \Lists\Zakony.txt - не вдалося завантажити з сервера
-@if $Download>0 then @Text[2].Add Довідник \Lists\\Zakony.txt - успішно
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/perelik_obm1.dmf $Papka\TD\Doc\
 @if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/perelik_obm1.dmf $Papka\TD\Doc\
@@ -126,7 +121,23 @@ $FE=@FileExists $Papka\TD\Doc\perelik_obm3.dmf
 @if $FE=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм3.dmf - успішно
 %Update003
 
+%TrueControlUpdate502
 
+@if $Line>502 then @Goto %TrueControlUpdate503
+$Download=@Download https://fendak.github.io/digitals/scrDoc/RestrTyp2.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/RestrTyp2.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Довідник \TD\Scripts\RestrTyp2.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \TD\Scripts\RestrTyp2.txt - успішно
+
+$Download=@Download https://fendak.github.io/digitals/scrDoc/OpysSumiz.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/OpysSumiz.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Довідник \TD\Scripts\OpysSumiz.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \TD\Scripts\OpysSumiz.txt - успішно
+
+$Download=@Download https://fendak.github.io/digitals/scrDoc/MyScriptGeneral.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/MyScriptGeneral.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Довідник \TD\Scripts\MyScriptGeneral.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \TD\Scripts\MyScriptGeneral.txt - успішно
 ;
 $TC=@Text[2].Count
 @if $TC<>0 then $Text=@Text[2].Text
@@ -134,4 +145,4 @@ $TC=@Text[2].Count
 @Text[1].Add $Vers2
 @Text[1].Save $Papka\TD\Scripts\ControlUpdate.txt
 @if $TC<>0 then @Dialog.Message Оновлено файли:|$Text
-%TrueControlUpdate502
+%TrueControlUpdate503
