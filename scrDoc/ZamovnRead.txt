@@ -1,0 +1,310 @@
+;Вхід: $PARAMETERS — ПІБ одного замовника.
+;Результат: 11 полів через \; співзамовники всередині полів — через кому.
+$InputPIB=@StringNice $PARAMETERS
+$MC=@MapCount
+@if $MC=0 then @Break Немає відкритої карти
+@Map.DeselectAll
+@Map.SelectLayer id70005
+$MON=@Map.SelectedObject
+@if $MON=0 then @Break Не знайдено земельної ділянки XML
+$OwnersXML=@Map.Object[$MON].Parameter[ID7000520]
+$OwnerCount=0
+@if $OwnersXML<> then $OwnerCount=@XML.NodeCount /Proprietors ProprietorInfo $OwnersXML
+;
+$ProgramPath=@ProgramFolder
+$DataFolder=@Assign $ProgramPath\TD
+$HistoryFile=@Assign $DataFolder\PassportIssuers.txt
+$Exists=@FolderExists $DataFolder
+@if $Exists=0 then @CreateFolder $DataFolder
+;
+@Text[55].Clear
+@Text[56].Clear
+@Text[57].Clear
+@Text[58].Clear
+$Dictionary=@Assign $ProgramPath\Lists\scrDocSpObl.txt
+$Exists=@FileExists $Dictionary
+@if $Exists=1 then @Text[55].Load $Dictionary
+$Dictionary=@Assign $ProgramPath\Lists\scrDocSpRay.txt
+$Exists=@FileExists $Dictionary
+@if $Exists=1 then @Text[56].Load $Dictionary
+@Text[57].Add Паспорт громадянина України
+@Text[57].Add Паспорт громадянина України у формі картки
+$Exists=@FileExists $HistoryFile
+@if $Exists=1 then @Text[58].Load $HistoryFile
+;
+$Sep=@Assign |
+$CustomerCount=0
+$OwnerIndex=0
+$Zamovnyk=@Assign
+$AU=@Assign
+$TaxNum=@Assign
+$PP=@Assign
+$PPSkor=@Assign
+$PPDate=@Assign
+$PPKymVyd=@Assign
+$ZIP=@Assign
+$ZamovnykSkorIBP=@Assign
+$ZamovnykSkorPIB=@Assign
+$ZamovnykVIP=@Assign
+;
+%NextCustomer
+$PersonPIB=@Assign
+$PersonOblast=@Assign
+$PersonRaion=@Assign
+$PersonSettlement=@Assign
+$PersonStreet=@Assign
+$PersonBuilding=@Assign
+$PersonBlock=@Assign
+$PersonFlat=@Assign
+$PersonZIP=@Assign
+$PersonIdKod=@Assign
+$PersonDocType=@Assign
+$PersonDocNumber=@Assign
+$PersonDocDate=@Assign
+$PersonIssuer=@Assign
+;
+%FindOwner
+$OwnerIndex=$OwnerIndex+1
+@if $OwnerIndex>$OwnerCount then @Goto %OwnersExhausted
+$IsNatural=@XML.NodeCount ProprietorInfo[$OwnerIndex]/Authentication NaturalPerson $OwnersXML
+@if $IsNatural=0 then @Goto %FindOwner
+$Base=@Assign ProprietorInfo[$OwnerIndex]/Authentication/NaturalPerson
+$LastName=@XML.XPath $Base/FullName/LastName $OwnersXML
+$FirstName=@XML.XPath $Base/FullName/FirstName $OwnersXML
+$MiddleName=@XML.XPath $Base/FullName/MiddleName $OwnersXML
+$PersonPIB=@Assign $LastName
+@if $FirstName<> then $PersonPIB=@Assign $PersonPIB $FirstName
+@if $MiddleName<> then $PersonPIB=@Assign $PersonPIB $MiddleName
+$PersonIdKod=@XML.XPath $Base/TaxNumber $OwnersXML
+$PersonOblast=@XML.XPath $Base/Address/Region $OwnersXML
+@if $PersonOblast=- then $PersonOblast=@Assign
+$PersonRaion=@XML.XPath $Base/Address/District $OwnersXML
+@if $PersonRaion=- then $PersonRaion=@Assign
+$PersonSettlement=@XML.XPath $Base/Address/Settlement $OwnersXML
+@if $PersonSettlement=- then $PersonSettlement=@Assign
+$PersonStreet=@XML.XPath $Base/Address/Street $OwnersXML
+@if $PersonStreet=- then $PersonStreet=@Assign
+$PersonBuilding=@XML.XPath $Base/Address/Building $OwnersXML
+@if $PersonBuilding=- then $PersonBuilding=@Assign
+$PersonBlock=@XML.XPath $Base/Address/Block $OwnersXML
+@if $PersonBlock=- then $PersonBlock=@Assign
+$PersonFlat=@XML.XPath $Base/Address/BuildingUnit $OwnersXML
+@if $PersonFlat=- then $PersonFlat=@Assign
+$PersonZIP=@XML.XPath $Base/Address/ZIP $OwnersXML
+@if $PersonZIP=- then $PersonZIP=@Assign
+$PersonDocType=@XML.XPath $Base/Passport/DocumentType $OwnersXML
+$PassportSeries=@XML.XPath $Base/Passport/PassportSeries $OwnersXML
+$PassportNumber=@XML.XPath $Base/Passport/PassportNumber $OwnersXML
+$PersonDocNumber=@Assign $PassportSeries
+@if $PassportNumber<> then $PersonDocNumber=@Assign $PersonDocNumber $PassportNumber
+$PersonDocNumber=@StringNice $PersonDocNumber
+$PersonDocDate=@XML.XPath $Base/Passport/PassportIssuedDate $OwnersXML
+@if $PersonDocDate<> then $PersonDocDate=@FromXMLDate $PersonDocDate
+$PersonIssuer=@XML.XPath $Base/Passport/IssuanceAuthority $OwnersXML
+;
+@Goto %RememberXMLIssuer
+;
+%OwnersExhausted
+;Після останнього власника відкриваємо порожній діалог лише за галочкою.
+@Goto %RememberXMLIssuer
+;
+%RememberXMLIssuer
+;Для першого діалогу замінюємо лише ПІБ. Інші реквізити — з власника.
+@if $CustomerCount>0 then @Goto %InputReady
+@if $InputPIB<> then $PersonPIB=@Assign $InputPIB
+%InputReady
+;Галочка ввімкнена лише за наявності наступного фізичного співвласника.
+$MoreDefault=@Assign
+$ProbeOwner=$OwnerIndex
+%FindNextOwner
+$ProbeOwner=$ProbeOwner+1
+@if $ProbeOwner>$OwnerCount then @Goto %MoreDefaultReady
+$ProbeNatural=@XML.NodeCount ProprietorInfo[$ProbeOwner]/Authentication NaturalPerson $OwnersXML
+@if $ProbeNatural=0 then @Goto %FindNextOwner
+$MoreDefault=1
+%MoreDefaultReady
+$HistoryStage=1
+$HistoryCandidate=@Assign $PersonIssuer
+@Goto %RememberIssuer
+;
+%PrepareLists
+$Buffer=55
+;
+%PrepareList
+$Current=@Assign
+@if $Buffer=55 then $Current=@Assign $PersonOblast
+@if $Buffer=56 then $Current=@Assign $PersonRaion
+@if $Buffer=57 then $Current=@Assign $PersonDocType
+$Items=@Assign $Current
+$ListCount=@Text[$Buffer].Count
+$LineIndex=0
+@if $ListCount=0 then @Goto %ListReady
+;
+%ListLoop
+$LineIndex=$LineIndex+1
+$Item=@Text[$Buffer].Line[$LineIndex]
+@if $Item= then @Goto %NextListItem
+@if $Item=$Current then @Goto %NextListItem
+$Items=@Assign $Items$Sep$Item
+%NextListItem
+@if $LineIndex<$ListCount then @Goto %ListLoop
+%ListReady
+@if $Buffer=55 then $OblastItems=@Assign $Items
+@if $Buffer=56 then $RaionItems=@Assign $Items
+@if $Buffer=57 then $DocItems=@Assign $Items
+$Buffer=$Buffer+1
+@if $Buffer<=57 then @Goto %PrepareList
+;
+$IssuerItems=@Assign $PersonIssuer
+$HistoryCount=@Text[58].Count
+$HistoryIndex=0
+@if $HistoryCount=0 then @Goto %CustomerDialog
+%BuildIssuerList
+$HistoryIndex=$HistoryIndex+1
+$Item=@Text[58].Line[$HistoryIndex]
+@if $Item= then @Goto %NextIssuerItem
+@if $Item=$PersonIssuer then @Goto %NextIssuerItem
+$IssuerItems=@Assign $IssuerItems$Sep$Item
+%NextIssuerItem
+@if $HistoryIndex<$HistoryCount then @Goto %BuildIssuerList
+;
+%CustomerDialog
+$Number=$CustomerCount+1
+@Dialog.Add PersonPIB=Ask|Замовник документації|Прізвище, ім'я, по батькові|$PersonPIB
+@Dialog.Add PersonOblast=Combo|1|Адреса: область|$OblastItems
+@Dialog.Add PersonRaion=Combo|1|Адреса: район|$RaionItems
+@Dialog.Add PersonSettlement=Ask||Населений пункт|$PersonSettlement
+@Dialog.Add PersonStreet=Ask||Вулиця (вул., пров., просп. та назва)|$PersonStreet
+@Dialog.Add PersonBuilding=Ask||Номер будинку|$PersonBuilding
+@Dialog.Add PersonBlock=Ask||Корпус|$PersonBlock
+@Dialog.Add PersonFlat=Ask||Квартира|$PersonFlat
+@Dialog.Add PersonZIP=Ask||Поштовий індекс|$PersonZIP
+@Dialog.Add PersonDocType=Combo|1|Паспортні дані: тип документа|$DocItems
+@Dialog.Add PersonDocNumber=Ask||Серія та номер документа|$PersonDocNumber
+@Dialog.Add PersonDocDate=Ask||Дата видачі (дд.мм.рррр)|$PersonDocDate
+@Dialog.Add PersonIssuer=Combo|1|Ким видано паспорт|$IssuerItems
+@Dialog.Add PersonIdKod=Ask|Ідентифікаційний номер|РНОКПП|$PersonIdKod
+@Dialog.Add AddMoreCustomer=#CheckList|$MoreDefault||Додати ще одного замовника
+$Status=@Dialog.Execute Реквізити замовника №$Number
+@if $Status=0 then @Return Break
+$PersonPIB=@StringNice $PersonPIB
+@if $PersonPIB<> then @Goto %RememberEditedIssuer
+@Dialog.Message Заповніть ПІБ замовника
+@Goto %PrepareLists
+;
+%RememberEditedIssuer
+$PersonDocNumber=@StringNice $PersonDocNumber
+$PersonIssuer=@StringNice $PersonIssuer
+$HistoryStage=2
+$HistoryCandidate=@Assign $PersonIssuer
+@Goto %RememberIssuer
+;
+%FormatCustomer
+$AddressShort=@Assign $PersonStreet
+@if $PersonBuilding= then @Goto %AddressAfterBuilding
+@if $AddressShort<> then $AddressShort=@Assign $AddressShort, 
+$AddressShort=@Assign $AddressShort$PersonBuilding
+%AddressAfterBuilding
+@if $PersonBlock= then @Goto %AddressAfterBlock
+@if $AddressShort<> then $AddressShort=@Assign $AddressShort, 
+$AddressShort=@Assign $AddressShortкорп.$PersonBlock
+%AddressAfterBlock
+@if $PersonFlat= then @Goto %AddressAfterFlat
+@if $AddressShort<> then $AddressShort=@Assign $AddressShort, 
+$AddressShort=@Assign $AddressShortкв.$PersonFlat
+%AddressAfterFlat
+@if $PersonSettlement= then @Goto %AddressAfterSettlement
+@if $AddressShort<> then $AddressShort=@Assign $AddressShort, 
+$AddressShort=@Assign $AddressShort$PersonSettlement
+%AddressAfterSettlement
+$AddressFull=@Assign $AddressShort
+@if $PersonRaion= then @Goto %FullAfterRaion
+@if $AddressFull<> then $AddressFull=@Assign $AddressFull, 
+$AddressFull=@Assign $AddressFull$PersonRaion
+%FullAfterRaion
+@if $PersonOblast= then @Goto %FullAfterOblast
+@if $AddressFull<> then $AddressFull=@Assign $AddressFull, 
+$AddressFull=@Assign $AddressFull$PersonOblast
+%FullAfterOblast
+@if $PersonZIP= then @Goto %FullAfterZIP
+@if $AddressFull<> then $AddressFull=@Assign $AddressFull, 
+$AddressFull=@Assign $AddressFull$PersonZIP
+%FullAfterZIP
+$DocTypeText=@Assign $PersonDocType
+$PassportFull=@Assign $DocTypeText
+@if $PersonDocNumber<> then $PassportFull=@Assign $PassportFull $PersonDocNumber
+$PassportFull=@StringNice $PassportFull
+@if $PersonIssuer= then @Goto %PassportDate
+@if $PassportFull<> then $PassportFull=@Assign $PassportFull, 
+$PassportFull=@Assign $PassportFullвиданий $PersonIssuer
+%PassportDate
+@if $PersonDocDate<> then $PassportFull=@Assign $PassportFull $PersonDocDate року
+$PassportFull=@StringNice $PassportFull
+;
+$LastName=@StringPart 1 $PersonPIB
+$FirstName=@StringPart 2 $PersonPIB
+$MiddleName=@StringPart 3 $PersonPIB
+$FirstInitial=@Calc Copy("$FirstName",1,1)
+$FirstInitial=@DequoteText $FirstInitial
+$MiddleInitial=@Calc Copy("$MiddleName",1,1)
+$MiddleInitial=@DequoteText $MiddleInitial
+$Initials=@Assign
+@if $FirstInitial<> then $Initials=@Assign $FirstInitial.
+@if $MiddleInitial<> then $Initials=@Assign $Initials$MiddleInitial.
+$ShortIBP=@Assign $Initials$LastName
+$ShortPIB=@Assign $LastName
+@if $Initials<> then $ShortPIB=@Assign $LastName $Initials
+$LastUpper=@UpperCase $LastName
+$NameSurname=@Assign $FirstName $LastUpper
+$NameSurname=@StringNice $NameSurname
+;Зберігаємо позицію кожного співзамовника, включно з порожніми полями.
+@if $CustomerCount=0 then @Goto %AppendCustomer
+$Zamovnyk=@Assign $Zamovnyk, 
+$AU=@Assign $AU, 
+$TaxNum=@Assign $TaxNum, 
+$PP=@Assign $PP, 
+$PPSkor=@Assign $PPSkor, 
+$PPDate=@Assign $PPDate, 
+$PPKymVyd=@Assign $PPKymVyd, 
+$ZIP=@Assign $ZIP, 
+$ZamovnykSkorIBP=@Assign $ZamovnykSkorIBP, 
+$ZamovnykSkorPIB=@Assign $ZamovnykSkorPIB, 
+$ZamovnykVIP=@Assign $ZamovnykVIP, 
+%AppendCustomer
+$Zamovnyk=@Assign $Zamovnyk$PersonPIB
+$AU=@Assign $AU$AddressFull
+$TaxNum=@Assign $TaxNum$PersonIdKod
+$PP=@Assign $PP$PassportFull
+$PPSkor=@Assign $PPSkor$PersonDocNumber
+$PPDate=@Assign $PPDate$PersonDocDate
+$PPKymVyd=@Assign $PPKymVyd$PersonIssuer
+$ZIP=@Assign $ZIP$PersonZIP
+$ZamovnykSkorIBP=@Assign $ZamovnykSkorIBP$ShortIBP
+$ZamovnykSkorPIB=@Assign $ZamovnykSkorPIB$ShortPIB
+$ZamovnykVIP=@Assign $ZamovnykVIP$NameSurname
+$CustomerCount=$Number
+@if $AddMoreCustomer=1 then @Goto %NextCustomer
+@Goto %End
+;
+%RememberIssuer
+$HistoryCandidate=@StringNice $HistoryCandidate
+@if $HistoryCandidate= then @Goto %HistoryReturn
+$HistoryCount=@Text[58].Count
+$HistoryIndex=0
+@if $HistoryCount=0 then @Goto %HistoryAppend
+%HistoryFind
+$HistoryIndex=$HistoryIndex+1
+$HistoryLine=@Text[58].Line[$HistoryIndex]
+$HistoryLine=@StringNice $HistoryLine
+@if $HistoryLine=$HistoryCandidate then @Goto %HistoryReturn
+@if $HistoryIndex<$HistoryCount then @Goto %HistoryFind
+%HistoryAppend
+@Text[58].Add $HistoryCandidate
+@Text[58].Save $HistoryFile
+%HistoryReturn
+@if $HistoryStage=1 then @Goto %PrepareLists
+@Goto %FormatCustomer
+;
+%End
+$ResultLine=@Assign $Zamovnyk\$AU\$TaxNum\$PP\$PPSkor\$PPDate\$PPKymVyd\$ZIP\$ZamovnykSkorIBP\$ZamovnykSkorPIB\$ZamovnykVIP
+@Return $ResultLine

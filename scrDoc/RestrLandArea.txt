@@ -1,0 +1,290 @@
+﻿; Результат: $RestrOpys, $AreaOZahal, $Res, @Text[23].
+; Додатковий текстовий буфер: 24.
+
+$RXMapCount=@MapCount
+@if $RXMapCount=0 then @Break Немає відкритої карти
+$RXSource=@ActivateMap
+$Papka=@ProgramFolder
+$Tab=@Calc char(9)
+$Tab=@DequoteText $Tab
+$AreaOZahal=0
+$RestrOpys=
+$Res=
+$RXPrepared=0
+$RXProgress=0
+@Text[23].Clear
+@Text[23].Add 0
+@Text[24].Clear
+
+; Збираємо описи обмежень без повторень.
+$RXCount=@Map.Count
+$RXIndex=0
+$RXRestrictions=0
+$RXLandCount=0
+@if $RXCount=0 then @Goto %RXFinish
+%RXScan
+$RXIndex=$RXIndex+1
+$RXLID=@Map.Object[$RXIndex].LayerID
+@if $RXLID=70009 then $RXLandCount=$RXLandCount+1
+@if $RXLID<>70008 then @Goto %RXScanNext
+$RXRestrictions=$RXRestrictions+1
+$RXDescription=@Map.Object[$RXIndex].Parameter[ID7000801]
+@if $RXDescription= then @Goto %RXScanNext
+$RXDescCount=@Text[24].Count
+$RXDescIndex=0
+@if $RXDescCount=0 then @Goto %RXAddDescription
+%RXFindDescription
+$RXDescIndex=$RXDescIndex+1
+$RXOldDescription=@Text[24].Line[$RXDescIndex]
+@if "$RXOldDescription"="$RXDescription" then @Goto %RXScanNext
+@if $RXDescIndex<$RXDescCount then @Goto %RXFindDescription
+%RXAddDescription
+@Text[24].Add $RXDescription
+@if $RestrOpys= then @Goto %RXFirstDescription
+$RestrOpys=$RestrOpys/$RXDescription
+@Goto %RXScanNext
+%RXFirstDescription
+$RestrOpys=$RXDescription
+%RXScanNext
+@if $RXIndex<$RXCount then @Goto %RXScan
+@Text[24].Clear
+@if $POPU=ні then @Goto %RXDisabled
+@if $RXRestrictions=0 then @Goto %RXFinish
+@if $RXLandCount=0 then @Goto %RXFinish
+
+; Готуємо спільну карту один раз.
+@Map.DeselectAll
+@Map.SelectLayer ID70008 ID70009
+@Map.Copy
+@FileNew RestrPrepared /Template=XMLNormal.dmf
+$RXPrepared=@ActivateMap
+@Map.BeginUpdate
+@Map.Paste
+@Map.DeselectAll
+@Map.SelectLayer ID70008
+@if $RXRestrictions>1 then @Map.MergeSelected
+@ExecuteMenu MapCheckPurgeDeleted
+@Map.CancelUpdate
+
+; Загальний прямокутний розмах усіх обмежень.
+@Map.DeselectAll
+@Map.SelectLayer ID70008
+$RXObject=0
+$RXBoundsReady=0
+%RXRestrictionBounds
+$RXObject=@Map.NextSelected $RXObject
+@if $RXObject=0 then @Goto %RXBoundsDone
+$RXBounds=@Map.Object[$RXObject].GetMinMax
+$RXA=@StringPart 1 $RXBounds
+$RXB=@StringPart 2 $RXBounds
+$RXC=@StringPart 4 $RXBounds
+$RXD=@StringPart 5 $RXBounds
+@if $RXBoundsReady=0 then @Goto %RXFirstBounds
+@if $RXA<$RXMinX then $RXMinX=$RXA
+@if $RXB<$RXMinY then $RXMinY=$RXB
+@if $RXC>$RXMaxX then $RXMaxX=$RXC
+@if $RXD>$RXMaxY then $RXMaxY=$RXD
+@Goto %RXRestrictionBounds
+%RXFirstBounds
+$RXMinX=$RXA
+$RXMinY=$RXB
+$RXMaxX=$RXC
+$RXMaxY=$RXD
+$RXBoundsReady=1
+@Goto %RXRestrictionBounds
+%RXBoundsDone
+@if $RXBoundsReady=0 then @Goto %RXFinish
+
+$RXCount=@Map.Count
+$RXIndex=0
+@Progress.Start $RXLandCount Обрах. площ обмежень по угіддях (можна відкл.)
+$RXProgress=1
+%RXLandLoop
+$RXIndex=$RXIndex+1
+$RXCanceled=@Progress.Canceled
+@if $RXCanceled=1 then @Goto %RXCanceled
+$RXLID=@Map.Object[$RXIndex].LayerID
+@if $RXLID<>70009 then @Goto %RXNextObject
+$RXCode=@Map.Object[$RXIndex].Parameter[ID7000901]
+$RXCode=@StringPart 1 $RXCode
+$RXLandArea=0
+
+; Пропускаємо геометричні операції, якщо розмахи не перетинаються.
+$RXBounds=@Map.Object[$RXIndex].GetMinMax
+$RXA=@StringPart 1 $RXBounds
+$RXB=@StringPart 2 $RXBounds
+$RXC=@StringPart 4 $RXBounds
+$RXD=@StringPart 5 $RXBounds
+@if $RXC<$RXMinX then @Goto %RXSaveLand
+@if $RXD<$RXMinY then @Goto %RXSaveLand
+@if $RXA>$RXMaxX then @Goto %RXSaveLand
+@if $RXB>$RXMaxY then @Goto %RXSaveLand
+
+@Map.DeselectAll
+@Map.SelectObject $RXIndex
+@Map.SelectLayer ID70008
+@Map.Copy
+@FileNew RestrWork /Template=XMLNormal.dmf
+@Map.BeginUpdate
+@Map.Paste
+@Map.DeselectAll
+@Map.SelectLayer ID70009
+$RXLand=@Map.SelectedObject
+@if $RXLand=0 then @Goto %RXCloseWork
+$RXClosed=@Map.Object[$RXLand].Closed
+@if $RXClosed=0 then @ExecuteMenu spbSplit
+
+@Map.DeselectAll
+@Map.SelectLayer ID70008
+@Map.Copy
+@Map.DeselectAll
+@Map.SelectObject $RXLand
+@Map.SelectLayer ID70009
+@Map.ClipByPolygon
+@ExecuteMenu MapCheckPurgeDeleted
+$RXWorkCount=@Map.Count
+@Map.DeselectAll
+@Map.SelectLayer ID70009
+$RXLand=0
+$RXSearchLand=0
+$RXMaxLandArea=-1
+%RXFindOuterLand
+$RXSearchLand=@Map.NextSelected $RXSearchLand
+@if $RXSearchLand=0 then @Goto %RXOuterLandReady
+$RXSearchArea=@Map.Object[$RXSearchLand].Parameter[0]
+$RXSearchArea=@ReplaceChar ,.$RXSearchArea
+@if $RXSearchArea<=$RXMaxLandArea then @Goto %RXFindOuterLand
+$RXMaxLandArea=$RXSearchArea
+$RXLand=$RXSearchLand
+@Goto %RXFindOuterLand
+%RXOuterLandReady
+@if $RXWorkCount>=2 then @Goto %RXFragments
+
+; Обмеження повністю охоплює угіддя.
+@Map.Paste
+@Map.DeselectAll
+@Map.SelectLayer ID70008
+@Map.SelectInsideSelected
+$RXInsideCount=@Map.SelCount
+@if $RXInsideCount<>2 then @Goto %RXCloseWork
+@Map.DeselectAll
+@Map.SelectLayer ID70009
+$RXNewObject=@Map.SelectedObject
+@if $RXNewObject=0 then @Goto %RXCloseWork
+$RXLandArea=@Map.Object[$RXNewObject].Parameter[0]
+$RXLandArea=@ReplaceChar ,.$RXLandArea
+@Goto %RXCloseWork
+
+%RXFragments
+$RXFragment=0
+%RXFragmentLoop
+$RXFragment=$RXFragment+1
+$RXLID=@Map.Object[$RXFragment].LayerID
+@if $RXLID<>70008 then @Goto %RXNextFragment
+$RXArea=@Map.Object[$RXFragment].Parameter[0]
+$RXArea=@ReplaceChar ,.$RXArea
+@if $RXClosed=1 then @Goto %RXAddFragment
+
+; Віднімаємо внутрішні контури угіддя.
+@Map.DeselectAll
+@Map.SelectObject $RXFragment
+$RXHole=0
+$RXHoleCount=0
+%RXHoleLoop
+$RXHole=$RXHole+1
+$RXLID=@Map.Object[$RXHole].LayerID
+@if $RXLID<>70009 then @Goto %RXNextHole
+@if $RXHole=$RXLand then @Goto %RXNextHole
+@Map.SelectObject $RXHole
+$RXHoleCount=$RXHoleCount+1
+%RXNextHole
+@if $RXHole<$RXWorkCount then @Goto %RXHoleLoop
+@if $RXHoleCount=0 then @Goto %RXAddFragment
+
+@Map.Copy
+@FileNew RestrHoles /Template=XMLNormal.dmf
+@Map.BeginUpdate
+@Map.Paste
+@Map.DeselectAll
+@Map.SelectLayer ID70009
+@if $RXHoleCount>1 then @Map.MergeSelected
+@Map.DeselectAll
+@Map.SelectLayer ID70008
+@Map.SelectLayer ID70009
+@ExecuteMenu spbSubtract
+@Map.DeselectAll
+@Map.SelectLayer ID70008
+$RXArea=0
+$RXPart=0
+%RXSumParts
+$RXPart=@Map.NextSelected $RXPart
+@if $RXPart=0 then @Goto %RXPartsReady
+$RXPartArea=@Map.Object[$RXPart].Parameter[0]
+$RXPartArea=@ReplaceChar ,.$RXPartArea
+$RXArea=$RXArea+$RXPartArea
+@Goto %RXSumParts
+%RXPartsReady
+@Map.CancelUpdate
+@CloseMap
+
+%RXAddFragment
+$RXLandArea=$RXLandArea+$RXArea
+%RXNextFragment
+@if $RXFragment<$RXWorkCount then @Goto %RXFragmentLoop
+
+%RXCloseWork
+@Map.CancelUpdate
+@CloseMap
+@ActivateMap $RXPrepared
+
+%RXSaveLand
+$RXLines=@Text[23].Count
+$RXLineIndex=1
+@if $RXLines<2 then @Goto %RXAppendLand
+%RXFindCode
+$RXLineIndex=$RXLineIndex+1
+$RXLine=@Text[23].Line[$RXLineIndex]
+$RXOldCode=@StringPart 1$Tab$RXLine
+@if "$RXOldCode"="$RXCode" then @Goto %RXUpdateLand
+@if $RXLineIndex<$RXLines then @Goto %RXFindCode
+%RXAppendLand
+@Text[23].Add $RXCode$Tab $RXLandArea
+@Goto %RXLandSaved
+%RXUpdateLand
+$RXOldArea=@StringPart 2$Tab$RXLine
+$RXOldArea=@Calc Trim("$RXOldArea")
+$RXOldArea=@DequoteText $RXOldArea
+$RXOldArea=@ReplaceChar ,.$RXOldArea
+$RXOldArea=$RXOldArea+$RXLandArea
+@Text[23].Line[$RXLineIndex] $RXCode$Tab $RXOldArea
+%RXLandSaved
+$AreaOZahal=$AreaOZahal+$RXLandArea
+@Progress.StepBy 1
+%RXNextObject
+@if $RXIndex<$RXCount then @Goto %RXLandLoop
+@Goto %RXFinish
+
+%RXCanceled
+$POPU=ні
+$AreaOZahal=0
+@Text[23].Clear
+@Text[23].Text $Tab (обрахунок площ обмежень по угіддях скасовано користувачем!)
+@Goto %RXCleanup
+%RXDisabled
+@Text[23].Clear
+@Text[23].Text $Tab (в налаштуваннях скрипту відключено обрахунок площі обмежень по угіддях!)
+@Goto %RXCleanup
+%RXFinish
+@Text[23].Line[1] $AreaOZahal
+%RXCleanup
+@if $RXProgress=1 then @Progress.Stop
+@if $RXPrepared=0 then @Goto %RXSaveResult
+@ActivateMap $RXPrepared
+@Map.CancelUpdate
+@CloseMap
+@ActivateMap $RXSource
+%RXSaveResult
+@Text[24].Clear
+@CreateFolder $Papka\TD
+@CreateFolder $Papka\TD\Temp
+@Text[23].Save $Papka\TD\Temp\TempRestrforUh.ini
