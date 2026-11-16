@@ -150,16 +150,12 @@ $FormValid=@Map.Layers.GetValidParameters ID70005
 @Map.Parameters.Add $FormID 5 Реквізити замовника №$Number
 @Map.Layers.SetValidParameters ID70005 $FormValid ID$FormID
 @Map.DeselectAll
-$FormObject=@Map.NewObject ID70005
-@Map.Object[$FormObject].Point[1] 100 100
-@Map.RefreshObject $FormObject
+$FormObject=$MON
 @Map.SelectObject $FormObject
 @SelectTab 3
 @Map.Parameters.Mask ID$FormID *=$PersonPIB,*=$PersonOblast,*=$PersonRaion,*=$PersonSettlement,*=$PersonStreet,*=$PersonBuilding,*=$PersonBlock,*=$PersonFlat,*=$PersonZIP,*=$PersonDocType,*=$PersonDocNumber,*=$PersonDocDate,*=$PersonIssuer,*=$PersonIdKod,*=$MoreAnswer@ ПІБ замовника$FormV Область:scrDocSpObl.txt$FormV Район:scrDocSpRay.txt$FormV Населений пункт$FormV Вулиця$FormV Номер будинку$FormV Корпус$FormV Квартира$FormV Поштовий індекс$FormV Тип документа:ZamovnDocumentTypes.txt$FormV Серія та номер документа$FormV Дата видачі (дд.мм.рррр)$FormV Ким видано паспорт:ZamovnPassportIssuers.txt$FormV РНОКПП$FormV Додати ще одного замовника:YesNo.txt
 @Dialog.EditParameter ID$FormID
 $FormValues=@Map.Object[$FormObject].Parameter[ID$FormID]
-;Прибираємо службовий об'єкт і відновлюємо список параметрів шару.
-@Map.DeleteObject $FormObject
 @Map.Layers.SetValidParameters ID70005 $FormValid
 @Map.Parameters.Delete ID$FormID
 @Map.DeselectAll
