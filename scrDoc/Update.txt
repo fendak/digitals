@@ -2,9 +2,9 @@ $Vers2=$PARAMETERS
 $Papka=@ProgramFolder
 @Text[1].Load $Papka\TD\Scripts\ControlUpdate.txt
 $Line=@Text[1].Line[1]
-
+;
 @if $Line>500 then @Goto %TrueControlUpdate501
-
+;
 ;Відомість МЗ для об'єднання
 $FE=@FolderExists $Papka\TD\Doc008
 @if $FE=0 then @CreateFolder $Papka\TD\Doc008
@@ -19,7 +19,7 @@ $FE=@FileExists $Papka\TD\Doc008\vidomist_mz-ob-ednannja.dmt
 @if $FE=1 then @Text[2].Add Шаблон \TD\Doc008\Відомість МЗ (об'єднання).dmt - не вдалося перейменувати із \TD\Doc008\vidomist_mz-ob-ednannja.dmt (перейменуйте самостійно, не закриваючи це вікно)
 @if $FE=0 then @Text[2].Add Шаблон \TD\Doc008\Відомість МЗ (об'єднання).dmt - успішно
 %Update006
-
+;
 ;Відомість МЗ для поділу
 $Download=@Download https://fendak.github.io/digitals/scrDoc/vidomist_mz-podil.dmt $Papka\TD\Doc008
 ;@if $Download=0 then $Download=@Download https://fendak.github.io/digitals/scrDoc/vidomist_mz-podil.dmt $Papka\TD\Doc008
@@ -32,7 +32,7 @@ $FE=@FileExists $Papka\TD\Doc008\vidomist_mz-podil.dmt
 @if $FE=1 then @Text[2].Add Шаблон \TD\Doc008\Відомість МЗ (поділ).dmt - не вдалося перейменувати із \TD\Doc008\vidomist_mz-podil.dmt (перейменуйте самостійно, не закриваючи це вікно)
 @if $FE=0 then @Text[2].Add Шаблон \TD\Doc008\Відомість МЗ (поділ).dmt - успішно
 %Update004
-
+;
 ;Відомість МЗ для поділу А3
 $FE=@FolderExists $Papka\TD\Doc008\A3h
 @if $FE=0 then @CreateFolder $Papka\TD\Doc008\A3h
@@ -48,10 +48,10 @@ $FE=@FileExists $Papka\TD\Doc008\A3h\vidomist_mz-podil-A3.dmt
 @if $FE=0 then @Text[2].Add Шаблон \TD\Doc008\A3h\Відомість МЗ (поділ).dmt - успішно
 %Update005
 %TrueControlUpdate501
-
+;
 @if $Line>501 then @Goto %TrueControlUpdate502
 $Download=@Download https://fendak.github.io/digitals/scrDoc/RestrCodes.txt $Papka\Lists\
-@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/RestrCodes.txt $Papka\Lists\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/RestrCodes.txt $Papka\Lists\
 @if $Download=0 then @Text[2].Add Довідник \Lists\RestrCodes.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \Lists\RestrCodes.txt - успішно
 $Download=@Download https://fendak.github.io/digitals/scrDoc/RestrRList.txt $Papka\TD\Scripts\
@@ -80,7 +80,7 @@ $Download=@Download https://fendak.github.io/digitals/scrDoc/scrDocPurpose.txt $
 @if $Download>0 then @Text[2].Add Довідник \Lists\scrDocPurpose.txt - успішно
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/perelik_obm1.dmf $Papka\TD\Doc\
-@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/perelik_obm1.dmf $Papka\TD\Doc\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/perelik_obm1.dmf $Papka\TD\Doc\
 @if $Download=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм1.dmf - не вдалося завантажити з сервера
 @if $Download=0 then @Goto %Update001
 $FE=@FileExists $Papka\TD\Doc\Перелік обм1.dmf.bak
@@ -94,7 +94,7 @@ $FE=@FileExists $Papka\TD\Doc\perelik_obm1.dmf
 %Update001
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/perelik_obm2.dmf $Papka\TD\Doc\
-@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/perelik_obm2.dmf $Papka\TD\Doc\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/perelik_obm2.dmf $Papka\TD\Doc\
 @if $Download=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм2.dmf - не вдалося завантажити з сервера
 @if $Download=0 then @Goto %Update002
 $FE=@FileExists $Papka\TD\Doc\Перелік обм2.dmf.bak
@@ -108,7 +108,7 @@ $FE=@FileExists $Papka\TD\Doc\perelik_obm2.dmf
 %Update002
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/perelik_obm3.dmf $Papka\TD\Doc
-@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/perelik_obm3.dmf $Papka\TD\Doc
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/perelik_obm3.dmf $Papka\TD\Doc
 @if $Download=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм3.dmf - не вдалося завантажити з сервера
 @if $Download=0 then @Goto %Update003
 $FE=@FileExists $Papka\TD\Doc\Перелік обм3.dmf.bak
@@ -120,24 +120,153 @@ $FE=@FileExists $Papka\TD\Doc\perelik_obm3.dmf
 @if $FE=1 then @Text[2].Add Шаблон \TD\Doc\Перелік обм3.dmf - не вдалося перейменувати з \TD\Doc\perelik_obm3.dmf (перейменуйте самостійно)
 @if $FE=0 then @Text[2].Add Шаблон \TD\Doc\Перелік обм3.dmf - успішно
 %Update003
-
+;
 %TrueControlUpdate502
-
+;
 @if $Line>502 then @Goto %TrueControlUpdate503
 $Download=@Download https://fendak.github.io/digitals/scrDoc/RestrTyp2.txt $Papka\TD\Scripts\
-@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/RestrTyp2.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/RestrTyp2.txt $Papka\TD\Scripts\
 @if $Download=0 then @Text[2].Add Довідник \TD\Scripts\RestrTyp2.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \TD\Scripts\RestrTyp2.txt - успішно
-
+;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/OpysSumiz.txt $Papka\TD\Scripts\
-@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/OpysSumiz.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/OpysSumiz.txt $Papka\TD\Scripts\
 @if $Download=0 then @Text[2].Add Довідник \TD\Scripts\OpysSumiz.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \TD\Scripts\OpysSumiz.txt - успішно
-
+;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/MyScriptGeneral.txt $Papka\TD\Scripts\
-@if $Download=0 then $Download=@Download http://digitals.at.ua/scrDoc/MyScriptGeneral.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/MyScriptGeneral.txt $Papka\TD\Scripts\
 @if $Download=0 then @Text[2].Add Довідник \TD\Scripts\MyScriptGeneral.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \TD\Scripts\MyScriptGeneral.txt - успішно
+%TrueControlUpdate503
+;
+@if $Line>503 then @Goto %TrueControlUpdate504
+$Download=@Download https://fendak.github.io/digitals/scrDoc/scrDocSpObl.txt $Papka\Lists\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/scrDocSpObl.txt $Papka\Lists\
+@if $Download=0 then @Text[2].Add Довідник \Lists\scrDocSpObl.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \Lists\scrDocSpObl.txt - успішно
+;
+$Download=@Download https://fendak.github.io/digitals/scrDoc/scrDocSpRay.txt $Papka\Lists\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/scrDocSpRay.txt $Papka\Lists\
+@if $Download=0 then @Text[2].Add Довідник \Lists\scrDocSpRay.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \Lists\scrDocSpRay.txt - успішно
+;
+$Download=@Download https://fendak.github.io/digitals/scrDoc/RestrLandArea.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/RestrLandArea.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Довідник \TD\Scripts\RestrLandArea.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \TD\Scripts\RestrLandArea.txt - успішно
+;
+$Download=@Download https://fendak.github.io/digitals/scrDoc/ZamovnRead.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/ZamovnRead.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Довідник \TD\Scripts\ZamovnRead.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \TD\Scripts\ZamovnRead.txt - успішно
+;
+$Download=@Download https://fendak.github.io/digitals/scrDoc/ZamovnReadForm.txt $Papka\TD\Scripts\
+@if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/ZamovnReadForm.txt $Papka\TD\Scripts\
+@if $Download=0 then @Text[2].Add Довідник \TD\Scripts\ZamovnReadForm.txt - не вдалося завантажити з сервера
+@if $Download>0 then @Text[2].Add Довідник \TD\Scripts\ZamovnReadForm.txt - успішно
+;
+; Формат рядка: шлях усередині TD~назва файлу на сервері
+@Text[40].Clear
+@Text[40].Add Doc\Акт ПП.dmf~Akt%20PP.dmf
+@Text[40].Add Doc\Договір.dmf~Dohovir.dmf
+@Text[40].Add Doc\Договір+.dmf~Dohovir+.dmf
+@Text[40].Add Doc\Протокол.dmf~Protokol.dmf
+@Text[40].Add Doc\Кад план.dmt~Kad%20plan.dmt
+@Text[40].Add Doc\План обмежень.dmt~Plan%20obmezhen.dmt
+@Text[40].Add Doc\A0h\Кад план.dmt~Kad%20plan_A0h.dmt
+@Text[40].Add Doc\A0h\План обмежень.dmt~Plan%20obmezhen_A0h.dmt
+@Text[40].Add Doc\A1h\Кад план.dmt~Kad%20plan_A1h.dmt
+@Text[40].Add Doc\A1h\План обмежень.dmt~Plan%20obmezhen_A1h.dmt
+@Text[40].Add Doc\A2h\Кад план.dmt~Kad%20plan_A2h.dmt
+@Text[40].Add Doc\A2h\План обмежень.dmt~Plan%20obmezhen_A2h.dmt
+@Text[40].Add Doc\A2v\Кад план.dmt~Kad%20plan_A2v.dmt
+@Text[40].Add Doc\A3h\Кад план.dmt~Kad%20plan_A3h.dmt
+@Text[40].Add Doc\A3h\План відведення.dmt~Plan%20vidvedennya.dmt
+@Text[40].Add Doc\A3h\План обмежень.dmt~Plan%20obmezhen_A3h.dmt
+@Text[40].Add Doc\A3v\Кад план.dmt~Kad%20plan_A3v.dmt
+@Text[40].Add Doc\A3v\План відведення.dmt~Plan%20vidvedennya_A3v.dmt
+@Text[40].Add Doc\A3v\План обмежень.dmt~Plan%20obmezhen_A3v.dmt
+@Text[40].Add Doc Альтернативні та старі шаблони\Кад план з табличкою омбежень без закон актів.dmt~Kad%20plan%20z%20tablychkoyu%20ombezhen%20bez%20zakon%20aktiv.dmt
+@Text[40].Add Doc004\План відведення.dmt~Plan%20vidvedennya_Doc004.dmt
+;
+$TplBaseURL=@Assign https://fendak.github.io/digitals/scrDoc/Template
+$TplRoot=@Assign $Papka\TD
+@if $DialogO<>1 then $TplRoot=@Assign $Papka\TD\Нові шаблони
+;
+; Створюємо кореневі папки.
+$TplExists=@FolderExists $Papka\TD
+@if $TplExists=0 then @CreateFolder $Papka\TD
+$TplExists=@FolderExists $TplRoot
+@if $TplExists=0 then @CreateFolder $TplRoot
+;
+$TplCount=@Text[40].Count
+$TplIndex=0
+;
+%TplNext
+$TplIndex=$TplIndex+1
+@if $TplIndex>$TplCount then @Goto %Update504
+;
+$TplRow=@Text[40].Line[$TplIndex]
+$TplRelative=@StringPart 1~$TplRow
+$TplServerName=@StringPart 2~$TplRow
+$TplFileName=@ExtractFileName $TplRelative
+$TplRelativeFolder=@ExtractFilePath $TplRelative
+$TplTarget=@Assign $TplRoot\$TplRelative
+;
+; Створюємо підпапки послідовно.
+$TplFolder=@Assign $TplRoot
+$TplFolderParts=@StringPartCount \ $TplRelativeFolder
+@For $TplPartIndex=1,$TplFolderParts {$TplPart=@StringPart $TplPartIndex\$TplRelativeFolder; @If "$TplPart"<>"" then {$TplFolder=@Assign $TplFolder\$TplPart; $TplExists=@FolderExists $TplFolder; @If $TplExists=0 then @CreateFolder $TplFolder}}
+;
+; Завантажуємо під латинською назвою.
+$TplURL=@Assign $TplBaseURL/$TplServerName
+$TplDownload=@Download $TplURL $TplFolder\
+@if $TplDownload=0 then @Goto %TplDownloadError
+;
+; Перевіряємо обидва варіанти обробки %20 завантажувачем.
+$TplDecodedName=@StringReplace %20| |$TplServerName
+$TplDownloaded=@Assign $TplFolder\$TplDecodedName
+$TplExists=@FileExists $TplDownloaded
+@if $TplExists=1 then @Goto %TplDownloadedReady
+$TplDownloaded=@Assign $TplFolder\$TplServerName
+$TplExists=@FileExists $TplDownloaded
+@if $TplExists=0 then @Goto %TplDownloadError
+;
+%TplDownloadedReady
+; Старий шаблон переносимо в .bak лише після завантаження нового.
+$TplExists=@FileExists $TplTarget
+@if $TplExists=0 then @Goto %TplInstall
+;
+$TplBackup=@Assign $TplTarget.bak
+$TplExists=@FileExists $TplBackup
+@if $TplExists=1 then @DeleteFile $TplBackup
+;
+$TplRename=@RenameFile $TplTarget|$TplBackup
+@if $TplRename<>0 then @Goto %TplBackupError
+;
+%TplInstall
+$TplRename=@RenameFile $TplDownloaded|$TplTarget
+@if $TplRename<>0 then @Goto %TplRenameError
+;
+$TplExists=@FileExists $TplTarget
+@if $TplExists=0 then @Goto %TplRenameError
+@Text[2].Add Шаблон $TplTarget - успішно
+@Goto %TplNext
+;
+%TplDownloadError
+@Text[2].Add Шаблон $TplTarget - не вдалося завантажити з сервера
+@Goto %TplNext
+;
+%TplBackupError
+@Text[2].Add Шаблон $TplTarget - не вдалося створити резервну копію; новий файл залишено як $TplDownloaded
+@Goto %TplNext
+;
+%TplRenameError
+@Text[2].Add Шаблон $TplTarget - не вдалося перейменувати з $TplDownloaded (перейменуйте самостійно)
+@Goto %TplNext
+;
+%Update504
 ;
 $TC=@Text[2].Count
 @if $TC<>0 then $Text=@Text[2].Text
@@ -145,4 +274,4 @@ $TC=@Text[2].Count
 @Text[1].Add $Vers2
 @Text[1].Save $Papka\TD\Scripts\ControlUpdate.txt
 @if $TC<>0 then @Dialog.Message Оновлено файли:|$Text
-%TrueControlUpdate503
+%TrueControlUpdate504
