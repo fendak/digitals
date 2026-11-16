@@ -141,30 +141,38 @@ $Download=@Download https://fendak.github.io/digitals/scrDoc/MyScriptGeneral.txt
 %TrueControlUpdate503
 ;
 @if $Line>503 then @Goto %TrueControlUpdate504
+$DialogO=@Dialog.Confirm Зараз буде автоматично оновлено такі шаблони:|\TD\Doc\Акт ПП.dmf|\TD\Doc\Договір.dmf|\TD\Doc\Договір+.dmf|\TD\Doc\Кад план.dmt|\TD\Doc\План обмежень.dmt|\TD\Doc\Протокол.dmf|\TD\Doc\A0h\Кад план.dmt|\TD\Doc\A0h\План обмежень.dmt|\TD\Doc\A1h\Кад план.dmt|\TD\Doc\A1h\План обмежень.dmt|\TD\Doc\A2h\Кад план.dmt|\TD\Doc\A2h\План обмежень.dmt|\TD\Doc\A2v\Кад план.dmt|\TD\Doc\A3h\Кад план.dmt|\TD\Doc\A3h\План відведення.dmt|\TD\Doc\A3h\План обмежень.dmt|\TD\Doc\A3v\Кад план.dmt|\TD\Doc\A3v\План відведення.dmt|\TD\Doc\A3v\План обмежень.dmt|\TD\Doc004\План відведення.dmt|\TD\Doc Альтернативні та старі шаблони\Кад план з табличкою обмежень без закон актів.dmt||Якщо ви їх у себе редагували якось, то натисніть Cansel - тоді шаблони буде завантажено в окрему папку (\TD\Нові шаблони), з якої потім зможете замінити їх самостійно.
+@Progress.Start 25 Завантаження оновлених файлів
+;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/scrDocSpObl.txt $Papka\Lists\
 @if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/scrDocSpObl.txt $Papka\Lists\
 @if $Download=0 then @Text[2].Add Довідник \Lists\scrDocSpObl.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \Lists\scrDocSpObl.txt - успішно
+@Progress.StepBy 1
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/scrDocSpRay.txt $Papka\Lists\
 @if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/scrDocSpRay.txt $Papka\Lists\
 @if $Download=0 then @Text[2].Add Довідник \Lists\scrDocSpRay.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \Lists\scrDocSpRay.txt - успішно
+@Progress.StepBy 1
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/RestrLandArea.txt $Papka\TD\Scripts\
 @if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/RestrLandArea.txt $Papka\TD\Scripts\
 @if $Download=0 then @Text[2].Add Довідник \TD\Scripts\RestrLandArea.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \TD\Scripts\RestrLandArea.txt - успішно
+@Progress.StepBy 1
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/ZamovnRead.txt $Papka\TD\Scripts\
 @if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/ZamovnRead.txt $Papka\TD\Scripts\
 @if $Download=0 then @Text[2].Add Довідник \TD\Scripts\ZamovnRead.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \TD\Scripts\ZamovnRead.txt - успішно
+@Progress.StepBy 1
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/ZamovnReadForm.txt $Papka\TD\Scripts\
 @if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/ZamovnReadForm.txt $Papka\TD\Scripts\
 @if $Download=0 then @Text[2].Add Довідник \TD\Scripts\ZamovnReadForm.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \TD\Scripts\ZamovnReadForm.txt - успішно
+@Progress.StepBy 1
 ;
 ; Формат рядка: шлях усередині TD~назва файлу на сервері
 @Text[40].Clear
@@ -205,6 +213,7 @@ $TplIndex=0
 ;
 %TplNext
 $TplIndex=$TplIndex+1
+@Progress.StepBy 1
 @if $TplIndex>$TplCount then @Goto %Update504
 ;
 $TplRow=@Text[40].Line[$TplIndex]
@@ -267,6 +276,7 @@ $TplExists=@FileExists $TplTarget
 @Goto %TplNext
 ;
 %Update504
+@Progress.Stop
 ;
 $TC=@Text[2].Count
 @if $TC<>0 then $Text=@Text[2].Text
