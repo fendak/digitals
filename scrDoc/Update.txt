@@ -161,6 +161,13 @@ $Download=@Download https://fendak.github.io/digitals/scrDoc/RestrLandArea.txt $
 @if $Download>0 then @Text[2].Add Довідник \TD\Scripts\RestrLandArea.txt - успішно
 @Progress.StepBy 1
 ;
+%Update504
+%TrueControlUpdate504
+
+@if $Line>504 then @Goto %TrueControlUpdate505
+@Progress.Start 25 Завантаження оновлених файлів
+
+;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/ZamovnRead.txt $Papka\TD\Scripts\
 @if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/ZamovnRead.txt $Papka\TD\Scripts\
 @if $Download=0 then @Text[2].Add Довідник \TD\Scripts\ZamovnRead.txt - не вдалося завантажити з сервера
@@ -171,14 +178,7 @@ $Download=@Download https://fendak.github.io/digitals/scrDoc/ZamovnReadForm.txt 
 @if $Download=0 then $Download=@Download https://digitals.at.ua/scrDoc/ZamovnReadForm.txt $Papka\TD\Scripts\
 @if $Download=0 then @Text[2].Add Довідник \TD\Scripts\ZamovnReadForm.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \TD\Scripts\ZamovnReadForm.txt - успішно
-@Progress.StepBy 1
 
-;
-%Update504
-%TrueControlUpdate504
-
-@if $Line>504 then @Goto %TrueControlUpdate505
-@Progress.Start 25 Завантаження оновлених файлів
 $TplTarget=@Assign $Papka\TD
 $TplRoot=@Assign $TplTarget\Нові шаблони
 $TplArchive=@Assign $TplRoot\NewTempl505.zip
