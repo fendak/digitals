@@ -141,7 +141,6 @@ $Download=@Download https://fendak.github.io/digitals/scrDoc/MyScriptGeneral.txt
 %TrueControlUpdate503
 ;
 @if $Line>503 then @Goto %TrueControlUpdate504
-$DialogO=@Dialog.Confirm Зараз буде автоматично оновлено такі шаблони:|\TD\Doc\Акт ПП.dmf|\TD\Doc\Договір.dmf|\TD\Doc\Договір+.dmf|\TD\Doc\Кад план.dmt|\TD\Doc\План обмежень.dmt|\TD\Doc\Протокол.dmf|\TD\Doc\A0h\Кад план.dmt|\TD\Doc\A0h\План обмежень.dmt|\TD\Doc\A1h\Кад план.dmt|\TD\Doc\A1h\План обмежень.dmt|\TD\Doc\A2h\Кад план.dmt|\TD\Doc\A2h\План обмежень.dmt|\TD\Doc\A2v\Кад план.dmt|\TD\Doc\A3h\Кад план.dmt|\TD\Doc\A3h\План відведення.dmt|\TD\Doc\A3h\План обмежень.dmt|\TD\Doc\A3v\Кад план.dmt|\TD\Doc\A3v\План відведення.dmt|\TD\Doc\A3v\План обмежень.dmt|\TD\Doc004\План відведення.dmt|\TD\Doc Альтернативні та старі шаблони\Кад план з табличкою обмежень без закон актів.dmt||Якщо ви їх у себе редагували якось, то натисніть Cansel - тоді шаблони буде завантажено в окрему папку (\TD\Нові шаблони), з якої потім зможете замінити їх самостійно.
 @Progress.Start 25 Завантаження оновлених файлів
 ;
 $Download=@Download https://fendak.github.io/digitals/scrDoc/scrDocSpObl.txt $Papka\Lists\
@@ -173,110 +172,42 @@ $Download=@Download https://fendak.github.io/digitals/scrDoc/ZamovnReadForm.txt 
 @if $Download=0 then @Text[2].Add Довідник \TD\Scripts\ZamovnReadForm.txt - не вдалося завантажити з сервера
 @if $Download>0 then @Text[2].Add Довідник \TD\Scripts\ZamovnReadForm.txt - успішно
 @Progress.StepBy 1
-;
-; Формат рядка: шлях усередині TD~назва файлу на сервері
-@Text[40].Clear
-@Text[40].Add Doc\Акт ПП.dmf~Akt%20PP.dmf
-@Text[40].Add Doc\Договір.dmf~Dohovir.dmf
-@Text[40].Add Doc\Договір+.dmf~Dohovir+.dmf
-@Text[40].Add Doc\Протокол.dmf~Protokol.dmf
-@Text[40].Add Doc\Кад план.dmt~Kad%20plan.dmt
-@Text[40].Add Doc\План обмежень.dmt~Plan%20obmezhen.dmt
-@Text[40].Add Doc\A0h\Кад план.dmt~Kad%20plan_A0h.dmt
-@Text[40].Add Doc\A0h\План обмежень.dmt~Plan%20obmezhen_A0h.dmt
-@Text[40].Add Doc\A1h\Кад план.dmt~Kad%20plan_A1h.dmt
-@Text[40].Add Doc\A1h\План обмежень.dmt~Plan%20obmezhen_A1h.dmt
-@Text[40].Add Doc\A2h\Кад план.dmt~Kad%20plan_A2h.dmt
-@Text[40].Add Doc\A2h\План обмежень.dmt~Plan%20obmezhen_A2h.dmt
-@Text[40].Add Doc\A2v\Кад план.dmt~Kad%20plan_A2v.dmt
-@Text[40].Add Doc\A3h\Кад план.dmt~Kad%20plan_A3h.dmt
-@Text[40].Add Doc\A3h\План відведення.dmt~Plan%20vidvedennya.dmt
-@Text[40].Add Doc\A3h\План обмежень.dmt~Plan%20obmezhen_A3h.dmt
-@Text[40].Add Doc\A3v\Кад план.dmt~Kad%20plan_A3v.dmt
-@Text[40].Add Doc\A3v\План відведення.dmt~Plan%20vidvedennya_A3v.dmt
-@Text[40].Add Doc\A3v\План обмежень.dmt~Plan%20obmezhen_A3v.dmt
-@Text[40].Add Doc Альтернативні та старі шаблони\Кад план з табличкою омбежень без закон актів.dmt~Kad%20plan%20z%20tablychkoyu%20ombezhen%20bez%20zakon%20aktiv.dmt
-@Text[40].Add Doc004\План відведення.dmt~Plan%20vidvedennya_Doc004.dmt
-;
-$TplBaseURL=@Assign https://fendak.github.io/digitals/scrDoc/Template
-$TplRoot=@Assign $Papka\TD
-@if $DialogO<>1 then $TplRoot=@Assign $Papka\TD\Нові шаблони
-;
-; Створюємо кореневі папки.
-$TplExists=@FolderExists $Papka\TD
-@if $TplExists=0 then @CreateFolder $Papka\TD
-$TplExists=@FolderExists $TplRoot
-@if $TplExists=0 then @CreateFolder $TplRoot
-;
-$TplCount=@Text[40].Count
-$TplIndex=0
-;
-%TplNext
-$TplIndex=$TplIndex+1
-@Progress.StepBy 1
-@if $TplIndex>$TplCount then @Goto %Update504
-;
-$TplRow=@Text[40].Line[$TplIndex]
-$TplRelative=@StringPart 1~$TplRow
-$TplServerName=@StringPart 2~$TplRow
-$TplFileName=@ExtractFileName $TplRelative
-$TplRelativeFolder=@ExtractFilePath $TplRelative
-$TplTarget=@Assign $TplRoot\$TplRelative
-;
-; Створюємо підпапки послідовно.
-$TplFolder=@Assign $TplRoot
-$TplFolderParts=@StringPartCount \ $TplRelativeFolder
-@For $TplPartIndex=1,$TplFolderParts {$TplPart=@StringPart $TplPartIndex\$TplRelativeFolder; @If "$TplPart"<>"" then {$TplFolder=@Assign $TplFolder\$TplPart; $TplExists=@FolderExists $TplFolder; @If $TplExists=0 then @CreateFolder $TplFolder}}
-;
-; Завантажуємо під латинською назвою.
-$TplURL=@Assign $TplBaseURL/$TplServerName
-$TplDownload=@Download $TplURL $TplFolder\
-@if $TplDownload=0 then @Goto %TplDownloadError
-;
-; Перевіряємо обидва варіанти обробки %20 завантажувачем.
-$TplDecodedName=@StringReplace %20| |$TplServerName
-$TplDownloaded=@Assign $TplFolder\$TplDecodedName
-$TplExists=@FileExists $TplDownloaded
-@if $TplExists=1 then @Goto %TplDownloadedReady
-$TplDownloaded=@Assign $TplFolder\$TplServerName
-$TplExists=@FileExists $TplDownloaded
-@if $TplExists=0 then @Goto %TplDownloadError
-;
-%TplDownloadedReady
-; Старий шаблон переносимо в .bak лише після завантаження нового.
-$TplExists=@FileExists $TplTarget
-@if $TplExists=0 then @Goto %TplInstall
-;
-$TplBackup=@Assign $TplTarget.bak
-$TplExists=@FileExists $TplBackup
-@if $TplExists=1 then @DeleteFile $TplBackup
-;
-$TplRename=@RenameFile $TplTarget|$TplBackup
-@if $TplRename<>0 then @Goto %TplBackupError
-;
-%TplInstall
-$TplRename=@RenameFile $TplDownloaded|$TplTarget
-@if $TplRename<>0 then @Goto %TplRenameError
-;
-$TplExists=@FileExists $TplTarget
-@if $TplExists=0 then @Goto %TplRenameError
-@Text[2].Add Шаблон $TplTarget - успішно
-@Goto %TplNext
-;
-%TplDownloadError
-@Text[2].Add Шаблон $TplTarget - не вдалося завантажити з сервера
-@Goto %TplNext
-;
-%TplBackupError
-@Text[2].Add Шаблон $TplTarget - не вдалося створити резервну копію; новий файл залишено як $TplDownloaded
-@Goto %TplNext
-;
-%TplRenameError
-@Text[2].Add Шаблон $TplTarget - не вдалося перейменувати з $TplDownloaded (перейменуйте самостійно)
-@Goto %TplNext
+
 ;
 %Update504
+%TrueControlUpdate504
+
+@if $Line>504 then @Goto %TrueControlUpdate505
+@Progress.Start 25 Завантаження оновлених файлів
+$TplTarget=@Assign $Papka\TD
+$TplRoot=@Assign $TplTarget\Нові шаблони
+$TplArchive=@Assign $TplRoot\NewTempl505.zip
+;
+$TplExists=@FolderExists $TplRoot
+@If $TplExists=0 then @CreateFolder $TplRoot
+;
+$Download=@Download https://fendak.github.io/digitals/scrDoc/NewTempl505.zip $TplRoot
 @Progress.Stop
+@If $Download>0 then @Goto %TplDownloaded
+@Text[2].Add Архів NewTempl505.zip не вдалося завантажити з сервера.
+@Goto %TplDone
+;
+%TplDownloaded
+@Text[2].Add Архів NewTempl505.zip успішно завантажено в папку TD\Нові шаблони.
+;
+; @Version повертає дату збірки. 46343 відповідає 17.11.2026.
+$TplBuild=@Version
+@If $TplBuild>=46342 then @Goto %TplConfirm
+@Dialog.Message У папку «TD/Нові шаблони» завантажено архів з оновленими шаблонами пояснювальних записок, заяв, завдань, переліків обмежень, відомостей про встановлені межові знаки, кадастрових планів, планів обмежень, планів відведення, актів виконаних робіт, протоколів узгодження ціни та договорів.||Для автоматичного розпакування потрібна збірка Digitals від 16.11.2026 або новіша. Шаблони можна замінити вручну. Але зверніть увагу, що щоб дані шаблони працювали працювали - програма має бути оновленою.
+@Goto %TplDone
+;
+%TplConfirm
+$TplAnswer=@Dialog.Confirm У папку «TD/Нові шаблони» завантажено архів з оновленими шаблонами пояснювальних записок, заяв, завдань, переліків обмежень, відомостей про встановлені межові знаки, кадастрових планів, планів обмежень, планів відведення, актів виконаних робіт, протоколів узгодження ціни та договорів.||Розпакувати архів автоматично із заміною 113 наявних шаблонів?||Якщо натиснути «Скасувати» (Cancel), архів залишиться в цій папці й ви зможете замінити шаблони вручну.
+@If $TplAnswer=1 then @Unzip $TplArchive|$TplTarget
+;
+%TplDone
+
+
 ;
 $TC=@Text[2].Count
 @if $TC<>0 then $Text=@Text[2].Text
@@ -284,4 +215,4 @@ $TC=@Text[2].Count
 @Text[1].Add $Vers2
 @Text[1].Save $Papka\TD\Scripts\ControlUpdate.txt
 @if $TC<>0 then @Dialog.Message Оновлено файли:|$Text
-%TrueControlUpdate504
+%TrueControlUpdate505

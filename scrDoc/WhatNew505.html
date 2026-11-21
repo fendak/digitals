@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Digitals - геодезія, картографія та землевпорядкування</title>
+  <link rel="stylesheet" href="https://fendak.github.io/digitals/style.css">
+  <style>
+    .highlighted-screenshot {
+      border-radius: 4px;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.16),
+                  0 5px 14px rgba(15, 23, 42, 0.22);
+    }
+
+
+    .gz16-table {
+      width: 1239px;
+      border-collapse: collapse;
+    }
+
+    .gz16-table td {
+      padding: 1px 1px 0;
+      vertical-align: middle;
+      background-color: #ccffcc;
+      border: 0;
+    }
+
+    .gz16-table td:nth-child(-n+2) {
+      white-space: nowrap;
+    }
+
+    .gz16-table td:first-child {
+      height: 20px;
+      border-left: 1px solid black;
+    }
+
+    .gz16-table td:last-child {
+      text-align: left;
+      border-right: 0.7px solid black;
+    }
+
+    .gz16-table .cell-text {
+      font: 400 15px Calibri, sans-serif;
+      color: black;
+      text-decoration: none;
+    }
+
+    .gz16-table td:nth-child(-n+2) .cell-text {
+      font-weight: 700;
+    }
+
+    .gz16-table td:first-child .cell-text {
+      color: inherit;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="menu-container"></div>
+  <div class="container">
+
+    <p>Див. <a href="https://fendak.github.io/digitals/scrDoc/WhatNew.html">Про оновлення 5.0</a></p>
+
+    <h2>Оновлення модуля &quot;Документація&quot; до версії 5.05</h2>
+
+    <p>Оновлено текстові шаблони: пояснювальні записки, заяви замовника, технічні завдання, відомості про встановлені межові знаки та переліки обмежень.</p>
+
+    <p><strong>Зверніть увагу!</strong> Дане оновлення потребує нової версії програми Digitals. Нові шаблони не можуть працювати зі старішими версіями програм. Тому перед оновленням шаблонів оновить сам Digitals.</p>
+
+    <p><strong>➡️Пояснювальні записки</strong> тепер автоматично вирівнюють текст і перерозподіляють його між сторінками, як у Word.</p>
+
+    <p>Якщо після редагування додалося або зникло приблизно 3&ndash;4 рядки, текст залишається на тій самій сторінці. Для цього скрипт збільшує або зменшує міжрядковий інтервал щонайбільше на 1 пт.</p>
+
+    <p>Якщо зміни більші, скрипт переносить зайвий текст на наступну сторінку або підтягує з неї текст, щоб заповнити вільне місце.</p>
+
+    <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/NJnWGOz_A9w" style="width: 900pt; max-width: 100%; height: auto; aspect-ratio: 1665 / 780; border: 0;" title="Оновлення модуля &quot;Документація&quot; 5.05"></iframe></p>
+
+    <p>У <strong>заяві</strong> &nbsp;покращено автоматичне переміщення тексту та додано розставлення підписів, коли є співвласники:<br />
+      <img class="highlighted-screenshot" alt="" src="https://fendak.github.io/digitals/scrDoc/image/55.png" style="width: 600px; height: 96px;" /></p>
+
+    <p>У заяві також додано заборону на розбивку дати між рядками.</p>
+
+    <p>У <strong>завданнях на виконання робіт</strong> покращено автоматичне переміщення тексту. Плюс вгорі додано створення таких рядків для підпису, коли є співзамовники:<br />
+      <img class="highlighted-screenshot" alt="" src="https://fendak.github.io/digitals/scrDoc/image/57.png" style="width: 600px; height: 182px;" /></p>
+
+    <p>У <strong>відомості про встановлені межові</strong> знаки оптимізовано тільки пересування рядків з підписом внизу, коли є співвласники.</p>
+
+    <p>У <strong>переліку обмежено</strong> &nbsp;додано зміну міжрядкового інтервалу на першій сторінці, якщо текст опису розширюється. Перелік обмежень збережено в рамках трьох сторінок. Так зручніше, якщо сторінка з помилкою, то достатньо передрукувати лише одну сторінку.</p>
+
+    <p>Загалом разом із договорами, актом виконаних робіт, протоколом узгодження ціни та кадастровими та іншими планами (про них дивіться в <a href="https://fendak.github.io/digitals/scrDoc/WhatNew.html">описі 5.04</a>, вони ще трішки оновлені) оновлено 113 шаблонів, серед яких лише пояснювальних записок 70 штук:<br />
+      <img alt="" src="https://fendak.github.io/digitals/scrDoc/image/56.png" style="width: 900px; height: 1128px;" /></p>
+
+    <p>Як зараз виглядає документація, створена на оновлених шаблонах, можна переглянути на прикладі техніки -&nbsp; <strong><a href="https://fendak.github.io/digitals/scrDoc/006.pdf">006 Технічна документація</a></strong><br />
+    &nbsp;</p>
+
+    <p><strong>Як оновлювати ці шаблони?</strong></p>
+
+    <p>Під час оновлення скрипту з&#39;явиться повідомлення:<br />
+      <img alt="" src="https://fendak.github.io/digitals/scrDoc/image/58.png" style="width: 400px; height: 335px;" /></p>
+
+    <p><strong>Зверніть увагу!</strong> Якщо натиснути ОК - шаблони самі будуть розпаковані з архіву. Якщо Cansel - архів можна буде пізніше розпакувати самостійно, вибравши лише ті шаблони, які хочете замінити, щоб не замінити ті, які ви якось редагували в себе.</p>
+
+    <p>Автоматичне розпакування архіву можливе&nbsp;тільки на новій версії програми Digitals (старіші просто не підтримують цю нову функцію). Але шаблони досить просто розпакувати і вручну. Відкрийте архів, виділіть там папку TD і розпакуйте в папку Digitals із заміною.</p>
+
+    <p>➡️У вікні інформації про замовника додано рядки ПІБ в родововому та давальному відмінках (дивіться оновлені зображення в <a href="https://fendak.github.io/digitals/scrDoc/WhatNew504.html">описі 5.04</a>), а також опцію вибору статі. Додано нову змінну:&nbsp;</p>
+
+    <table class="gz16-table">
+      <colgroup>
+        <col style="width:118pt">
+        <col style="width:123pt">
+        <col style="width:270pt">
+        <col style="width:161pt">
+        <col style="width:257pt">
+      </colgroup>
+      <tbody>
+        <tr>
+          <td><span class="cell-text">$GZ16</span></td>
+          <td><span class="cell-text">&lt;GZ16&gt;</span></td>
+          <td><span class="cell-text">к/ця/ки</span></td>
+          <td colspan="2"><span class="cell-text">замовникК/завониЦЯ/замовниКИ</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <script>
+    fetch('https://fendak.github.io/digitals/menu.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
+      });
+  </script>
+</body>
+</html>
