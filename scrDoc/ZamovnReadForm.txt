@@ -1,7 +1,16 @@
 ;Варіант із маскою параметра та @Dialog.EditParameter.
-;Вхід: $PARAMETERS — ПІБ одного замовника.
-;Результат: 11 полів через \; співзамовники всередині полів — через кому.
-$InputPIB=@StringNice $PARAMETERS
+;Вхід: ПІБ першого замовника або ПІБ першого|список у родовому|список у давальному.
+;Результат: 14 полів через \. Останні три — родовий, давальний і стать.
+@Text[49].Text $PARAMETERS
+$InputFieldCount=@Text[49].Count
+$InputPIB=
+$InputRod=
+$InputDat=
+@if $InputFieldCount>=1 then $InputPIB=@Text[49].Line[1]
+@if $InputFieldCount>=2 then $InputRod=@Text[49].Line[2]
+@if $InputFieldCount>=3 then $InputDat=@Text[49].Line[3]
+$FirstInputPIB=@StringPart 1,$InputPIB
+$FirstInputPIB=@StringNice $FirstInputPIB
 $MC=@MapCount
 @if $MC=0 then @Break Немає відкритої карти
 @Map.DeselectAll
@@ -13,8 +22,8 @@ $OwnerCount=0
 @if $OwnersXML<> then $OwnerCount=@XML.NodeCount /Proprietors ProprietorInfo $OwnersXML
 ;
 $ProgramPath=@ProgramFolder
-$DataFolder=@Assign $ProgramPath\TD
-$HistoryFile=@Assign $DataFolder\PassportIssuers.txt
+$DataFolder=$ProgramPath\TD
+$HistoryFile=$DataFolder\PassportIssuers.txt
 $Exists=@FolderExists $DataFolder
 @if $Exists=0 then @CreateFolder $DataFolder
 ;
@@ -22,47 +31,68 @@ $Exists=@FolderExists $DataFolder
 @Text[56].Clear
 @Text[57].Clear
 @Text[58].Clear
-$Dictionary=@Assign $ProgramPath\Lists\scrDocSpObl.txt
+$Dictionary=$ProgramPath\Lists\scrDocSpObl.txt
 $Exists=@FileExists $Dictionary
 @if $Exists=1 then @Text[55].Load $Dictionary
-$Dictionary=@Assign $ProgramPath\Lists\scrDocSpRay.txt
+$Dictionary=$ProgramPath\Lists\scrDocSpRay.txt
 $Exists=@FileExists $Dictionary
 @if $Exists=1 then @Text[56].Load $Dictionary
 @Text[57].Add Паспорт громадянина України
 @Text[57].Add Паспорт громадянина України у формі картки
 $Exists=@FileExists $HistoryFile
 @if $Exists=1 then @Text[58].Load $HistoryFile
+@Text[59].Clear
+@Text[60].Clear
+$NameDictionary=$DataFolder\Scripts\NamesM.txt
+$Exists=@FileExists $NameDictionary
+@if $Exists=1 then @Text[59].Load $NameDictionary
+$NameDictionary=$DataFolder\Scripts\NamesF.txt
+$Exists=@FileExists $NameDictionary
+@if $Exists=1 then @Text[60].Load $NameDictionary
 ;
-$Sep=@Assign |
+$Sep=|
 $CustomerCount=0
 $OwnerIndex=0
-$Zamovnyk=@Assign
-$AU=@Assign
-$TaxNum=@Assign
-$PP=@Assign
-$PPSkor=@Assign
-$PPDate=@Assign
-$PPKymVyd=@Assign
-$ZIP=@Assign
-$ZamovnykSkorIBP=@Assign
-$ZamovnykSkorPIB=@Assign
-$ZamovnykVIP=@Assign
+$Zamovnyk=
+$AU=
+$TaxNum=
+$PP=
+$PPSkor=
+$PPDate=
+$PPKymVyd=
+$ZIP=
+$ZamovnykSkorIBP=
+$ZamovnykSkorPIB=
+$ZamovnykVIP=
+$OutputRod=
+$OutputDat=
+$OutputGender=
 ;
 %NextCustomer
-$PersonPIB=@Assign
-$PersonOblast=@Assign
-$PersonRaion=@Assign
-$PersonSettlement=@Assign
-$PersonStreet=@Assign
-$PersonBuilding=@Assign
-$PersonBlock=@Assign
-$PersonFlat=@Assign
-$PersonZIP=@Assign
-$PersonIdKod=@Assign
-$PersonDocType=@Assign
-$PersonDocNumber=@Assign
-$PersonDocDate=@Assign
-$PersonIssuer=@Assign
+$InputIndex=$CustomerCount+1
+$OwnerNomPIB=
+$PersonPIB=
+@if $InputIndex=1 then $PersonPIB=$FirstInputPIB
+$PersonPIBRod=@StringPart $InputIndex,$InputRod
+$PersonPIBDat=@StringPart $InputIndex,$InputDat
+$PersonPIB=@TrimText $PersonPIB
+$PersonPIBRod=@TrimText $PersonPIBRod
+$PersonPIBDat=@TrimText $PersonPIBDat
+$PersonGenderDefault=1
+$PersonGender=
+$PersonOblast=
+$PersonRaion=
+$PersonSettlement=
+$PersonStreet=
+$PersonBuilding=
+$PersonBlock=
+$PersonFlat=
+$PersonZIP=
+$PersonIdKod=
+$PersonDocType=
+$PersonDocNumber=
+$PersonDocDate=
+$PersonIssuer=
 ;
 %FindOwner
 $OwnerIndex=$OwnerIndex+1
@@ -73,9 +103,9 @@ $Base=@Assign ProprietorInfo[$OwnerIndex]/Authentication/NaturalPerson
 $LastName=@XML.XPath $Base/FullName/LastName $OwnersXML
 $FirstName=@XML.XPath $Base/FullName/FirstName $OwnersXML
 $MiddleName=@XML.XPath $Base/FullName/MiddleName $OwnersXML
-$PersonPIB=@Assign $LastName
-@if $FirstName<> then $PersonPIB=@Assign $PersonPIB $FirstName
-@if $MiddleName<> then $PersonPIB=@Assign $PersonPIB $MiddleName
+$OwnerNomPIB=@StringNice $LastName $FirstName $MiddleName
+$PersonNameLength=@StringLength $PersonPIB
+@if $PersonNameLength=0 then $PersonPIB=@Assign $OwnerNomPIB
 $PersonIdKod=@XML.XPath $Base/TaxNumber $OwnersXML
 $PersonOblast=@XML.XPath $Base/Address/Region $OwnersXML
 @if $PersonOblast=- then $PersonOblast=@Assign
@@ -110,11 +140,32 @@ $PersonIssuer=@XML.XPath $Base/Passport/IssuanceAuthority $OwnersXML
 @Goto %RememberXMLIssuer
 ;
 %RememberXMLIssuer
-;Для першого діалогу замінюємо лише ПІБ. Інші реквізити — з власника.
-@if $CustomerCount>0 then @Goto %InputReady
-@if $InputPIB<> then $PersonPIB=@Assign $InputPIB
-%InputReady
-;Галочка ввімкнена лише за наявності наступного фізичного співвласника.
+@if $InputIndex<>1 then @Goto %SetGenderDefault
+$FirstInputLength=@StringLength $FirstInputPIB
+@if $FirstInputLength=0 then @Goto %SetGenderDefault
+$FirstInputCompare=@LowerCase $FirstInputPIB
+$OwnerNomCompare=@LowerCase $OwnerNomPIB
+@if "$FirstInputCompare"="$OwnerNomCompare" then @Goto %SetGenderDefault
+$AutoRod=@Map.Object[$MON].CalculateFormula Rop($PersonPIB)
+$AutoDat=@Map.Object[$MON].CalculateFormula Dap($PersonPIB)
+$AutoRodLength=@StringLength $AutoRod
+$AutoDatLength=@StringLength $AutoDat
+@if $AutoRodLength>0 then $PersonPIBRod=@Assign $AutoRod
+@if $AutoDatLength>0 then $PersonPIBDat=@Assign $AutoDat
+%SetGenderDefault
+; При старому виклику передається лише називний відмінок.
+$LegacyNameLength=@StringLength $PersonPIB
+@if $LegacyNameLength=0 then @Goto %FormGender
+@if $InputFieldCount<2 then $PersonPIBRod=@Map.Object[$MON].CalculateFormula Rop($PersonPIB)
+@if $InputFieldCount<3 then $PersonPIBDat=@Map.Object[$MON].CalculateFormula Dap($PersonPIB)
+%FormGender
+$PersonGivenName=@StringPart 2 $PersonPIB
+@if $PersonGivenName= then @Goto %NoAvtoStat
+$NameIndex=@Text[59].IndexOf $PersonGivenName
+@if $NameIndex>0 then @Goto %NoAvtoStat
+$NameIndex=@Text[60].IndexOf $PersonGivenName
+@if $NameIndex>0 then $PersonGenderDefault=2
+%NoAvtoStat
 $MoreDefault=@Assign
 $ProbeOwner=$OwnerIndex
 %FindNextOwner
@@ -131,6 +182,8 @@ $HistoryCandidate=@Assign $PersonIssuer
 %PrepareLists
 %CustomerDialog
 $Number=$CustomerCount+1
+$FormGender=ч
+@if $PersonGenderDefault=2 then $FormGender=ж
 $MoreAnswer=ні
 @if $MoreDefault=1 then $MoreAnswer=так
 $FormV=@Calc Char(124)
@@ -153,7 +206,8 @@ $FormValid=@Map.Layers.GetValidParameters ID70005
 $FormObject=$MON
 @Map.SelectObject $FormObject
 @SelectTab 3
-@Map.Parameters.Mask ID$FormID *=$PersonPIB,*=$PersonOblast,*=$PersonRaion,*=$PersonSettlement,*=$PersonStreet,*=$PersonBuilding,*=$PersonBlock,*=$PersonFlat,*=$PersonZIP,*=$PersonDocType,*=$PersonDocNumber,*=$PersonDocDate,*=$PersonIssuer,*=$PersonIdKod,*=$MoreAnswer@ ПІБ замовника$FormV Область:scrDocSpObl.txt$FormV Район:scrDocSpRay.txt$FormV Населений пункт$FormV Вулиця$FormV Номер будинку$FormV Корпус$FormV Квартира$FormV Поштовий індекс$FormV Тип документа:ZamovnDocumentTypes.txt$FormV Серія та номер документа$FormV Дата видачі (дд.мм.рррр)$FormV Ким видано паспорт:ZamovnPassportIssuers.txt$FormV РНОКПП$FormV Додати ще одного замовника:YesNo.txt
+$Maskado=Стать(ч/ж):Stat.txt
+@Map.Parameters.Mask ID$FormID *=$FormGender,*=$PersonPIB,*=$PersonPIBRod,*=$PersonPIBDat,*=$PersonOblast,*=$PersonRaion,*=$PersonSettlement,*=$PersonStreet,*=$PersonBuilding,*=$PersonBlock,*=$PersonFlat,*=$PersonZIP,*=$PersonDocType,*=$PersonDocNumber,##.##.####=$PersonDocDate,*=$PersonIssuer,#10=$PersonIdKod,*=$MoreAnswer@  $Maskado$FormV ПІБ замовника$FormV у родовому відмінку$FormV у давальному відмінку$FormV Область:scrDocSpObl.txt$FormV Район:scrDocSpRay.txt$FormV Населений пункт$FormV Вулиця$FormV Номер будинку$FormV Корпус$FormV Квартира$FormV Поштовий індекс$FormV Тип документа:ZamovnDocumentTypes.txt$FormV Серія та номер документа$FormV Дата видачі (дд.мм.рррр)$FormV Ким видано паспорт:ZamovnPassportIssuers.txt$FormV Ідент.номер$FormV Додати ще одного замовника:YesNo.txt
 @Dialog.EditParameter ID$FormID
 $FormValues=@Map.Object[$FormObject].Parameter[ID$FormID]
 @Map.Layers.SetValidParameters ID70005 $FormValid
@@ -161,21 +215,30 @@ $FormValues=@Map.Object[$FormObject].Parameter[ID$FormID]
 @Map.DeselectAll
 @Map.SelectObject $MON
 @if $FormValues= then @Return Break
-$PersonPIB=@StringPart 1,$FormValues
-$PersonOblast=@StringPart 2,$FormValues
-$PersonRaion=@StringPart 3,$FormValues
-$PersonSettlement=@StringPart 4,$FormValues
-$PersonStreet=@StringPart 5,$FormValues
-$PersonBuilding=@StringPart 6,$FormValues
-$PersonBlock=@StringPart 7,$FormValues
-$PersonFlat=@StringPart 8,$FormValues
-$PersonZIP=@StringPart 9,$FormValues
-$PersonDocType=@StringPart 10,$FormValues
-$PersonDocNumber=@StringPart 11,$FormValues
-$PersonDocDate=@StringPart 12,$FormValues
-$PersonIssuer=@StringPart 13,$FormValues
-$PersonIdKod=@StringPart 14,$FormValues
-$MoreAnswer=@StringPart 15,$FormValues
+$FormGender=@StringPart 1,$FormValues
+$PersonPIB=@StringPart 2,$FormValues
+$PersonPIBRod=@StringPart 3,$FormValues
+$PersonPIBDat=@StringPart 4,$FormValues
+$FormGender=@TrimText $FormGender
+$PersonGender=@Assign чоловік
+$PersonGenderDefault=1
+$FormGender=@LowerCase $FormGender
+@if "$FormGender"="ж" then $PersonGender=жінка
+@if "$FormGender"="ж" then $PersonGenderDefault=2
+$PersonOblast=@StringPart 5,$FormValues
+$PersonRaion=@StringPart 6,$FormValues
+$PersonSettlement=@StringPart 7,$FormValues
+$PersonStreet=@StringPart 8,$FormValues
+$PersonBuilding=@StringPart 9,$FormValues
+$PersonBlock=@StringPart 10,$FormValues
+$PersonFlat=@StringPart 11,$FormValues
+$PersonZIP=@StringPart 12,$FormValues
+$PersonDocType=@StringPart 13,$FormValues
+$PersonDocNumber=@StringPart 14,$FormValues
+$PersonDocDate=@StringPart 15,$FormValues
+$PersonIssuer=@StringPart 16,$FormValues
+$PersonIdKod=@StringPart 17,$FormValues
+$MoreAnswer=@StringPart 18,$FormValues
 $PersonPIB=@StringNice $PersonPIB
 @if $PersonPIB<> then @Goto %RememberEditedIssuer
 @Dialog.Message Заповніть ПІБ замовника
@@ -260,8 +323,14 @@ $ZIP=@Assign $ZIP,
 $ZamovnykSkorIBP=@Assign $ZamovnykSkorIBP, 
 $ZamovnykSkorPIB=@Assign $ZamovnykSkorPIB, 
 $ZamovnykVIP=@Assign $ZamovnykVIP, 
+$OutputRod=@Assign $OutputRod, 
+$OutputDat=@Assign $OutputDat, 
+$OutputGender=@Assign $OutputGender, 
 %AppendCustomer
 $Zamovnyk=@Assign $Zamovnyk$PersonPIB
+$OutputRod=@Assign $OutputRod$PersonPIBRod
+$OutputDat=@Assign $OutputDat$PersonPIBDat
+$OutputGender=@Assign $OutputGender$PersonGender
 $AU=@Assign $AU$AddressFull
 $TaxNum=@Assign $TaxNum$PersonIdKod
 $PP=@Assign $PP$PassportFull
@@ -296,6 +365,5 @@ $HistoryLine=@StringNice $HistoryLine
 @Goto %FormatCustomer
 ;
 %End
-$ResultLine=@Assign $Zamovnyk\$AU\$TaxNum\$PP\$PPSkor\$PPDate\$PPKymVyd\$ZIP\$ZamovnykSkorIBP\$ZamovnykSkorPIB\$ZamovnykVIP
+$ResultLine=@Assign $Zamovnyk\$AU\$TaxNum\$PP\$PPSkor\$PPDate\$PPKymVyd\$ZIP\$ZamovnykSkorIBP\$ZamovnykSkorPIB\$ZamovnykVIP\$OutputRod\$OutputDat\$OutputGender
 @Return $ResultLine
-
